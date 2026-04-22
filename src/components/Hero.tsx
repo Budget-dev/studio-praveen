@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from 'react';
@@ -17,7 +16,6 @@ const Hero = ({ lang, onOpen, isOpen }: HeroProps) => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center p-4 overflow-hidden bg-[#FAF7F2]">
-      {/* Decorative SVG motifs in corners */}
       <div className="absolute top-0 left-0 p-4 opacity-10">
         <svg width="200" height="200" viewBox="0 0 200 200">
           <path d="M0 0 Q50 0 50 50 Q50 100 100 100 Q150 100 150 150 Q150 200 200 200" stroke="#7B3045" fill="none" strokeWidth="2"/>
@@ -34,20 +32,22 @@ const Hero = ({ lang, onOpen, isOpen }: HeroProps) => {
       </div>
 
       <div className="relative z-10 w-full max-w-2xl bg-white/80 backdrop-blur-sm border-2 border-secondary/30 rounded-3xl p-8 md:p-12 shadow-[0_0_50px_rgba(123,48,69,0.05)] text-center animate-in fade-in slide-in-from-bottom-8 duration-1000">
-        <p className="font-script text-secondary text-lg md:text-xl mb-6 italic">
+        <p className={`text-secondary text-lg md:text-xl mb-6 italic ${lang === 'te' ? 'font-telugu' : 'font-script'}`}>
           {t.auspicious}
         </p>
         
         <div className="gold-divider mb-8" />
         
-        <h1 className={`text-3xl md:text-5xl lg:text-6xl text-primary mb-6 leading-tight ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
+        <h1 className={`text-3xl md:text-5xl lg:text-6xl text-primary mb-6 leading-tight ${lang === 'te' ? 'font-telugu font-bold' : 'font-headline font-bold'}`}>
           {t.mainTitle}
         </h1>
         
         <div className="space-y-4 mb-10">
           <p className="text-muted-foreground text-sm uppercase tracking-[0.2em] font-headline">Welcome To Our New Home</p>
           <div className="flex flex-col items-center gap-2">
-            <span className={`text-2xl md:text-3xl font-script text-primary`}>{t.hostCouple}</span>
+            <span className={`text-2xl md:text-3xl ${lang === 'te' ? 'font-telugu font-bold' : 'font-script'} text-primary`}>
+              {t.hostCouple}
+            </span>
           </div>
         </div>
 

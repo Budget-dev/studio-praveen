@@ -18,18 +18,18 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
           <div className="text-secondary mb-4">
             <OmIcon className="w-16 h-16" />
           </div>
-          <h2 className="font-headline text-secondary text-xl italic">{t.shreeGanesh}</h2>
+          <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline'} text-secondary text-xl italic`}>{t.shreeGanesh}</h2>
         </div>
 
         <div className="space-y-6">
-          <p className="text-muted-foreground font-headline text-lg italic max-w-2xl mx-auto leading-relaxed">
+          <p className={`${lang === 'te' ? 'font-telugu' : 'font-headline'} text-muted-foreground text-lg italic max-w-2xl mx-auto leading-relaxed`}>
             {t.openingMessage}
           </p>
           
           <div className="gold-divider" />
 
           <div className="space-y-4">
-            <h3 className="text-3xl md:text-4xl font-script text-primary">
+            <h3 className={`text-3xl md:text-4xl ${lang === 'te' ? 'font-telugu font-bold' : 'font-script'} text-primary`}>
               {t.hostCouple}
             </h3>
             <p className="text-muted-foreground italic font-headline">
@@ -41,7 +41,7 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
             {t.occasion}
           </h2>
 
-          <p className="text-foreground text-lg md:text-xl leading-relaxed max-w-2xl mx-auto font-body">
+          <p className={`text-foreground text-lg md:text-xl leading-relaxed max-w-2xl mx-auto ${lang === 'te' ? 'font-telugu' : 'font-body'}`}>
             {t.bodyText}
           </p>
           
