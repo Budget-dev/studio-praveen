@@ -3,40 +3,40 @@
 import React, { useEffect, useState } from 'react';
 
 const PetalsAnimation = () => {
-  const [petals, setPetals] = useState<any[]>([]);
+  const [hearts, setHearts] = useState<any[]>([]);
 
   useEffect(() => {
-    const newPetals = Array.from({ length: 15 }).map((_, i) => ({
+    const newHearts = Array.from({ length: 15 }).map((_, i) => ({
       id: i,
       left: Math.random() * 100 + '%',
       delay: Math.random() * 10 + 's',
       duration: (Math.random() * 5 + 10) + 's',
-      size: (Math.random() * 10 + 10) + 'px',
+      size: (Math.random() * 15 + 15) + 'px',
     }));
-    setPetals(newPetals);
+    setHearts(newHearts);
   }, []);
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {petals.map((petal) => (
+      {hearts.map((heart) => (
         <div
-          key={petal.id}
+          key={heart.id}
           className="absolute animate-float-petal opacity-0"
           style={{
-            left: petal.left,
-            animationDelay: petal.delay,
-            animationDuration: petal.duration,
+            left: heart.left,
+            animationDelay: heart.delay,
+            animationDuration: heart.duration,
             bottom: '-20px',
           }}
         >
           <svg
-            width={petal.size}
-            height={petal.size}
-            viewBox="0 0 100 100"
-            fill="#7B3045"
-            className="opacity-40"
+            width={heart.size}
+            height={heart.size}
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="text-primary/20"
           >
-            <path d="M50 0 C60 30 100 40 100 60 C100 85 75 100 50 100 C25 100 0 85 0 60 C0 40 40 30 50 0" />
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
           </svg>
         </div>
       ))}
