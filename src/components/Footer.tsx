@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Language, translations } from '@/lib/translations';
-import GaneshaIcon from './GaneshaIcon';
+import OmIcon from './OmIcon';
 import { Heart } from 'lucide-react';
 
 interface FooterProps {
@@ -27,7 +27,7 @@ const Footer = ({ lang }: FooterProps) => {
         </div>
 
         <div className="pt-4 flex justify-center items-center gap-6 text-2xl opacity-40 hover:opacity-100 transition-opacity">
-          <GaneshaIcon className="w-8 h-8 text-white" />
+          <OmIcon className="w-8 h-8 text-white" />
           <span>🏠</span>
           <Heart className="w-8 h-8 text-white fill-white" />
         </div>

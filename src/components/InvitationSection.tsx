@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Language, translations } from '@/lib/translations';
-import GaneshaIcon from './GaneshaIcon';
+import OmIcon from './OmIcon';
 
 interface InvitationSectionProps {
   lang: Language;
@@ -15,8 +15,8 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
     <section id="invitation" className="py-20 px-4 md:px-8 bg-[#FAF7F2] text-center">
       <div className="max-w-4xl mx-auto space-y-12">
         <div className="flex flex-col items-center">
-          <div className="text-secondary mb-4 animate-bounce">
-            <GaneshaIcon className="w-16 h-16" />
+          <div className="text-secondary mb-4">
+            <OmIcon className="w-16 h-16" />
           </div>
           <h2 className="font-headline text-secondary text-xl italic">{t.shreeGanesh}</h2>
         </div>
