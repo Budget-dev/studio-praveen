@@ -8,9 +8,10 @@ import { ChevronDown } from 'lucide-react';
 interface HeroProps {
   lang: Language;
   onOpen: () => void;
+  isOpen: boolean;
 }
 
-const Hero = ({ lang, onOpen }: HeroProps) => {
+const Hero = ({ lang, onOpen, isOpen }: HeroProps) => {
   const t = translations[lang];
 
   return (
@@ -49,29 +50,33 @@ const Hero = ({ lang, onOpen }: HeroProps) => {
           </div>
         </div>
 
-        <Button
-          onClick={onOpen}
-          className="group h-14 px-10 bg-primary hover:bg-primary/90 text-white rounded-full text-lg shadow-xl hover:scale-105 transition-all flex items-center gap-3"
-        >
-          <span className={lang === 'te' ? 'font-telugu' : 'font-headline font-semibold'}>
-            {t.openInvitation}
-          </span>
-          <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
-        </Button>
+        {!isOpen && (
+          <div className="animate-in fade-in zoom-in duration-500 flex flex-col items-center">
+            <Button
+              onClick={onOpen}
+              className="group h-14 px-10 bg-primary hover:bg-primary/90 text-white rounded-full text-lg shadow-xl hover:scale-105 transition-all flex items-center gap-3"
+            >
+              <span className={lang === 'te' ? 'font-telugu' : 'font-headline font-semibold'}>
+                {t.openInvitation}
+              </span>
+              <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
+            </Button>
 
-        <div className="mt-8 flex justify-center gap-4">
-           <Button
-            variant="outline"
-            size="sm"
-            onClick={() => {
-              const text = encodeURIComponent(`You're invited to Patnala Gruhapravesam! 🏠🙏 ${window.location.origin}`);
-              window.open(`https://wa.me/?text=${text}`, '_blank');
-            }}
-            className="border-secondary text-primary hover:bg-secondary/10 rounded-full text-xs"
-          >
-            Share on WhatsApp
-          </Button>
-        </div>
+            <div className="mt-8">
+               <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  const text = encodeURIComponent(`You're invited to Patnala Gruhapravesam! 🏠🙏 ${window.location.origin}`);
+                  window.open(`https://wa.me/?text=${text}`, '_blank');
+                }}
+                className="border-secondary text-primary hover:bg-secondary/10 rounded-full text-xs"
+              >
+                Share on WhatsApp
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

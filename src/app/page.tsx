@@ -24,14 +24,8 @@ export default function Home() {
     // Initial loading sequence
     const timer = setTimeout(() => {
       setIsLoading(false);
-      // Use sessionStorage so the language choice persists during the session
-      // but shows up again when they close and reopen the invitation.
-      const savedLang = sessionStorage.getItem('invitation_lang') as Language;
-      if (savedLang) {
-        setLang(savedLang);
-      } else {
-        setShowLangSplash(true);
-      }
+      // Always show language selection on fresh load to ensure user choice
+      setShowLangSplash(true);
     }, 1500);
 
     return () => clearTimeout(timer);
@@ -39,7 +33,6 @@ export default function Home() {
 
   const handleLangSelect = (selectedLang: Language) => {
     setLang(selectedLang);
-    sessionStorage.setItem('invitation_lang', selectedLang);
     setShowLangSplash(false);
   };
 
@@ -59,7 +52,7 @@ export default function Home() {
       <LanguageToggle current={lang} onToggle={handleLangSelect} />
       <PetalsAnimation />
       
-      <Hero lang={lang} onOpen={handleOpenInvitation} />
+      <Hero lang={lang} onOpen={handleOpenInvitation} isOpen={isInvitationOpen} />
       
       <div className={`transition-all duration-1000 ${isInvitationOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <InvitationSection lang={lang} />
