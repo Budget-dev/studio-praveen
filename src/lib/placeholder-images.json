@@ -1,3 +1,22 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "gallery-1",
+      "description": "Housewarming ceremony",
+      "imageUrl": "https://picsum.photos/seed/house1/600/400",
+      "imageHint": "traditional housewarming"
+    },
+    {
+      "id": "gallery-2",
+      "description": "Family blessing",
+      "imageUrl": "https://picsum.photos/seed/house2/600/400",
+      "imageHint": "indian blessing"
+    },
+    {
+      "id": "gallery-3",
+      "description": "New home interior",
+      "imageUrl": "https://picsum.photos/seed/house3/600/400",
+      "imageHint": "modern interior"
+    }
+  ]
 }

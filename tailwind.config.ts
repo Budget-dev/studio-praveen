@@ -10,8 +10,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'],
-        headline: ['Inter', 'sans-serif'],
+        body: ['Lato', 'sans-serif'],
+        headline: ['Cormorant Garamond', 'serif'],
+        telugu: ['Tiro Telugu', 'serif'],
+        script: ['Great Vibes', 'cursive'],
         code: ['monospace'],
       },
       colors: {
