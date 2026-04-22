@@ -24,7 +24,9 @@ export default function Home() {
     // Initial loading sequence
     const timer = setTimeout(() => {
       setIsLoading(false);
-      const savedLang = localStorage.getItem('invitation_lang') as Language;
+      // Use sessionStorage so the language choice persists during the session
+      // but shows up again when they close and reopen the invitation.
+      const savedLang = sessionStorage.getItem('invitation_lang') as Language;
       if (savedLang) {
         setLang(savedLang);
       } else {
@@ -37,7 +39,7 @@ export default function Home() {
 
   const handleLangSelect = (selectedLang: Language) => {
     setLang(selectedLang);
-    localStorage.setItem('invitation_lang', selectedLang);
+    sessionStorage.setItem('invitation_lang', selectedLang);
     setShowLangSplash(false);
   };
 

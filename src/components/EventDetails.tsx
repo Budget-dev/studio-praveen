@@ -88,7 +88,7 @@ END:VCALENDAR`;
                   <Calendar className="w-4 h-4 mr-2" />
                   {t.addCalendar}
                 </Button>
-                <Button onClick={() => window.open('https://maps.google.com/?q=Sapthagiri+Layout+YSR+Nagar+Road+Vizianagaram', '_blank')} className="bg-primary hover:bg-primary/90 text-white w-full">
+                <Button onClick={() => window.open('https://maps.app.goo.gl/57XQ4Nz7uptKqEW37', '_blank')} className="bg-primary hover:bg-primary/90 text-white w-full">
                   <MapPin className="w-4 h-4 mr-2" />
                   {t.getDirections}
                 </Button>
