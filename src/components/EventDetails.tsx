@@ -4,7 +4,7 @@ import React from 'react';
 import { Language, translations } from '@/lib/translations';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Calendar, MapPin, Sparkles } from 'lucide-react';
+import { Calendar, MapPin, Sparkles, Heart } from 'lucide-react';
 
 interface EventDetailsProps {
   lang: Language;
@@ -53,7 +53,7 @@ END:VCALENDAR`;
                <Sparkles className="w-12 h-12" />
             </div>
             <CardContent className="p-8 text-center space-y-4">
-              <div className="text-5xl mb-4">🏠</div>
+              <div className="text-5xl mb-4 flex justify-center">🏠</div>
               <h3 className="text-xl font-bold text-primary">{t.event1Title}</h3>
               <p className="text-muted-foreground">{t.event1Date}</p>
               <p className="text-2xl font-bold text-primary">{t.event1Time}</p>
@@ -65,7 +65,9 @@ END:VCALENDAR`;
                <Sparkles className="w-12 h-12" />
             </div>
             <CardContent className="p-8 text-center space-y-4">
-              <div className="text-5xl mb-4">🪔</div>
+              <div className="text-5xl mb-4 flex justify-center">
+                <Heart className="w-12 h-12 text-primary fill-primary" />
+              </div>
               <h3 className="text-xl font-bold text-primary">{t.event2Title}</h3>
               <p className="text-muted-foreground">{t.event2Date}</p>
               <p className="text-2xl font-bold text-primary">{t.event2Time}</p>
@@ -77,7 +79,7 @@ END:VCALENDAR`;
                <Sparkles className="w-12 h-12" />
             </div>
             <CardContent className="p-8 text-center space-y-4">
-              <div className="text-5xl mb-4">📍</div>
+              <div className="text-5xl mb-4 flex justify-center">📍</div>
               <h3 className="text-xl font-bold text-primary">{t.venueTitle}</h3>
               <p className="text-sm leading-relaxed mb-4">{t.venueAddress}</p>
               

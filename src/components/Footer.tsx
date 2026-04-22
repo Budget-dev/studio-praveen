@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { Language, translations } from '@/lib/translations';
+import GaneshaIcon from './GaneshaIcon';
+import { Heart } from 'lucide-react';
 
 interface FooterProps {
   lang: Language;
@@ -24,10 +26,10 @@ const Footer = ({ lang }: FooterProps) => {
           <p className="text-xs uppercase tracking-[0.3em] opacity-60">© 2026 Patnala Family</p>
         </div>
 
-        <div className="pt-4 flex justify-center gap-6 text-2xl opacity-40 hover:opacity-100 transition-opacity">
-          <span>🕉</span>
+        <div className="pt-4 flex justify-center items-center gap-6 text-2xl opacity-40 hover:opacity-100 transition-opacity">
+          <GaneshaIcon className="w-8 h-8 text-white" />
           <span>🏠</span>
-          <span>🪔</span>
+          <Heart className="w-8 h-8 text-white fill-white" />
         </div>
       </div>
     </footer>
