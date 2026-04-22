@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -24,8 +25,14 @@ export default function Home() {
     // Initial loading sequence
     const timer = setTimeout(() => {
       setIsLoading(false);
-      // Always show language selection on fresh load to ensure user choice
-      setShowLangSplash(true);
+      
+      // Use sessionStorage so it asks for language on every fresh browser visit
+      const savedLang = sessionStorage.getItem('selected_language');
+      if (savedLang) {
+        setLang(savedLang as Language);
+      } else {
+        setShowLangSplash(true);
+      }
     }, 1500);
 
     return () => clearTimeout(timer);
@@ -33,6 +40,7 @@ export default function Home() {
 
   const handleLangSelect = (selectedLang: Language) => {
     setLang(selectedLang);
+    sessionStorage.setItem('selected_language', selectedLang);
     setShowLangSplash(false);
   };
 
@@ -40,7 +48,10 @@ export default function Home() {
     setIsInvitationOpen(true);
     // Smooth scroll to invitation content
     setTimeout(() => {
-      document.getElementById('invitation')?.scrollIntoView({ behavior: 'smooth' });
+      const element = document.getElementById('invitation');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }, 100);
   };
 
@@ -54,7 +65,7 @@ export default function Home() {
       
       <Hero lang={lang} onOpen={handleOpenInvitation} isOpen={isInvitationOpen} />
       
-      <div className={`transition-all duration-1000 ${isInvitationOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+      <div className={`transition-all duration-1000 ${isInvitationOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
         <InvitationSection lang={lang} />
         <EventDetails lang={lang} />
         <WishBook lang={lang} />

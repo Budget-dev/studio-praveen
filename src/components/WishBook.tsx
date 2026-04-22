@@ -1,6 +1,7 @@
+
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Language, translations } from '@/lib/translations';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -23,6 +24,7 @@ const WishBook = ({ lang }: WishBookProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [wishes, setWishes] = useState<Wish[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetchWishes();
@@ -48,7 +50,6 @@ const WishBook = ({ lang }: WishBookProps) => {
       const newWish = await addWish(name, message, lang);
       setWishes(prev => [newWish, ...prev]);
       
-      // GenAI Magic: Generate a personalized thank you note
       const thankYou = await generatePersonalizedThankYouNote({ name, wishMessage: message });
       
       toast({
@@ -71,19 +72,19 @@ const WishBook = ({ lang }: WishBookProps) => {
 
   return (
     <section className="py-20 px-4 md:px-8 bg-[#FAF7F2]">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <h2 className={`text-4xl text-center text-primary mb-12 ${lang === 'te' ? 'font-telugu' : 'font-headline'}`}>
           {t.wishTitle}
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <form onSubmit={handleSubmit} className="space-y-4 bg-white p-8 rounded-2xl shadow-xl border border-secondary/20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <form onSubmit={handleSubmit} className="space-y-4 bg-white p-8 rounded-2xl shadow-xl border border-secondary/20 sticky top-24">
             <div>
               <Input
                 placeholder={t.namePlaceholder}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="border-secondary/30 focus:ring-primary"
+                className="border-secondary/30 focus:ring-primary h-12"
                 required
               />
             </div>
@@ -107,30 +108,42 @@ const WishBook = ({ lang }: WishBookProps) => {
           </form>
 
           <div className="space-y-6">
-            <h3 className="text-xl font-headline text-muted-foreground flex items-center gap-2">
-              <MessageSquare className="w-5 h-5" />
+            <h3 className="text-2xl font-headline text-primary flex items-center gap-2 border-b border-secondary/20 pb-2">
+              <MessageSquare className="w-6 h-6 text-secondary" />
               Latest Wishes
             </h3>
             
-            <div className="max-h-[500px] overflow-y-auto pr-2 space-y-4 custom-scrollbar">
+            <div 
+              ref={scrollRef}
+              className="h-[500px] overflow-y-auto pr-4 space-y-6 custom-scrollbar scroll-smooth"
+            >
               {isLoading ? (
-                <div className="flex justify-center py-10">
-                  <Loader2 className="w-8 h-8 animate-spin text-secondary" />
+                <div className="flex justify-center py-20">
+                  <Loader2 className="w-10 h-10 animate-spin text-secondary" />
                 </div>
               ) : wishes.length > 0 ? (
                 wishes.map((wish) => (
-                  <div key={wish.id} className="bg-white p-4 rounded-xl shadow border-l-4 border-primary animate-in fade-in slide-in-from-right-4">
-                    <div className="flex justify-between items-start mb-2">
-                      <span className="font-bold text-primary">{wish.name}</span>
-                      <span className="text-[10px] text-muted-foreground uppercase tracking-wider">
-                        {formatDistanceToNow(wish.timestamp, { addSuffix: true })}
+                  <div key={wish.id} className="bg-white p-6 rounded-2xl shadow-sm border border-secondary/10 hover:border-secondary/30 transition-all group">
+                    <div className="flex justify-between items-start mb-3">
+                      <div className="flex items-center gap-2">
+                         <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-primary font-bold">
+                           {wish.name.charAt(0).toUpperCase()}
+                         </div>
+                         <span className="font-bold text-primary text-lg">{wish.name}</span>
+                      </div>
+                      <span className="text-[10px] text-muted-foreground uppercase tracking-wider bg-muted px-2 py-1 rounded">
+                        {formatDistanceToNow(new Date(wish.timestamp), { addSuffix: true })}
                       </span>
                     </div>
-                    <p className="text-sm text-foreground/80 line-clamp-3 italic">"{wish.message}"</p>
+                    <p className="text-foreground/80 leading-relaxed italic text-base relative pl-4 border-l-2 border-secondary/20">
+                      "{wish.message}"
+                    </p>
                   </div>
                 ))
               ) : (
-                <p className="text-center text-muted-foreground py-10 italic">No wishes yet. Be the first!</p>
+                <div className="text-center py-20 bg-white/50 rounded-2xl border-2 border-dashed border-secondary/20">
+                  <p className="text-muted-foreground italic text-lg">No wishes yet. Be the first!</p>
+                </div>
               )}
             </div>
           </div>
@@ -139,14 +152,18 @@ const WishBook = ({ lang }: WishBookProps) => {
       
       <style jsx>{`
         .custom-scrollbar::-webkit-scrollbar {
-          width: 4px;
+          width: 6px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-          background: transparent;
+          background: rgba(196, 154, 90, 0.05);
+          border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
           background: #C49A5A;
           border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: #7B3045;
         }
       `}</style>
     </section>
