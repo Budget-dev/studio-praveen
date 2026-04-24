@@ -1,119 +1,35 @@
-/**
- * Firestore Security Rules
- *
- * Core Philosophy:
- * This ruleset implements a guest-submission and admin-moderation model. Public users (guests) 
- * can submit wishes, while a designated administrator (praveenkumarpatnala@gmail.com) 
- * manages the application state and approves content for public display.
- *
- * Data Structure:
- * - /app_configuration/appConfig: A singleton document for global settings.
- * - /wishes/{wishId}: A flat collection of guest submissions.
- * - /admins/{adminUid}: A Database-Backed Access Control (DBAC) collection to grant admin rights.
- *
- * Key Security Decisions:
- * - Admin Role: The primary admin is hardcoded via email. This admin can initialize 
- *   the system and grant themselves persistent admin status in the database.
- * - Moderation: All guest wishes are created with 'isApproved: false'. Only an admin 
- *   can flip this flag to 'true' to make the wish visible to the public.
- * - Public Access: Public users can list and get wishes only if they have been approved.
- * - Relational Integrity: During creation, guests are forced to submit unapproved 
- *   wishes to prevent bypassing moderation.
- *
- * Denormalization for Authorization:
- * - 'isApproved' is stored directly on the Wish document to allow for efficient 
- *   filtering and security checks during 'list' and 'get' operations without cross-document lookups.
- */
-
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-
-    // --- Global Helper Functions ---
-
-    /**
-     * @description Checks if the user is authenticated.
-     */
     function isSignedIn() {
       return request.auth != null;
     }
-
-    /**
-     * @description Checks if the authenticated user is the specific hardcoded administrator email.
-     */
     function isSpecificAdminEmail() {
       return isSignedIn() && request.auth.token.email == 'praveenkumarpatnala@gmail.com';
     }
-
-    /**
-     * @description Checks if the user is an administrator either by email or by DBAC record.
-     */
     function isAdmin() {
       return isSpecificAdminEmail() || exists(/databases/$(database)/documents/admins/$(request.auth.uid));
     }
 
-    /**
-     * @description Ensures a document exists for update or delete operations.
-     */
-    function isExistingResource() {
-      return resource != null;
-    }
-
-    // --- Collection Rules ---
-
-    /**
-     * @description Rules for the singleton configuration document.
-     * @path /app_configuration/appConfig
-     * @allow (get) Public access to check if admin setup is required.
-     * @allow (create) Hardcoded admin email during initial setup.
-     * @deny (create) Any user other than the hardcoded admin.
-     * @principle Singleton configuration management by verified admin.
-     */
     match /app_configuration/appConfig {
       allow get: if true;
       allow list: if isAdmin();
-      allow create: if isSpecificAdminEmail() && request.resource.data.id == 'appConfig';
-      allow update: if isAdmin() && isExistingResource();
-      allow delete: if false; // Config should not be deleted.
+      allow create: if isSpecificAdminEmail();
+      allow update: if isAdmin();
     }
 
-    /**
-     * @description Rules for storing guest wishes and housewarming messages.
-     * @path /wishes/{wishId}
-     * @allow (create) Any user (including anonymous) can submit a wish, provided it is unapproved.
-     * @allow (list/get) Public users can see approved wishes; Admins can see all.
-     * @allow (update/delete) Admins managing the moderation queue.
-     * @deny (create) Users attempting to submit an already "approved" wish.
-     * @principle QAP (Query As Permission) for approved content and Admin moderation.
-     */
     match /wishes/{wishId} {
-      // Public can read approved wishes; Admin can read all.
-      // Note: List operations with resource.data in V2 act as a filter.
       allow get: if isAdmin() || resource.data.isApproved == true;
       allow list: if isAdmin() || resource.data.isApproved == true;
-      
-      // Anyone can create a wish, but it MUST be unapproved initially.
       allow create: if request.resource.data.isApproved == false;
-      
-      // Only admins can update (to approve/reorder) or delete wishes.
-      allow update: if isAdmin() && isExistingResource();
-      allow delete: if isAdmin() && isExistingResource();
+      allow update, delete: if isAdmin();
     }
 
-    /**
-     * @description Rules for the DBAC admin collection.
-     * @path /admins/{adminUid}
-     * @allow (create) The hardcoded admin user to register their UID.
-     * @allow (get) An admin to check their own record.
-     * @deny (list) Listing administrators to the public.
-     * @principle DBAC (Database-Backed Access Control) for scalable role management.
-     */
     match /admins/{adminUid} {
       allow get: if isSignedIn() && request.auth.uid == adminUid;
       allow list: if isAdmin();
       allow create: if isSpecificAdminEmail() && request.auth.uid == adminUid;
-      allow update: if isAdmin() && isExistingResource();
-      allow delete: if false; // Admin records are managed by system initialization.
+      allow update: if isAdmin();
     }
   }
 }

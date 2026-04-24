@@ -1,5 +1,18 @@
-// Mocked Firebase functions for demonstration
-// In a real app, replace with standard firebase/app and firebase/firestore setup
+import { 
+  collection, 
+  addDoc, 
+  query, 
+  where, 
+  orderBy, 
+  getDocs, 
+  serverTimestamp, 
+  doc, 
+  updateDoc, 
+  deleteDoc,
+  limit,
+  Firestore
+} from 'firebase/firestore';
+import { initializeFirebase } from '@/firebase';
 
 export type Wish = {
   id: string;
@@ -7,41 +20,52 @@ export type Wish = {
   message: string;
   timestamp: any;
   language: 'te' | 'en';
+  isApproved: boolean;
+  displayOrder: number;
 };
 
-// We use a local state mock to simulate firestore since we don't have real credentials
-// For a production app, the user would provide these.
-const mockWishes: Wish[] = [
-  {
-    id: '1',
-    name: 'Ramesh & Swathi',
-    message: 'Congratulations on your new home! May it be filled with love and laughter.',
-    timestamp: new Date(Date.now() - 3600000),
-    language: 'en'
-  },
-  {
-    id: '2',
-    name: 'వెంకట్',
-    message: 'కొత్త ఇల్లు మరియు సత్యనారాయణ స్వామి వ్రతం శుభాకాంక్షలు!',
-    timestamp: new Date(Date.now() - 7200000),
-    language: 'te'
+export async function getWishes(onlyApproved = true): Promise<Wish[]> {
+  const { firestore } = initializeFirebase();
+  const wishesRef = collection(firestore, 'wishes');
+  
+  let q;
+  if (onlyApproved) {
+    q = query(
+      wishesRef, 
+      where('isApproved', '==', true), 
+      orderBy('displayOrder', 'asc'),
+      orderBy('timestamp', 'desc')
+    );
+  } else {
+    q = query(wishesRef, orderBy('timestamp', 'desc'));
   }
-];
 
-export async function getWishes(): Promise<Wish[]> {
-  // Simulate delay
-  await new Promise(resolve => setTimeout(resolve, 500));
-  return [...mockWishes].sort((a, b) => b.timestamp - a.timestamp);
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  })) as Wish[];
 }
 
-export async function addWish(name: string, message: string, language: 'te' | 'en'): Promise<Wish> {
-  const newWish: Wish = {
-    id: Math.random().toString(36).substr(2, 9),
+export async function addWish(name: string, message: string, language: 'te' | 'en'): Promise<any> {
+  const { firestore } = initializeFirebase();
+  return addDoc(collection(firestore, 'wishes'), {
     name,
     message,
-    timestamp: new Date(),
-    language
-  };
-  mockWishes.unshift(newWish);
-  return newWish;
+    language,
+    timestamp: serverTimestamp(),
+    isApproved: false,
+    displayOrder: 999
+  });
+}
+
+export async function updateWishStatus(wishId: string, isApproved: boolean, displayOrder: number) {
+  const { firestore } = initializeFirebase();
+  const wishRef = doc(firestore, 'wishes', wishId);
+  return updateDoc(wishRef, { isApproved, displayOrder });
+}
+
+export async function deleteWish(wishId: string) {
+  const { firestore } = initializeFirebase();
+  return deleteDoc(doc(firestore, 'wishes', wishId));
 }

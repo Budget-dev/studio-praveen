@@ -12,7 +12,7 @@
         },
         "adminInitialized": {
           "type": "boolean",
-          "description": "Indicates whether the one-time admin setup (e.g., password configuration for the hardcoded email) has been completed. Default is false."
+          "description": "Indicates whether the one-time admin setup has been completed. Default is false."
         }
       },
       "required": [
@@ -81,7 +81,7 @@
           "schema": {
             "$ref": "#/backend/entities/AppConfiguration"
           },
-          "description": "A singleton document storing global application configurations, primarily the 'adminInitialized' status to track the one-time setup for the admin panel."
+          "description": "A singleton document storing global application configurations."
         }
       },
       {
@@ -91,16 +91,9 @@
           "schema": {
             "$ref": "#/backend/entities/Wish"
           },
-          "description": "Collection storing guest wishes submitted for the housewarming event. Each document includes 'isApproved' for moderation and 'displayOrder' for public scrolling order, ensuring Authorization Independence for document-level access.",
-          "params": [
-            {
-              "name": "wishId",
-              "description": "The unique identifier for a specific wish document."
-            }
-          ]
+          "description": "Collection storing guest wishes."
         }
       }
-    ],
-    "reasoning": "The Firestore structure is designed to be secure, scalable, and debuggable, adhering to the core principles of Authorization Independence, Clarity of Intent, DBAC, and QAPs. \n\n**1. Global Application Configuration (`/app_configuration/appConfig`)**\nThis path stores a single document (`appConfig`) of the `AppConfiguration` entity. Its primary purpose is to manage global application state, specifically the `adminInitialized` flag. This flag indicates whether the one-time setup for the administrative user (praveenkumarpatnala@gmail.com) has been completed. This singleton document prevents complex hierarchical dependencies for global settings and allows for easy atomic updates to critical configuration. It is accessible by the admin for writes (to set `adminInitialized` to true) and potentially readable by all users to inform client-side UI logic.\n\n**2. Guest Wishes (`/wishes/{wishId}`)**\nThis collection stores all submitted `Wish` entities from guests. Each document contains fields such as `name`, `message`, `timestamp`, `language`, `isApproved`, and `displayOrder`. This design directly supports the application's requirements for guest submissions, admin moderation, and ordered public display.\n\n**Authorization Independence:** Authorization for `Wish` documents is entirely self-contained. The `isApproved` and `displayOrder` fields are part of the `Wish` document itself. Access control for these documents does not rely on any parent documents, thus eliminating `get()` calls in security rules for hierarchical dependencies. Admin privileges are handled via a global database-backed access control (DBAC) mechanism (explained below), not through hierarchical data.\n\n**Support for QAPs (Query As Permissions):**\n*   **Public Read Operations:** Public users will query the `/wishes` collection with a filter `where('isApproved', '==', true)`. The security rules will explicitly allow `read` only if `resource.data.isApproved == true`. This directly aligns the client-side query with the server-side security rule, ensuring that only data explicitly permitted by the rules is returned, which is a key aspect of QAP compliance for `list` operations.\n*   **Admin Read Operations:** An administrative user will be able to read *all* documents in the `/wishes` collection, regardless of their `isApproved` status. This is achieved by an `isAdmin()` function in the security rules, which checks for the admin's UID in a dedicated `/admins/{adminUid}` collection (conceptually, a document whose existence grants admin rights). This layered approach ensures that `list` operations for both public and admin users are secure and predictable without complex filtering logic in rules.\n\n**DBAC Implementation for Admin Role:** While not represented as a `firestorePaths` entry due to the schema constraints, the administrative role for `praveenkumarpatnala@gmail.com` would be managed via a Database-Backed Access Control (DBAC) mechanism. This typically involves a top-level collection, for example, `/admins/{adminUid}`, where `adminUid` is the Firebase Authentication UID of the designated administrator. The existence of a document at `/admins/$(request.auth.uid)` would grant administrative privileges within Firestore security rules using an `isAdmin()` function. This avoids custom claims and ties roles directly to database entries, ensuring authorization is solely dependent on `request.auth.uid` and the database state."
+    ]
   }
 }
