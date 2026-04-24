@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Language } from '@/lib/translations';
 import LoadingSplash from '@/components/LoadingSplash';
 import LanguageSplash from '@/components/LanguageSplash';
@@ -20,6 +20,7 @@ export default function Home() {
   const [showLangSplash, setShowLangSplash] = useState(false);
   const [lang, setLang] = useState<Language | null>(null);
   const [isOpened, setIsOpened] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     // Initial loading sequence
@@ -38,6 +39,12 @@ export default function Home() {
 
   const handleOpenInvitation = () => {
     setIsOpened(true);
+    // Automatically play the background slokam when the invitation is opened
+    if (audioRef.current) {
+      audioRef.current.play().catch((error) => {
+        console.error("Audio playback was blocked or failed:", error);
+      });
+    }
   };
 
   if (isLoading) return <LoadingSplash />;
@@ -45,6 +52,13 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen bg-[#FAF7F2] pt-0">
+      {/* Background Music Player */}
+      <audio
+        ref={audioRef}
+        src="https://1234567890.sirv.com/Agajanana%20Padmarkam%20_%20Shri%20Ganesha%20Slokam%20__.mp3"
+        loop
+      />
+      
       <LanguageToggle current={lang} onToggle={handleLangSelect} />
       <PetalsAnimation />
       

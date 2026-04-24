@@ -36,7 +36,7 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
 
         <div className="space-y-12">
           <div className="space-y-6">
-            <p className={`${lang === 'te' ? 'font-telugu' : 'font-headline'} text-muted-foreground text-lg italic max-w-2xl mx-auto leading-relaxed`}>
+            <p className={`${lang === 'te' ? 'font-telugu italic' : 'font-headline'} text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed`}>
               {t.openingMessage}
             </p>
             
@@ -46,7 +46,7 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
               <h3 className={`text-3xl md:text-4xl ${lang === 'te' ? 'font-telugu font-bold' : 'font-headline font-bold'} text-primary`}>
                 {t.hostCouple}
               </h3>
-              <p className="text-muted-foreground italic font-headline">
+              <p className={`text-muted-foreground font-headline ${lang === 'te' ? 'italic' : ''}`}>
                 {t.inviteText}
               </p>
             </div>
