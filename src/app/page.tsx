@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -23,8 +22,6 @@ export default function Home() {
     // Initial loading sequence
     const timer = setTimeout(() => {
       setIsLoading(false);
-      
-      // Always show language selection on reload
       setShowLangSplash(true);
     }, 1500);
 
@@ -33,7 +30,6 @@ export default function Home() {
 
   const handleLangSelect = (selectedLang: Language) => {
     setLang(selectedLang);
-    // Removed sessionStorage persistence so it asks on every reload
     setShowLangSplash(false);
   };
 
@@ -41,18 +37,16 @@ export default function Home() {
   if (showLangSplash || !lang) return <LanguageSplash onSelect={handleLangSelect} />;
 
   return (
-    <main className="relative min-h-screen bg-[#FAF7F2]">
+    <main className="relative min-h-screen bg-[#FAF7F2] pt-0">
       <LanguageToggle current={lang} onToggle={handleLangSelect} />
       <PetalsAnimation />
       
       <div className="animate-in fade-in duration-1000">
-        <div className="pt-0"> {/* Removed top padding entirely */}
-          <InvitationSection lang={lang} />
-          <EventDetails lang={lang} />
-          <WishBook lang={lang} />
-          <Gallery lang={lang} />
-          <Footer lang={lang} />
-        </div>
+        <InvitationSection lang={lang} />
+        <EventDetails lang={lang} />
+        <WishBook lang={lang} />
+        <Gallery lang={lang} />
+        <Footer lang={lang} />
       </div>
 
       <ScrollToTop />

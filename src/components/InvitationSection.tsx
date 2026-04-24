@@ -1,8 +1,8 @@
-
 "use client";
 
 import React from 'react';
 import { Language, translations } from '@/lib/translations';
+import Image from 'next/image';
 
 interface InvitationSectionProps {
   lang: Language;
@@ -14,17 +14,20 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
   return (
     <section id="invitation" className="pt-0 pb-20 px-4 md:px-8 bg-[#FAF7F2] text-center">
       <div className="max-w-4xl mx-auto">
-        {/* Raw Ceremony Image - Sized down and centered */}
-        <div className="flex justify-center mb-0">
-          <img 
+        {/* Raw Ceremony Image - Sized down even more and centered with no top gap */}
+        <div className="flex justify-center mb-0 pt-0 overflow-hidden">
+          <Image 
             src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2012_35_36%20PM.png"
             alt="Housewarming Ceremony"
-            className="w-full max-w-sm h-auto block"
+            width={300}
+            height={160}
+            className="w-full max-w-[280px] h-auto block"
+            priority
           />
         </div>
 
-        <div className="flex flex-col items-center mb-6">
-          <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline'} text-secondary text-xl`}>
+        <div className="flex flex-col items-center mb-4 mt-2">
+          <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline'} text-secondary text-lg`}>
             {t.shreeGanesh}
           </h2>
         </div>
