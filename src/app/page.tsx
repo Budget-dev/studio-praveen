@@ -46,7 +46,7 @@ export default function Home() {
       <PetalsAnimation />
       
       <div className="animate-in fade-in duration-1000">
-        <div className="pt-12"> {/* Reduced padding for a tighter fit */}
+        <div className="pt-0"> {/* Removed top padding entirely */}
           <InvitationSection lang={lang} />
           <EventDetails lang={lang} />
           <WishBook lang={lang} />
