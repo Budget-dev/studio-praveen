@@ -28,6 +28,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: '1234567890.sirv.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };
