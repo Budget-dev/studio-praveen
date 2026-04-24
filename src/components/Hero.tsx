@@ -37,7 +37,7 @@ const Hero = ({ lang, onOpen, isOpen }: HeroProps) => {
 
       {/* Invitation Card (Cover) */}
       <div className="relative z-10 w-full max-w-xl bg-white/95 backdrop-blur-sm border-2 border-secondary/30 rounded-[2.5rem] p-8 md:p-14 shadow-[0_20px_60px_rgba(123,48,69,0.15)] text-center animate-in fade-in zoom-in duration-1000">
-        <p className={`text-secondary text-base md:text-lg mb-4 italic tracking-wide ${lang === 'te' ? 'font-telugu' : 'font-script'}`}>
+        <p className={`text-secondary text-base md:text-lg mb-4 italic tracking-wide ${lang === 'te' ? 'font-telugu' : 'font-headline font-semibold'}`}>
           {t.auspicious}
         </p>
         
@@ -50,7 +50,7 @@ const Hero = ({ lang, onOpen, isOpen }: HeroProps) => {
         <div className="space-y-3 mb-8">
           <p className="text-muted-foreground text-[10px] md:text-xs uppercase tracking-[0.3em] font-headline font-semibold">Welcome To Our New Home</p>
           <div className="flex flex-col items-center gap-1">
-            <span className={`text-xl md:text-2xl ${lang === 'te' ? 'font-telugu font-bold' : 'font-script'} text-primary`}>
+            <span className={`text-xl md:text-2xl ${lang === 'te' ? 'font-telugu font-bold' : 'font-headline font-bold'} text-primary`}>
               {t.hostCouple}
             </span>
           </div>

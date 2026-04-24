@@ -20,16 +20,16 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
           <Image 
             src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2012_35_36%20PM.png"
             alt="Housewarming Ceremony"
-            width={400}
-            height={220}
-            className="w-full max-w-[400px] h-auto block"
+            width={600}
+            height={330}
+            className="w-full max-w-[600px] h-auto block"
             priority
           />
         </div>
 
         {/* Sacred text immediately visible under image */}
         <div className="flex flex-col items-center mb-6 mt-1">
-          <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline'} text-secondary text-lg font-bold`}>
+          <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'} text-secondary text-lg`}>
             {t.shreeGanesh}
           </h2>
         </div>
@@ -43,7 +43,7 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
             <div className="gold-divider" />
 
             <div className="space-y-4">
-              <h3 className={`text-3xl md:text-4xl ${lang === 'te' ? 'font-telugu font-bold' : 'font-script'} text-primary`}>
+              <h3 className={`text-3xl md:text-4xl ${lang === 'te' ? 'font-telugu font-bold' : 'font-headline font-bold'} text-primary`}>
                 {t.hostCouple}
               </h3>
               <p className="text-muted-foreground italic font-headline">

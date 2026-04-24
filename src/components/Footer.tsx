@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -22,7 +23,7 @@ const Footer = ({ lang }: FooterProps) => {
         <div className="h-[1px] w-24 bg-secondary mx-auto" />
         
         <div className="space-y-2">
-          <p className={`text-lg ${lang === 'te' ? 'font-telugu font-bold' : 'font-script'} text-secondary`}>
+          <p className={`text-lg ${lang === 'te' ? 'font-telugu font-bold' : 'font-headline font-bold'} text-secondary`}>
             {t.hostCouple}
           </p>
           <p className="text-xs uppercase tracking-[0.3em] opacity-60">© 2026 Patnala Family</p>
