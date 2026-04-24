@@ -49,8 +49,8 @@ export default function Home() {
   if (isLoading) return <LoadingSplash />;
   if (showLangSplash || !lang) return <LanguageSplash onSelect={handleLangSelect} />;
 
-  // Encode the filename to handle spaces properly in the browser
-  const audioPath = encodeURI("/song/Padmarkam _ Shri Ganesha Slokam __.mp3");
+  // The filename from the screenshot: "Agajanana Padmarkam _ Shri Ganesha Slokam __.mp3"
+  const audioPath = "/song/Agajanana%20Padmarkam%20_%20Shri%20Ganesha%20Slokam%20__.mp3";
 
   return (
     <main className="relative min-h-screen bg-[#FAF7F2] pt-0">
