@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -11,7 +12,7 @@ interface HeroProps {
   isOpen: boolean;
 }
 
-const Hero = ({ lang, onOpen, isOpen }: HeroProps) => {
+export default function Hero({ lang, onOpen, isOpen }: HeroProps) {
   const t = translations[lang];
 
   if (isOpen) return null;
@@ -36,7 +37,7 @@ const Hero = ({ lang, onOpen, isOpen }: HeroProps) => {
 
       {/* Invitation Card (Cover) */}
       <div className="relative z-10 w-full max-w-xl bg-white/95 backdrop-blur-sm border-2 border-secondary/30 rounded-[2.5rem] p-8 md:p-14 shadow-[0_20px_60px_rgba(123,48,69,0.15)] text-center animate-in fade-in zoom-in duration-1000">
-        <p className={`text-secondary text-base md:text-lg mb-4 tracking-wide ${lang === 'te' ? 'font-telugu' : 'font-headline font-semibold'}`}>
+        <p className={`text-secondary text-base md:text-lg mb-4 tracking-wide ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
           {t.auspicious}
         </p>
         
@@ -60,7 +61,7 @@ const Hero = ({ lang, onOpen, isOpen }: HeroProps) => {
             onClick={onOpen}
             className="group h-14 px-10 bg-primary hover:bg-primary/90 text-white rounded-full text-lg shadow-xl hover:scale-105 transition-all flex items-center gap-3 border-none mb-6"
           >
-            <span className={lang === 'te' ? 'font-telugu' : 'font-headline font-semibold'}>
+            <span className={lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}>
               {t.openInvitation}
             </span>
             <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
@@ -81,6 +82,4 @@ const Hero = ({ lang, onOpen, isOpen }: HeroProps) => {
       </div>
     </div>
   );
-};
-
-export default Hero;
+}

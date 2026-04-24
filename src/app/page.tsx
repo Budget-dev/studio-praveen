@@ -42,7 +42,7 @@ export default function Home() {
     if (audioRef.current) {
       audioRef.current.volume = 0.6;
       audioRef.current.play().catch((error) => {
-        console.error("Audio playback failed:", error);
+        console.error("Audio playback failed. Please ensure the file exists in /public/song/:", error);
       });
     }
   };
@@ -57,7 +57,7 @@ export default function Home() {
         ref={audioRef}
         preload="auto"
         loop
-        src="/song/Padmarkam%20_%20Shri%20Ganesha%20Slokam%20__.mp3"
+        src="/song/Padmarkam _ Shri Ganesha Slokam __.mp3"
       >
         Your browser does not support the audio element.
       </audio>
