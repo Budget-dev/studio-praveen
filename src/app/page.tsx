@@ -24,13 +24,8 @@ export default function Home() {
     const timer = setTimeout(() => {
       setIsLoading(false);
       
-      // Use sessionStorage so it asks for language on every fresh browser visit
-      const savedLang = sessionStorage.getItem('selected_language');
-      if (savedLang) {
-        setLang(savedLang as Language);
-      } else {
-        setShowLangSplash(true);
-      }
+      // Always show language selection on reload
+      setShowLangSplash(true);
     }, 1500);
 
     return () => clearTimeout(timer);
@@ -38,7 +33,7 @@ export default function Home() {
 
   const handleLangSelect = (selectedLang: Language) => {
     setLang(selectedLang);
-    sessionStorage.setItem('selected_language', selectedLang);
+    // Removed sessionStorage persistence so it asks on every reload
     setShowLangSplash(false);
   };
 
