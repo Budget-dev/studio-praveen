@@ -71,24 +71,26 @@ export default function Home() {
       
       {isOpened && (
         <div className="animate-in fade-in slide-in-from-bottom-10 duration-1000 relative">
-          {/* Side Floral Decorations - Desktop Only */}
-          <div className="hidden lg:block fixed top-0 left-0 w-[400px] h-[400px] pointer-events-none z-10 opacity-40">
-            <Image 
-              src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2003_16_38%20PM.png"
-              alt=""
-              width={400}
-              height={400}
-              className="w-full h-full object-contain"
-            />
+          {/* Side Floral Decorations - Desktop Only - Fixed to Sides */}
+          <div className="hidden lg:block fixed top-0 left-0 w-[300px] h-screen pointer-events-none z-10 opacity-30">
+            <div className="relative w-full h-full">
+              <Image 
+                src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2003_16_38%20PM.png"
+                alt=""
+                fill
+                className="object-contain object-left-top"
+              />
+            </div>
           </div>
-          <div className="hidden lg:block fixed top-0 right-0 w-[400px] h-[400px] pointer-events-none z-10 opacity-40 scale-x-[-1]">
-            <Image 
-              src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2003_16_38%20PM.png"
-              alt=""
-              width={400}
-              height={400}
-              className="w-full h-full object-contain"
-            />
+          <div className="hidden lg:block fixed top-0 right-0 w-[300px] h-screen pointer-events-none z-10 opacity-30 scale-x-[-1]">
+            <div className="relative w-full h-full">
+              <Image 
+                src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2003_16_38%20PM.png"
+                alt=""
+                fill
+                className="object-contain object-left-top"
+              />
+            </div>
           </div>
 
           <InvitationSection lang={lang} />
