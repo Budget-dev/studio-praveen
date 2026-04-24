@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -50,28 +49,31 @@ export default function Home() {
     setTimeout(() => {
       const element = document.getElementById('invitation');
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        const topOffset = element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top: topOffset, behavior: 'smooth' });
       }
-    }, 100);
+    }, 50);
   };
 
   if (isLoading) return <LoadingSplash />;
   if (showLangSplash || !lang) return <LanguageSplash onSelect={handleLangSelect} />;
 
   return (
-    <main className="relative min-h-screen">
+    <main className={`relative min-h-screen ${!isInvitationOpen ? 'overflow-hidden' : ''}`}>
       <LanguageToggle current={lang} onToggle={handleLangSelect} />
       <PetalsAnimation />
       
       <Hero lang={lang} onOpen={handleOpenInvitation} isOpen={isInvitationOpen} />
       
-      <div className={`transition-all duration-1000 ${isInvitationOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
-        <InvitationSection lang={lang} />
-        <EventDetails lang={lang} />
-        <WishBook lang={lang} />
-        <Gallery lang={lang} />
-        <Footer lang={lang} />
-      </div>
+      {isInvitationOpen && (
+        <div className="animate-in fade-in slide-in-from-bottom-20 duration-1000">
+          <InvitationSection lang={lang} />
+          <EventDetails lang={lang} />
+          <WishBook lang={lang} />
+          <Gallery lang={lang} />
+          <Footer lang={lang} />
+        </div>
+      )}
 
       <ScrollToTop />
     </main>
