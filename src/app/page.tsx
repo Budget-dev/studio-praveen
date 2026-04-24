@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -22,7 +23,6 @@ export default function Home() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Initial loading sequence
     const timer = setTimeout(() => {
       setIsLoading(false);
       setShowLangSplash(true);
@@ -42,7 +42,7 @@ export default function Home() {
     if (audioRef.current) {
       audioRef.current.volume = 0.5;
       audioRef.current.play().catch((error) => {
-        console.error("Audio playback failed:", error);
+        console.error("Audio playback failed. Ensure background-music.mp3 exists in public/song/", error);
       });
     }
   };
@@ -52,12 +52,12 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen bg-[#FAF7F2] pt-0">
-      {/* Background Music Player - Loaded early to be ready */}
+      {/* Background Music Player - Local path for better reliability */}
       <audio
         ref={audioRef}
         preload="auto"
         loop
-        src="https://1234567890.sirv.com/Agajanana%20Padmarkam%20_%20Shri%20Ganesha%20Slokam%20__.mp3"
+        src="/song/background-music.mp3"
       >
         Your browser does not support the audio element.
       </audio>
