@@ -15,20 +15,20 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
   return (
     <section id="invitation" className="pt-0 pb-12 px-4 md:px-8 bg-[#FAF7F2] text-center">
       <div className="max-w-6xl mx-auto">
-        {/* Ceremony Image at the absolute top - Increased Size */}
+        {/* Ceremony Image at the absolute top - Extra Large Size */}
         <div className="flex justify-center mb-0 pt-0">
           <Image 
             src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2012_35_36%20PM.png"
             alt="Housewarming Ceremony"
-            width={1200}
-            height={660}
-            className="w-full max-w-[1000px] h-auto block"
+            width={1400}
+            height={800}
+            className="w-full h-auto block"
             priority
           />
         </div>
 
         {/* Sacred text immediately visible under image */}
-        <div className="flex flex-col items-center mb-6 mt-4">
+        <div className="flex flex-col items-center mb-6 mt-6">
           <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'} text-secondary text-2xl`}>
             {t.shreeGanesh}
           </h2>
@@ -36,7 +36,7 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
 
         <div className="space-y-12">
           <div className="space-y-6">
-            <p className={`${lang === 'te' ? 'font-telugu italic' : 'font-headline'} text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed`}>
+            <p className={`${lang === 'te' ? 'font-telugu italic' : 'font-headline font-bold'} text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed`}>
               {t.openingMessage}
             </p>
             
@@ -51,7 +51,7 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
               </p>
             </div>
 
-            <h2 className={`text-2xl md:text-4xl text-primary font-bold px-4 py-6 border-y-2 border-secondary/20 bg-white/50 inline-block w-full max-w-3xl ${lang === 'te' ? 'font-telugu' : 'font-headline'}`}>
+            <h2 className={`text-2xl md:text-4xl text-primary font-bold px-4 py-6 border-y-2 border-secondary/20 bg-white/50 inline-block w-full max-w-3xl ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
               {t.occasion}
             </h2>
 

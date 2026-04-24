@@ -38,7 +38,6 @@ export default function Home() {
 
   const handleOpenInvitation = () => {
     setIsOpened(true);
-    // Play the background slokam after user interaction (button click)
     if (audioRef.current) {
       audioRef.current.volume = 0.6;
       audioRef.current.play().catch((error) => {
@@ -50,15 +49,17 @@ export default function Home() {
   if (isLoading) return <LoadingSplash />;
   if (showLangSplash || !lang) return <LanguageSplash onSelect={handleLangSelect} />;
 
+  // Encode the filename to handle spaces properly in the browser
+  const audioPath = encodeURI("/song/Padmarkam _ Shri Ganesha Slokam __.mp3");
+
   return (
     <main className="relative min-h-screen bg-[#FAF7F2] pt-0">
-      {/* Background Slokam Audio */}
       <audio
         ref={audioRef}
         preload="auto"
         loop
-        src="/song/Padmarkam _ Shri Ganesha Slokam __.mp3"
       >
+        <source src={audioPath} type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
       
