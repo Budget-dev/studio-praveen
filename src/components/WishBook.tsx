@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { getWishes, addWish, Wish } from '@/lib/firebase';
-import { Loader2, MessageSquare, Send, Heart, Share2 } from 'lucide-react';
+import { Loader2, MessageSquare, Send, Heart, Share2, Sparkles } from 'lucide-react';
 import { generatePersonalizedThankYouNote } from '@/ai/flows/generate-personalized-thank-you-note-flow';
 
 interface WishBookProps {
@@ -28,7 +28,7 @@ const WishBook = ({ lang }: WishBookProps) => {
       const data = await getWishes(true);
       setWishes(data);
     } catch (error) {
-      console.error(error);
+      console.error("Error fetching wishes:", error);
     } finally {
       setIsLoading(false);
     }
@@ -36,11 +36,11 @@ const WishBook = ({ lang }: WishBookProps) => {
 
   useEffect(() => {
     fetchWishes();
-    const interval = setInterval(fetchWishes, 10000);
+    const interval = setInterval(fetchWishes, 15000);
     return () => clearInterval(interval);
   }, []);
 
-  const handleShare = () => {
+  const handleShare = (userName: string) => {
     const text = encodeURIComponent(`I just sent a wish to the Patnala family for their housewarming! 🏠🙏 Leave yours here: ${window.location.origin}`);
     window.open(`https://wa.me/?text=${text}`, '_blank');
   };
@@ -50,31 +50,52 @@ const WishBook = ({ lang }: WishBookProps) => {
     if (!name.trim() || !message.trim()) return;
 
     setIsSubmitting(true);
+    const submittedName = name.trim();
+    const submittedMessage = message.trim();
+
     try {
-      await addWish(name, message, lang);
+      await addWish(submittedName, submittedMessage, lang);
       
-      const aiNote = await generatePersonalizedThankYouNote({ name, wishMessage: message });
+      // Generate AI Thank You note in the background
+      const aiNote = await generatePersonalizedThankYouNote({ 
+        name: submittedName, 
+        wishMessage: submittedMessage 
+      });
       
       toast({
-        duration: 8000,
-        title: "Blessings Received! 🙏",
+        duration: 10000,
+        className: "bg-white border-2 border-primary/20 p-6 shadow-2xl rounded-3xl",
+        title: (
+          <div className="flex items-center gap-2 text-primary font-bold text-lg mb-2">
+            <Sparkles className="w-5 h-5 text-secondary animate-pulse" />
+            <span>Blessings Received! 🙏</span>
+          </div>
+        ) as any,
         description: (
-          <div className="space-y-4 mt-2">
-            <p className="italic text-primary font-medium">"{aiNote.thankYouNote}"</p>
-            <p className="text-xs text-muted-foreground">{t.thankYouFromHost}</p>
-            <div className="pt-2 flex flex-col gap-2">
-               <Button onClick={handleShare} className="bg-green-600 hover:bg-green-700 text-white rounded-full text-xs h-10 w-full">
+          <div className="space-y-4">
+            <div className="bg-primary/5 p-4 rounded-2xl border border-primary/10">
+              <p className="italic text-primary font-medium leading-relaxed">"{aiNote.thankYouNote}"</p>
+            </div>
+            <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider">{t.thankYouFromHost}</p>
+            <div className="pt-2 flex flex-col gap-3">
+               <Button 
+                 onClick={() => handleShare(submittedName)} 
+                 className="bg-green-600 hover:bg-green-700 text-white rounded-full text-sm h-12 w-full font-bold shadow-lg transition-all active:scale-95"
+               >
                  <Share2 className="w-4 h-4 mr-2" /> Share with Family & Friends
                </Button>
-               <p className="text-[9px] text-center opacity-70">Your wish will appear publicly after approval.</p>
+               <p className="text-[10px] text-center text-muted-foreground italic">
+                 "Your beautiful words mean the world to us. Your wish will be displayed once the family sees it!"
+               </p>
             </div>
           </div>
-        ),
+        ) as any,
       });
       
       setName('');
       setMessage('');
     } catch (error) {
+      console.error("Submission error:", error);
       toast({
         variant: "destructive",
         title: "Error",
@@ -87,6 +108,7 @@ const WishBook = ({ lang }: WishBookProps) => {
 
   return (
     <section className="py-20 px-4 md:px-8 bg-[#FAF7F2] relative overflow-hidden">
+      {/* Decorative background heart */}
       <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
         <Heart className="w-64 h-64 text-primary fill-primary" />
       </div>
@@ -97,72 +119,98 @@ const WishBook = ({ lang }: WishBookProps) => {
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <form onSubmit={handleSubmit} className="space-y-4 bg-white/80 backdrop-blur-sm p-8 rounded-[2rem] shadow-xl border-2 border-secondary/10 sticky top-24">
+          {/* Submission Form */}
+          <form onSubmit={handleSubmit} className="space-y-4 bg-white/80 backdrop-blur-sm p-8 rounded-[2.5rem] shadow-[0_20px_50px_rgba(123,48,69,0.05)] border-2 border-secondary/10 sticky top-24">
             <div className="flex items-center gap-2 mb-4 text-primary">
-              <Heart className="w-5 h-5 fill-primary" />
-              <span className="font-headline font-bold uppercase tracking-widest text-sm">Send Your Love</span>
+              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                <Heart className="w-4 h-4 fill-primary" />
+              </div>
+              <span className="font-headline font-bold uppercase tracking-[0.2em] text-xs">Send Your Love</span>
             </div>
             
             <Input
               placeholder={t.namePlaceholder}
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="border-secondary/30 focus:ring-primary h-12 rounded-xl"
+              className="border-secondary/20 focus:ring-primary h-14 rounded-2xl bg-white/50"
               required
             />
             <Textarea
               placeholder={t.wishPlaceholder}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="min-h-[120px] border-secondary/30 focus:ring-primary rounded-xl"
+              className="min-h-[140px] border-secondary/20 focus:ring-primary rounded-2xl bg-white/50 text-lg"
               required
             />
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-primary hover:bg-primary/90 text-white h-12 rounded-xl text-lg font-bold shadow-lg transition-transform hover:scale-[1.01]"
+              className="w-full bg-primary hover:bg-primary/90 text-white h-14 rounded-2xl text-xl font-bold shadow-xl transition-all hover:scale-[1.02] active:scale-95"
             >
-              {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5 mr-2" />}
-              {t.sendWish}
+              {isSubmitting ? (
+                <div className="flex items-center gap-2">
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <span>Sending...</span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Send className="w-5 h-5 mr-2" />
+                  <span>{t.sendWish}</span>
+                </div>
+              )}
             </Button>
           </form>
 
+          {/* Guest Wishes Marquee */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-headline text-primary flex items-center gap-2 border-b border-secondary/20 pb-2">
-              <MessageSquare className="w-6 h-6 text-secondary" />
+            <h3 className="text-2xl font-headline text-primary flex items-center gap-3 border-b border-secondary/20 pb-4">
+              <div className="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center">
+                <MessageSquare className="w-5 h-5 text-secondary" />
+              </div>
               Blessings from Guests
             </h3>
             
-            <div className="h-[500px] overflow-hidden relative">
-              <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#FAF7F2] to-transparent z-10" />
-              <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#FAF7F2] to-transparent z-10" />
+            <div className="h-[600px] overflow-hidden relative rounded-3xl">
+              {/* Fade masks for top and bottom */}
+              <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#FAF7F2] to-transparent z-10" />
+              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#FAF7F2] to-transparent z-10" />
               
               <div className="animate-marquee space-y-6 py-10">
                 {isLoading ? (
-                  <div className="flex justify-center py-20">
-                    <Loader2 className="w-10 h-10 animate-spin text-secondary" />
+                  <div className="flex flex-col items-center justify-center py-20 gap-4">
+                    <Loader2 className="w-12 h-12 animate-spin text-secondary" />
+                    <p className="text-muted-foreground animate-pulse">Reading blessings...</p>
                   </div>
                 ) : wishes.length > 0 ? (
-                  // Map wishes twice for seamless marquee loop
-                  [...wishes, ...wishes].map((wish, index) => (
-                    <div key={`${wish.id}-${index}`} className="bg-white p-6 rounded-2xl shadow-sm border border-secondary/10 hover:border-secondary/30 transition-all">
-                      <div className="flex justify-between items-center mb-3">
-                        <div className="flex items-center gap-2">
-                           <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary font-bold border border-primary/10">
+                  // Map wishes multiple times for a seamless marquee loop
+                  [...wishes, ...wishes, ...wishes].map((wish, index) => (
+                    <div 
+                      key={`${wish.id}-${index}`} 
+                      className="bg-white p-7 rounded-[2rem] shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-secondary/10 hover:border-primary/20 transition-all hover:scale-[1.01] group"
+                    >
+                      <div className="flex justify-between items-center mb-4">
+                        <div className="flex items-center gap-3">
+                           <div className="w-12 h-12 rounded-2xl bg-primary/5 flex items-center justify-center text-primary text-xl font-bold border border-primary/10 group-hover:bg-primary group-hover:text-white transition-colors duration-500">
                              {wish.name.charAt(0).toUpperCase()}
                            </div>
-                           <span className="font-bold text-primary text-lg">{wish.name}</span>
+                           <div className="flex flex-col">
+                             <span className="font-bold text-primary text-xl leading-none">{wish.name}</span>
+                             <span className="text-[10px] uppercase tracking-widest text-muted-foreground mt-1">Guest Blessing</span>
+                           </div>
                         </div>
-                        <Heart className="w-4 h-4 text-secondary/30 fill-secondary/5" />
+                        <div className="p-2 rounded-full bg-secondary/5">
+                          <Heart className="w-5 h-5 text-secondary/40 fill-secondary/10 group-hover:fill-secondary group-hover:text-secondary transition-all" />
+                        </div>
                       </div>
-                      <p className={`text-foreground/80 leading-relaxed italic text-base border-l-2 border-secondary/20 pl-4 py-1 ${wish.language === 'te' ? 'font-telugu' : 'font-body'}`}>
+                      <p className={`text-foreground/80 leading-relaxed italic text-lg border-l-4 border-secondary/20 pl-6 py-2 ${wish.language === 'te' ? 'font-telugu' : 'font-body'}`}>
                         "{wish.message}"
                       </p>
                     </div>
                   ))
                 ) : (
-                  <div className="text-center py-20 bg-white/50 rounded-2xl border-2 border-dashed border-secondary/20">
-                    <p className="text-muted-foreground italic text-lg">Waiting for the first blessing...</p>
+                  <div className="text-center py-24 bg-white/50 rounded-[3rem] border-4 border-dashed border-secondary/10">
+                    <Heart className="w-16 h-16 text-secondary/20 mx-auto mb-4" />
+                    <p className="text-muted-foreground italic text-xl">Waiting for the first blessing...</p>
                   </div>
                 )}
               </div>
@@ -174,10 +222,10 @@ const WishBook = ({ lang }: WishBookProps) => {
       <style jsx>{`
         @keyframes marquee {
           0% { transform: translateY(0); }
-          100% { transform: translateY(-50%); }
+          100% { transform: translateY(-33.33%); }
         }
         .animate-marquee {
-          animation: marquee 30s linear infinite;
+          animation: marquee 40s linear infinite;
         }
         .animate-marquee:hover {
           animation-play-state: paused;
