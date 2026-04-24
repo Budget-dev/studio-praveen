@@ -15,14 +15,14 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
   return (
     <section id="invitation" className="pt-0 pb-12 px-4 md:px-8 bg-[#FAF7F2] text-center">
       <div className="max-w-6xl mx-auto">
-        {/* Ceremony Image at the absolute top - Extra Large Size */}
+        {/* Ceremony Image at the absolute top - Responsive Sizing */}
         <div className="flex justify-center mb-0 pt-0">
           <Image 
             src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2012_35_36%20PM.png"
             alt="Housewarming Ceremony"
             width={1400}
             height={800}
-            className="w-full h-auto block"
+            className="w-full md:max-w-4xl lg:max-w-5xl h-auto block"
             priority
           />
         </div>
