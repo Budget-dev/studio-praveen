@@ -5,7 +5,8 @@ import React from 'react';
 import { Language, translations } from '@/lib/translations';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Calendar, MapPin, Sparkles, Heart } from 'lucide-react';
+import { Calendar, MapPin, Sparkles } from 'lucide-react';
+import Image from 'next/image';
 
 interface EventDetailsProps {
   lang: Language;
@@ -66,8 +67,14 @@ END:VCALENDAR`;
                <Sparkles className="w-12 h-12" />
             </div>
             <CardContent className="p-8 text-center space-y-4">
-              <div className="text-5xl mb-4 flex justify-center">
-                <Heart className="w-12 h-12 text-primary fill-primary" />
+              <div className="mb-4 flex justify-center relative w-full h-24">
+                <Image 
+                  src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2003_07_05%20PM.png"
+                  alt="Satyanarayana Swamy"
+                  fill
+                  className="object-contain"
+                  data-ai-hint="sacred deity"
+                />
               </div>
               <h3 className="text-xl font-bold text-primary">{t.event2Title}</h3>
               <p className="text-muted-foreground">{t.event2Date}</p>
