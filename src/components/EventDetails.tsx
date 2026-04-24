@@ -45,7 +45,7 @@ END:VCALENDAR`;
   return (
     <section className="py-20 px-4 md:px-8 bg-white/50 backdrop-blur-sm">
       <div className="max-w-6xl mx-auto">
-        <h2 className={`text-4xl text-center text-primary mb-12 ${lang === 'te' ? 'font-telugu' : 'font-headline'}`}>
+        <h2 className={`text-4xl text-center text-primary mb-12 ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
           {t.detailsTitle}
         </h2>
 
@@ -55,7 +55,15 @@ END:VCALENDAR`;
                <Sparkles className="w-12 h-12" />
             </div>
             <CardContent className="p-8 text-center space-y-4">
-              <div className="text-5xl mb-4 flex justify-center">🏠</div>
+              <div className="mb-4 flex justify-center relative w-full h-24">
+                <Image 
+                  src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2003_13_24%20PM.png"
+                  alt="Gruhapravesam Ceremony"
+                  fill
+                  className="object-contain"
+                  data-ai-hint="ceremony ritual"
+                />
+              </div>
               <h3 className="text-xl font-bold text-primary">{t.event1Title}</h3>
               <p className="text-muted-foreground">{t.event1Date}</p>
               <p className="text-2xl font-bold text-primary">{t.event1Time}</p>

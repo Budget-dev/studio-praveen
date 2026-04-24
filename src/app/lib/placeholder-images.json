@@ -36,6 +36,12 @@
       "description": "Sri Satyanarayana Swamy",
       "imageUrl": "https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2003_07_05%20PM.png",
       "imageHint": "sacred deity"
+    },
+    {
+      "id": "gruhapravesam-ritual",
+      "description": "Gruhapravesam Ritual Image",
+      "imageUrl": "https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2003_13_24%20PM.png",
+      "imageHint": "ceremony ritual"
     }
   ]
 }
