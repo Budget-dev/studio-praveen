@@ -38,11 +38,11 @@ export default function Home() {
 
   const handleOpenInvitation = () => {
     setIsOpened(true);
-    // Play background music after user interaction
+    // Play the background slokam after user interaction (button click)
     if (audioRef.current) {
-      audioRef.current.volume = 0.5;
+      audioRef.current.volume = 0.6;
       audioRef.current.play().catch((error) => {
-        console.error("Audio playback failed. Ensure background-music.mp3 exists in public/song/", error);
+        console.error("Audio playback failed:", error);
       });
     }
   };
@@ -52,12 +52,12 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen bg-[#FAF7F2] pt-0">
-      {/* Background Music Player - Local path for better reliability */}
+      {/* Background Slokam Audio */}
       <audio
         ref={audioRef}
         preload="auto"
         loop
-        src="/song/background-music.mp3"
+        src="https://1234567890.sirv.com/Agajanana%20Padmarkam%20_%20Shri%20Ganesha%20Slokam%20__.mp3"
       >
         Your browser does not support the audio element.
       </audio>
