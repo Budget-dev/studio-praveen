@@ -28,7 +28,7 @@ const WishBook = ({ lang }: WishBookProps) => {
       const data = await getWishes(true);
       setWishes(data);
     } catch (error) {
-      console.error("Error fetching wishes:", error);
+      // Errors handled centrally
     } finally {
       setIsLoading(false);
     }
@@ -54,13 +54,23 @@ const WishBook = ({ lang }: WishBookProps) => {
     const submittedMessage = message.trim();
 
     try {
+      // 1. Save the wish to Firestore first
       await addWish(submittedName, submittedMessage, lang);
       
-      // Generate AI Thank You note in the background
-      const aiNote = await generatePersonalizedThankYouNote({ 
-        name: submittedName, 
-        wishMessage: submittedMessage 
-      });
+      // 2. Attempt to generate AI Thank You note
+      let thankYouText = "";
+      try {
+        const aiNote = await generatePersonalizedThankYouNote({ 
+          name: submittedName, 
+          wishMessage: submittedMessage 
+        });
+        thankYouText = aiNote.thankYouNote;
+      } catch (aiError) {
+        // Fallback for 503 or other AI errors
+        thankYouText = lang === 'te' 
+          ? `ప్రియమైన ${submittedName}, మీ ప్రేమపూర్వక శుభాకాంక్షలకు ధన్యవాదాలు. మా నూతన గృహ ప్రవేశానికి మీ రాక మాకు ఎంతో సంతోషాన్నిస్తుంది.`
+          : `Dear ${submittedName}, thank you so much for your beautiful wishes. Your presence at our new home will truly complete our joy.`;
+      }
       
       toast({
         duration: 10000,
@@ -74,7 +84,7 @@ const WishBook = ({ lang }: WishBookProps) => {
         description: (
           <div className="space-y-4">
             <div className="bg-primary/5 p-4 rounded-2xl border border-primary/10">
-              <p className="italic text-primary font-medium leading-relaxed">"{aiNote.thankYouNote}"</p>
+              <p className="italic text-primary font-medium leading-relaxed">"{thankYouText}"</p>
             </div>
             <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider">{t.thankYouFromHost}</p>
             <div className="pt-2 flex flex-col gap-3">
@@ -95,7 +105,6 @@ const WishBook = ({ lang }: WishBookProps) => {
       setName('');
       setMessage('');
     } catch (error) {
-      console.error("Submission error:", error);
       toast({
         variant: "destructive",
         title: "Error",
@@ -108,7 +117,6 @@ const WishBook = ({ lang }: WishBookProps) => {
 
   return (
     <section className="py-20 px-4 md:px-8 bg-[#FAF7F2] relative overflow-hidden">
-      {/* Decorative background heart */}
       <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
         <Heart className="w-64 h-64 text-primary fill-primary" />
       </div>
@@ -119,7 +127,6 @@ const WishBook = ({ lang }: WishBookProps) => {
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Submission Form */}
           <form onSubmit={handleSubmit} className="space-y-4 bg-white/80 backdrop-blur-sm p-8 rounded-[2.5rem] shadow-[0_20px_50px_rgba(123,48,69,0.05)] border-2 border-secondary/10 sticky top-24">
             <div className="flex items-center gap-2 mb-4 text-primary">
               <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
@@ -161,7 +168,6 @@ const WishBook = ({ lang }: WishBookProps) => {
             </Button>
           </form>
 
-          {/* Guest Wishes Marquee */}
           <div className="space-y-6">
             <h3 className="text-2xl font-headline text-primary flex items-center gap-3 border-b border-secondary/20 pb-4">
               <div className="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center">
@@ -171,7 +177,6 @@ const WishBook = ({ lang }: WishBookProps) => {
             </h3>
             
             <div className="h-[600px] overflow-hidden relative rounded-3xl">
-              {/* Fade masks for top and bottom */}
               <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#FAF7F2] to-transparent z-10" />
               <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#FAF7F2] to-transparent z-10" />
               
@@ -182,7 +187,6 @@ const WishBook = ({ lang }: WishBookProps) => {
                     <p className="text-muted-foreground animate-pulse">Reading blessings...</p>
                   </div>
                 ) : wishes.length > 0 ? (
-                  // Map wishes multiple times for a seamless marquee loop
                   [...wishes, ...wishes, ...wishes].map((wish, index) => (
                     <div 
                       key={`${wish.id}-${index}`} 
