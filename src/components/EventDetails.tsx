@@ -48,14 +48,15 @@ END:VCALENDAR`;
     <section className="py-20 px-4 md:px-8 bg-white/50 backdrop-blur-sm">
       <div className="max-w-6xl mx-auto">
         {decorationImage && (
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-8">
             <Image 
               src={decorationImage.imageUrl}
               alt={decorationImage.description}
-              width={200}
-              height={100}
-              className="w-auto h-auto max-w-[180px] opacity-80"
+              width={400}
+              height={150}
+              className="w-full max-w-[350px] h-auto opacity-90 drop-shadow-sm"
               data-ai-hint={decorationImage.imageHint}
+              priority
             />
           </div>
         )}
