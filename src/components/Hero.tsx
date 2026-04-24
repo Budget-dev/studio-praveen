@@ -15,7 +15,7 @@ const Hero = ({ lang, onOpen, isOpen }: HeroProps) => {
   const t = translations[lang];
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center p-4 overflow-hidden bg-[#FAF7F2]">
+    <div className={`relative transition-all duration-1000 flex items-center justify-center p-4 overflow-hidden bg-[#FAF7F2] ${isOpen ? 'min-h-[60vh]' : 'min-h-screen'}`}>
       <div className="absolute top-0 left-0 p-4 opacity-10">
         <svg width="200" height="200" viewBox="0 0 200 200">
           <path d="M0 0 Q50 0 50 50 Q50 100 100 100 Q150 100 150 150 Q150 200 200 200" stroke="#7B3045" fill="none" strokeWidth="2"/>
@@ -31,21 +31,21 @@ const Hero = ({ lang, onOpen, isOpen }: HeroProps) => {
         </svg>
       </div>
 
-      <div className="relative z-10 w-full max-w-2xl bg-white/80 backdrop-blur-sm border-2 border-secondary/30 rounded-3xl p-8 md:p-12 shadow-[0_0_50px_rgba(123,48,69,0.05)] text-center animate-in fade-in slide-in-from-bottom-8 duration-1000">
-        <p className={`text-secondary text-lg md:text-xl mb-6 italic ${lang === 'te' ? 'font-telugu' : 'font-script'}`}>
+      <div className={`relative z-10 w-full max-w-xl bg-white/90 backdrop-blur-sm border-2 border-secondary/30 rounded-[2.5rem] p-8 md:p-14 shadow-[0_20px_60px_rgba(123,48,69,0.1)] text-center animate-in fade-in slide-in-from-bottom-8 duration-1000 ${isOpen ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}>
+        <p className={`text-secondary text-base md:text-lg mb-4 italic tracking-wide ${lang === 'te' ? 'font-telugu' : 'font-script'}`}>
           {t.auspicious}
         </p>
         
-        <div className="gold-divider mb-8" />
+        <div className="gold-divider mb-6 opacity-60" />
         
-        <h1 className={`text-3xl md:text-5xl lg:text-6xl text-primary mb-6 leading-tight ${lang === 'te' ? 'font-telugu font-bold' : 'font-headline font-bold'}`}>
+        <h1 className={`text-2xl md:text-4xl lg:text-5xl text-primary mb-6 leading-snug ${lang === 'te' ? 'font-telugu font-bold' : 'font-headline font-bold'}`}>
           {t.mainTitle}
         </h1>
         
-        <div className="space-y-4 mb-10">
-          <p className="text-muted-foreground text-sm uppercase tracking-[0.2em] font-headline">Welcome To Our New Home</p>
-          <div className="flex flex-col items-center gap-2">
-            <span className={`text-2xl md:text-3xl ${lang === 'te' ? 'font-telugu font-bold' : 'font-script'} text-primary`}>
+        <div className="space-y-3 mb-8">
+          <p className="text-muted-foreground text-[10px] md:text-xs uppercase tracking-[0.3em] font-headline font-semibold">Welcome To Our New Home</p>
+          <div className="flex flex-col items-center gap-1">
+            <span className={`text-xl md:text-2xl ${lang === 'te' ? 'font-telugu font-bold' : 'font-script'} text-primary`}>
               {t.hostCouple}
             </span>
           </div>
@@ -55,7 +55,7 @@ const Hero = ({ lang, onOpen, isOpen }: HeroProps) => {
           <div className="animate-in fade-in zoom-in duration-500 flex flex-col items-center">
             <Button
               onClick={onOpen}
-              className="group h-14 px-10 bg-primary hover:bg-primary/90 text-white rounded-full text-lg shadow-xl hover:scale-105 transition-all flex items-center gap-3"
+              className="group h-14 px-10 bg-primary hover:bg-primary/90 text-white rounded-full text-lg shadow-xl hover:scale-105 transition-all flex items-center gap-3 border-none"
             >
               <span className={lang === 'te' ? 'font-telugu' : 'font-headline font-semibold'}>
                 {t.openInvitation}
@@ -71,7 +71,7 @@ const Hero = ({ lang, onOpen, isOpen }: HeroProps) => {
                   const text = encodeURIComponent(`You're invited to Patnala Gruhapravesam! 🏠🙏 ${window.location.origin}`);
                   window.open(`https://wa.me/?text=${text}`, '_blank');
                 }}
-                className="border-secondary text-primary hover:bg-secondary/10 rounded-full text-xs"
+                className="border-secondary/40 text-primary hover:bg-secondary/10 rounded-full text-[10px] uppercase tracking-widest h-8"
               >
                 Share on WhatsApp
               </Button>
