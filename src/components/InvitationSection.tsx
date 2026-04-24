@@ -15,21 +15,21 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
   return (
     <section id="invitation" className="pt-0 pb-12 px-4 md:px-8 bg-[#FAF7F2] text-center">
       <div className="max-w-4xl mx-auto">
-        {/* Ceremony Image at the absolute top */}
+        {/* Ceremony Image at the absolute top - Increased Size */}
         <div className="flex justify-center mb-0 pt-0">
           <Image 
             src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2012_35_36%20PM.png"
             alt="Housewarming Ceremony"
-            width={200}
-            height={110}
-            className="w-full max-w-[200px] h-auto block"
+            width={400}
+            height={220}
+            className="w-full max-w-[400px] h-auto block"
             priority
           />
         </div>
 
         {/* Sacred text immediately visible under image */}
         <div className="flex flex-col items-center mb-6 mt-1">
-          <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline'} text-secondary text-base font-bold`}>
+          <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline'} text-secondary text-lg font-bold`}>
             {t.shreeGanesh}
           </h2>
         </div>
