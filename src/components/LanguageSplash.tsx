@@ -1,9 +1,10 @@
+
 "use client";
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Language } from '@/lib/translations';
-import OmIcon from './OmIcon';
+import Image from 'next/image';
 
 interface LanguageSplashProps {
   onSelect: (lang: Language) => void;
@@ -16,8 +17,15 @@ const LanguageSplash = ({ onSelect }: LanguageSplashProps) => {
       <div className="absolute inset-4 border border-secondary opacity-20 pointer-events-none rounded-xl" />
       
       <div className="relative z-10 max-w-md w-full space-y-8 animate-in fade-in zoom-in duration-700">
-        <div className="text-secondary flex justify-center mb-4">
-          <OmIcon className="w-20 h-20" />
+        <div className="flex justify-center mb-6">
+          <Image 
+            src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2002_34_38%20PM.png"
+            alt="Sacred Image"
+            width={280}
+            height={280}
+            className="w-full max-w-[240px] h-auto drop-shadow-xl"
+            priority
+          />
         </div>
         
         <h1 className="text-2xl font-headline text-muted-foreground flex flex-col gap-2">

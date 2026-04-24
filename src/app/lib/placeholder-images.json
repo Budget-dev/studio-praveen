@@ -21,9 +21,15 @@
     },
     {
       "id": "details-decoration",
-      "description": "Decorative banner for details section",
+      "description": "Traditional decorative banner",
       "imageUrl": "https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2002_25_06%20PM.png",
       "imageHint": "traditional decoration"
+    },
+    {
+      "id": "splash-image",
+      "description": "Sacred image for language splash",
+      "imageUrl": "https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2002_34_38%20PM.png",
+      "imageHint": "sacred deity"
     }
   ]
 }
