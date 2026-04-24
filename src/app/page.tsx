@@ -57,7 +57,7 @@ export default function Home() {
         ref={audioRef}
         preload="auto"
         loop
-        src="https://1234567890.sirv.com/Agajanana%20Padmarkam%20_%20Shri%20Ganesha%20Slokam%20__.mp3"
+        src="/song/Padmarkam%20_%20Shri%20Ganesha%20Slokam%20__.mp3"
       >
         Your browser does not support the audio element.
       </audio>
