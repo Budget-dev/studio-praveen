@@ -105,9 +105,9 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#FAF7F2] p-4">
-      <Card className="w-full max-w-md shadow-2xl border-secondary/20 rounded-[2rem] overflow-hidden">
-        <CardHeader className="text-center space-y-2 bg-white pb-8">
-          <div className="mx-auto w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-4 rotate-3 hover:rotate-0 transition-transform">
+      <Card className="w-full max-w-md shadow-2xl border-secondary/20 rounded-[2rem] overflow-hidden bg-white">
+        <CardHeader className="text-center space-y-2 pb-6 pt-10">
+          <div className="mx-auto w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-4">
             {isInitialized ? <Lock className="w-8 h-8" /> : <ShieldCheck className="w-8 h-8" />}
           </div>
           <CardTitle className="text-3xl font-headline text-primary">
@@ -120,10 +120,10 @@ export default function AdminPage() {
           </p>
         </CardHeader>
         <form onSubmit={isInitialized ? handleLogin : handleSetup}>
-          <CardContent className="space-y-6 bg-white p-8 pt-0">
+          <CardContent className="space-y-6 p-8 pt-0">
             <div className="space-y-3">
               <Label htmlFor="email" className="text-xs uppercase tracking-widest font-bold text-muted-foreground">Admin Email</Label>
-              <div className="relative group">
+              <div className="relative flex items-center">
                 <Input 
                   id="email" 
                   type="email" 
@@ -131,7 +131,7 @@ export default function AdminPage() {
                   readOnly
                   className="pl-12 h-14 bg-muted/30 border-secondary/20 rounded-xl cursor-not-allowed opacity-80"
                 />
-                <UserIcon className="w-5 h-5 absolute left-4 top-4.5 text-primary/40" />
+                <UserIcon className="w-5 h-5 absolute left-4 text-primary/40" />
               </div>
               <p className="text-[10px] text-muted-foreground italic">Email is hardcoded for security.</p>
             </div>
@@ -140,7 +140,7 @@ export default function AdminPage() {
               <Label htmlFor="password" className="text-xs uppercase tracking-widest font-bold text-muted-foreground">
                 {isInitialized ? 'Password' : 'Set Admin Password'}
               </Label>
-              <div className="relative">
+              <div className="relative flex items-center">
                 <Input 
                   id="password" 
                   type="password" 
@@ -150,11 +150,11 @@ export default function AdminPage() {
                   required
                   className="pl-12 h-14 border-secondary/20 rounded-xl focus:ring-primary focus:border-primary"
                 />
-                <Lock className="w-5 h-5 absolute left-4 top-4.5 text-primary/40" />
+                <Lock className="w-5 h-5 absolute left-4 text-primary/40" />
               </div>
             </div>
           </CardContent>
-          <CardFooter className="bg-white p-8 pt-0 pb-12">
+          <CardFooter className="p-8 pt-0 pb-12">
             <Button 
               type="submit" 
               className="w-full bg-primary hover:bg-primary/90 text-white h-14 rounded-2xl text-xl font-bold shadow-xl transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50"
