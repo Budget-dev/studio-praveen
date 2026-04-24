@@ -19,7 +19,7 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
           <img 
             src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2012_35_36%20PM.png"
             alt="Housewarming Ceremony"
-            className="w-full max-w-md h-auto block"
+            className="w-full max-w-sm h-auto block"
           />
         </div>
 
