@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Language, translations } from '@/lib/translations';
-import OmIcon from './OmIcon';
 
 interface InvitationSectionProps {
   lang: Language;
@@ -26,10 +25,9 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
         </div>
 
         <div className="flex flex-col items-center">
-          <div className="text-secondary mb-4">
-            <OmIcon className="w-16 h-16" />
-          </div>
-          <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline'} text-secondary text-xl italic`}>{t.shreeGanesh}</h2>
+          <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline'} text-secondary text-xl italic`}>
+            {t.shreeGanesh}
+          </h2>
         </div>
 
         <div className="space-y-6">
