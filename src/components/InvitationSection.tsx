@@ -14,7 +14,7 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
   return (
     <section id="invitation" className="pt-0 pb-20 px-4 md:px-8 bg-[#FAF7F2] text-center">
       <div className="max-w-4xl mx-auto">
-        {/* Raw Ceremony Image - Sized down even more and centered with no top gap */}
+        {/* Ceremony Image */}
         <div className="flex justify-center mb-0 pt-0 overflow-hidden">
           <Image 
             src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2012_35_36%20PM.png"
@@ -56,11 +56,12 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
             <p className={`text-foreground text-lg md:text-xl leading-relaxed max-w-2xl mx-auto ${lang === 'te' ? 'font-telugu' : 'font-body'}`}>
               {t.bodyText}
             </p>
-            
-            <div className="flex justify-center gap-2 text-primary font-telugu text-xl mt-8">
-              💐 బంధు మిత్రుల అభినందనలతో 💐
-            </div>
           </div>
+        </div>
+
+        {/* Telugu Blessing at the very bottom */}
+        <div className="flex justify-center gap-2 text-primary font-telugu text-xl mt-12 pt-8">
+          💐 బంధు మిత్రుల అభినందనలతో 💐
         </div>
       </div>
     </section>
