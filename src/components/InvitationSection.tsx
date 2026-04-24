@@ -13,23 +13,23 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
   const t = translations[lang];
 
   return (
-    <section id="invitation" className="pt-0 pb-20 px-4 md:px-8 bg-[#FAF7F2] text-center">
+    <section id="invitation" className="pt-0 pb-12 px-4 md:px-8 bg-[#FAF7F2] text-center">
       <div className="max-w-4xl mx-auto">
         {/* Ceremony Image at the absolute top */}
         <div className="flex justify-center mb-0 pt-0">
           <Image 
             src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2012_35_36%20PM.png"
             alt="Housewarming Ceremony"
-            width={240}
-            height={130}
-            className="w-full max-w-[240px] h-auto block"
+            width={200}
+            height={110}
+            className="w-full max-w-[200px] h-auto block"
             priority
           />
         </div>
 
         {/* Sacred text immediately visible under image */}
-        <div className="flex flex-col items-center mb-6 mt-2">
-          <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline'} text-secondary text-lg font-bold`}>
+        <div className="flex flex-col items-center mb-6 mt-1">
+          <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline'} text-secondary text-base font-bold`}>
             {t.shreeGanesh}
           </h2>
         </div>
@@ -61,9 +61,20 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
           </div>
         </div>
 
-        {/* Telugu Blessing at the very bottom */}
-        <div className="flex justify-center gap-2 text-primary font-telugu text-xl mt-12 pt-8">
+        {/* Telugu Blessing */}
+        <div className="flex justify-center gap-2 text-primary font-telugu text-xl mt-12 pt-4">
           💐 బంధు మిత్రుల అభినందనలతో 💐
+        </div>
+
+        {/* Traditional Decoration Image (Lotus) positioned under blessing */}
+        <div className="flex justify-center mt-8">
+          <Image 
+            src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2002_25_06%20PM.png"
+            alt="Traditional Lotus Decoration"
+            width={300}
+            height={120}
+            className="w-full max-w-[280px] h-auto opacity-90 drop-shadow-sm"
+          />
         </div>
       </div>
     </section>
