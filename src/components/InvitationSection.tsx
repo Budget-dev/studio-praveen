@@ -13,19 +13,17 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
   return (
     <section id="invitation" className="py-20 px-4 md:px-8 bg-[#FAF7F2] text-center">
       <div className="max-w-4xl mx-auto space-y-12">
-        {/* Custom Header Image */}
+        {/* Raw Ceremony Image */}
         <div className="flex justify-center mb-8">
-          <div className="relative w-full max-w-2xl overflow-hidden rounded-[2.5rem] shadow-[0_20px_60px_rgba(123,48,69,0.15)]">
-            <img 
-              src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2012_35_36%20PM.png"
-              alt="Housewarming Ceremony"
-              className="w-full h-auto block"
-            />
-          </div>
+          <img 
+            src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2012_35_36%20PM.png"
+            alt="Housewarming Ceremony"
+            className="w-full max-w-3xl h-auto block"
+          />
         </div>
 
         <div className="flex flex-col items-center">
-          <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline'} text-secondary text-xl italic`}>
+          <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline'} text-secondary text-xl`}>
             {t.shreeGanesh}
           </h2>
         </div>
