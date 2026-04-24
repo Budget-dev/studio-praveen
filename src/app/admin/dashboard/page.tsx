@@ -1,9 +1,8 @@
-
 "use client";
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useUser, useFirestore, useAuth } from '@/firebase';
+import { useUser, useAuth } from '@/firebase';
 import { getWishes, updateWishStatus, deleteWish, Wish, addGalleryImage, getGalleryImages, deleteGalleryImage, GalleryImage } from '@/lib/firebase';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -18,7 +17,7 @@ import {
   LogOut, 
   Settings,
   MessageSquare,
-  Image as ImageIcon,
+  ImageIcon,
   Upload,
   Plus
 } from 'lucide-react';
@@ -127,17 +126,20 @@ export default function AdminDashboard() {
 
     setIsUploading(true);
     try {
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-        const base64String = reader.result as string;
-        await addGalleryImage(base64String, caption);
-        toast({ title: "Image Uploaded", description: "The image is now live in the gallery." });
-        setCaption('');
-        setSelectedFile(null);
-        fetchGallery();
-      };
-      reader.readAsDataURL(selectedFile);
+      const base64String = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result as string);
+        reader.onerror = reject;
+        reader.readAsDataURL(selectedFile);
+      });
+
+      await addGalleryImage(base64String, caption);
+      toast({ title: "Image Uploaded", description: "The image is now live in the gallery." });
+      setCaption('');
+      setSelectedFile(null);
+      await fetchGallery();
     } catch (error) {
+      console.error("Upload error:", error);
       toast({ variant: "destructive", title: "Upload Failed" });
     } finally {
       setIsUploading(false);
@@ -348,7 +350,7 @@ export default function AdminDashboard() {
                       <div className="aspect-video relative overflow-hidden">
                         <Image 
                           src={img.imageUrl} 
-                          alt={img.caption} 
+                          alt={img.caption || "Gallery item"} 
                           fill 
                           className="object-cover transition-transform duration-500 group-hover:scale-110" 
                         />
@@ -368,7 +370,7 @@ export default function AdminDashboard() {
                           {img.caption || "No caption provided"}
                         </p>
                         <p className="text-[10px] text-muted-foreground mt-1">
-                          Added {formatDistanceToNow(new Date(img.timestamp.seconds * 1000))} ago
+                          {img.timestamp?.seconds ? `Added ${formatDistanceToNow(new Date(img.timestamp.seconds * 1000))} ago` : 'Just added'}
                         </p>
                       </CardContent>
                     </Card>

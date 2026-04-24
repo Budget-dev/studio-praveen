@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Language, translations } from '@/lib/translations';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -54,10 +54,8 @@ const WishBook = ({ lang }: WishBookProps) => {
     const submittedMessage = message.trim();
 
     try {
-      // 1. Save the wish to Firestore first
       await addWish(submittedName, submittedMessage, lang);
       
-      // 2. Attempt to generate AI Thank You note
       let thankYouText = "";
       try {
         const aiNote = await generatePersonalizedThankYouNote({ 
@@ -66,7 +64,6 @@ const WishBook = ({ lang }: WishBookProps) => {
         });
         thankYouText = aiNote.thankYouNote;
       } catch (aiError) {
-        // Fallback for 503 or other AI errors
         thankYouText = lang === 'te' 
           ? `ప్రియమైన ${submittedName}, మీ ప్రేమపూర్వక శుభాకాంక్షలకు ధన్యవాదాలు. మా నూతన గృహ ప్రవేశానికి మీ రాక మాకు ఎంతో సంతోషాన్నిస్తుంది.`
           : `Dear ${submittedName}, thank you so much for your beautiful wishes. Your presence at our new home will truly complete our joy.`;
@@ -222,19 +219,6 @@ const WishBook = ({ lang }: WishBookProps) => {
           </div>
         </div>
       </div>
-      
-      <style jsx>{`
-        @keyframes marquee {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(-33.33%); }
-        }
-        .animate-marquee {
-          animation: marquee 40s linear infinite;
-        }
-        .animate-marquee:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
     </section>
   );
 };
