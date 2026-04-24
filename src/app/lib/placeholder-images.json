@@ -1,0 +1,29 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "gallery-1",
+      "description": "Housewarming ceremony",
+      "imageUrl": "https://picsum.photos/seed/house1/600/400",
+      "imageHint": "traditional housewarming"
+    },
+    {
+      "id": "gallery-2",
+      "description": "Family blessing",
+      "imageUrl": "https://picsum.photos/seed/house2/600/400",
+      "imageHint": "indian blessing"
+    },
+    {
+      "id": "gallery-3",
+      "description": "New home interior",
+      "imageUrl": "https://picsum.photos/seed/house3/600/400",
+      "imageHint": "modern interior"
+    },
+    {
+      "id": "details-decoration",
+      "description": "Decorative banner for details section",
+      "imageUrl": "https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2002_25_06%20PM.png",
+      "imageHint": "traditional decoration"
+    }
+  ]
+}

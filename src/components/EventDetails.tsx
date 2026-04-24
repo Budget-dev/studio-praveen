@@ -6,6 +6,8 @@ import { Language, translations } from '@/lib/translations';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar, MapPin, Sparkles, Heart } from 'lucide-react';
+import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 interface EventDetailsProps {
   lang: Language;
@@ -13,6 +15,7 @@ interface EventDetailsProps {
 
 const EventDetails = ({ lang }: EventDetailsProps) => {
   const t = translations[lang];
+  const decorationImage = PlaceHolderImages.find(img => img.id === 'details-decoration');
 
   const generateICS = () => {
     const icsContent = `BEGIN:VCALENDAR
@@ -44,6 +47,19 @@ END:VCALENDAR`;
   return (
     <section className="py-20 px-4 md:px-8 bg-white/50 backdrop-blur-sm">
       <div className="max-w-6xl mx-auto">
+        {decorationImage && (
+          <div className="flex justify-center mb-6">
+            <Image 
+              src={decorationImage.imageUrl}
+              alt={decorationImage.description}
+              width={200}
+              height={100}
+              className="w-auto h-auto max-w-[180px] opacity-80"
+              data-ai-hint={decorationImage.imageHint}
+            />
+          </div>
+        )}
+        
         <h2 className={`text-4xl text-center text-primary mb-12 ${lang === 'te' ? 'font-telugu' : 'font-headline'}`}>
           {t.detailsTitle}
         </h2>
