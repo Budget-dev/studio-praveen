@@ -14,6 +14,7 @@ import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import PetalsAnimation from '@/components/PetalsAnimation';
 import Hero from '@/components/Hero';
+import Image from 'next/image';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -49,7 +50,7 @@ export default function Home() {
   if (isLoading) return <LoadingSplash />;
   if (showLangSplash || !lang) return <LanguageSplash onSelect={handleLangSelect} />;
 
-  // The filename from the screenshot: "Agajanana Padmarkam _ Shri Ganesha Slokam __.mp3"
+  // The encoded filename for the slokam
   const audioPath = "/song/Agajanana%20Padmarkam%20_%20Shri%20Ganesha%20Slokam%20__.mp3";
 
   return (
@@ -69,7 +70,27 @@ export default function Home() {
       <Hero lang={lang} isOpen={isOpened} onOpen={handleOpenInvitation} />
       
       {isOpened && (
-        <div className="animate-in fade-in slide-in-from-bottom-10 duration-1000">
+        <div className="animate-in fade-in slide-in-from-bottom-10 duration-1000 relative">
+          {/* Side Floral Decorations - Desktop Only */}
+          <div className="hidden lg:block fixed top-0 left-0 w-[400px] h-[400px] pointer-events-none z-10 opacity-40">
+            <Image 
+              src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2003_16_38%20PM.png"
+              alt=""
+              width={400}
+              height={400}
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <div className="hidden lg:block fixed top-0 right-0 w-[400px] h-[400px] pointer-events-none z-10 opacity-40 scale-x-[-1]">
+            <Image 
+              src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2003_16_38%20PM.png"
+              alt=""
+              width={400}
+              height={400}
+              className="w-full h-full object-contain"
+            />
+          </div>
+
           <InvitationSection lang={lang} />
           <EventDetails lang={lang} />
           <WishBook lang={lang} />
