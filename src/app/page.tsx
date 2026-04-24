@@ -40,10 +40,15 @@ export default function Home() {
   const handleOpenInvitation = () => {
     setIsOpened(true);
     // Automatically play the background slokam when the invitation is opened
+    // Browsers allow audio play after a direct user click event
     if (audioRef.current) {
-      audioRef.current.play().catch((error) => {
-        console.error("Audio playback was blocked or failed:", error);
-      });
+      audioRef.current.volume = 0.5;
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.error("Audio playback failed:", error);
+        });
+      }
     }
   };
 
@@ -55,9 +60,12 @@ export default function Home() {
       {/* Background Music Player */}
       <audio
         ref={audioRef}
-        src="https://1234567890.sirv.com/Agajanana%20Padmarkam%20_%20Shri%20Ganesha%20Slokam%20__.mp3"
+        preload="auto"
         loop
-      />
+      >
+        <source src="https://1234567890.sirv.com/Agajanana%20Padmarkam%20_%20Shri%20Ganesha%20Slokam%20__.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
       
       <LanguageToggle current={lang} onToggle={handleLangSelect} />
       <PetalsAnimation />
