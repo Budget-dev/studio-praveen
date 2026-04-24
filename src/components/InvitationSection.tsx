@@ -22,7 +22,7 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
             alt="Housewarming Ceremony"
             width={1400}
             height={800}
-            className="w-full md:max-w-4xl lg:max-w-5xl h-auto block"
+            className="w-full md:max-w-2xl h-auto block shadow-sm rounded-xl"
             priority
           />
         </div>
