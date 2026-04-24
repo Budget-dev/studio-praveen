@@ -1,3 +1,4 @@
+
 import { 
   collection, 
   addDoc, 
@@ -24,13 +25,18 @@ export type Wish = {
   displayOrder: number;
 };
 
+export type GalleryImage = {
+  id: string;
+  imageUrl: string;
+  caption: string;
+  timestamp: any;
+};
+
 export async function getWishes(onlyApproved = true): Promise<Wish[]> {
   const { firestore } = initializeFirebase();
   const wishesRef = collection(firestore, 'wishes');
   
   if (onlyApproved) {
-    // We simplify the query to just the filter to avoid requiring a composite index.
-    // Firestore handles single-field filters with default indexes.
     const q = query(
       wishesRef, 
       where('isApproved', '==', true)
@@ -42,9 +48,6 @@ export async function getWishes(onlyApproved = true): Promise<Wish[]> {
       ...doc.data()
     })) as Wish[];
 
-    // Perform sorting in memory to avoid "Missing Index" errors for multi-field ordering.
-    // 1. Sort by displayOrder (Ascending)
-    // 2. Sort by timestamp (Descending) for items with same displayOrder
     return results.sort((a, b) => {
       const orderA = a.displayOrder ?? 999;
       const orderB = b.displayOrder ?? 999;
@@ -58,7 +61,6 @@ export async function getWishes(onlyApproved = true): Promise<Wish[]> {
       return timeB - timeA;
     });
   } else {
-    // Single orderBy on timestamp usually works with default indexes.
     const q = query(wishesRef, orderBy('timestamp', 'desc'));
     const querySnapshot = await getDocs(q);
     return querySnapshot.docs.map(doc => ({
@@ -89,4 +91,29 @@ export async function updateWishStatus(wishId: string, isApproved: boolean, disp
 export async function deleteWish(wishId: string) {
   const { firestore } = initializeFirebase();
   return deleteDoc(doc(firestore, 'wishes', wishId));
+}
+
+export async function getGalleryImages(): Promise<GalleryImage[]> {
+  const { firestore } = initializeFirebase();
+  const galleryRef = collection(firestore, 'gallery');
+  const q = query(galleryRef, orderBy('timestamp', 'desc'));
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  })) as GalleryImage[];
+}
+
+export async function addGalleryImage(imageUrl: string, caption: string): Promise<any> {
+  const { firestore } = initializeFirebase();
+  return addDoc(collection(firestore, 'gallery'), {
+    imageUrl,
+    caption,
+    timestamp: serverTimestamp(),
+  });
+}
+
+export async function deleteGalleryImage(imageId: string) {
+  const { firestore } = initializeFirebase();
+  return deleteDoc(doc(firestore, 'gallery', imageId));
 }
