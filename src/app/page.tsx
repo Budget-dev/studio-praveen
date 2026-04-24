@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -12,11 +13,13 @@ import Gallery from '@/components/Gallery';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import PetalsAnimation from '@/components/PetalsAnimation';
+import Hero from '@/components/Hero';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [showLangSplash, setShowLangSplash] = useState(false);
   const [lang, setLang] = useState<Language | null>(null);
+  const [isOpened, setIsOpened] = useState(false);
 
   useEffect(() => {
     // Initial loading sequence
@@ -33,6 +36,10 @@ export default function Home() {
     setShowLangSplash(false);
   };
 
+  const handleOpenInvitation = () => {
+    setIsOpened(true);
+  };
+
   if (isLoading) return <LoadingSplash />;
   if (showLangSplash || !lang) return <LanguageSplash onSelect={handleLangSelect} />;
 
@@ -41,13 +48,17 @@ export default function Home() {
       <LanguageToggle current={lang} onToggle={handleLangSelect} />
       <PetalsAnimation />
       
-      <div className="animate-in fade-in duration-1000">
-        <InvitationSection lang={lang} />
-        <EventDetails lang={lang} />
-        <WishBook lang={lang} />
-        <Gallery lang={lang} />
-        <Footer lang={lang} />
-      </div>
+      <Hero lang={lang} isOpen={isOpened} onOpen={handleOpenInvitation} />
+      
+      {isOpened && (
+        <div className="animate-in fade-in slide-in-from-bottom-10 duration-1000">
+          <InvitationSection lang={lang} />
+          <EventDetails lang={lang} />
+          <WishBook lang={lang} />
+          <Gallery lang={lang} />
+          <Footer lang={lang} />
+        </div>
+      )}
 
       <ScrollToTop />
     </main>
