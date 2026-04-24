@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -5,7 +6,6 @@ import { Language } from '@/lib/translations';
 import LoadingSplash from '@/components/LoadingSplash';
 import LanguageSplash from '@/components/LanguageSplash';
 import LanguageToggle from '@/components/LanguageToggle';
-import Hero from '@/components/Hero';
 import InvitationSection from '@/components/InvitationSection';
 import EventDetails from '@/components/EventDetails';
 import WishBook from '@/components/WishBook';
@@ -18,7 +18,6 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [showLangSplash, setShowLangSplash] = useState(false);
   const [lang, setLang] = useState<Language | null>(null);
-  const [isInvitationOpen, setIsInvitationOpen] = useState(false);
 
   useEffect(() => {
     // Initial loading sequence
@@ -43,37 +42,23 @@ export default function Home() {
     setShowLangSplash(false);
   };
 
-  const handleOpenInvitation = () => {
-    setIsInvitationOpen(true);
-    // Smooth scroll to invitation content
-    setTimeout(() => {
-      const element = document.getElementById('invitation');
-      if (element) {
-        const topOffset = element.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({ top: topOffset, behavior: 'smooth' });
-      }
-    }, 50);
-  };
-
   if (isLoading) return <LoadingSplash />;
   if (showLangSplash || !lang) return <LanguageSplash onSelect={handleLangSelect} />;
 
   return (
-    <main className={`relative min-h-screen ${!isInvitationOpen ? 'overflow-hidden' : ''}`}>
+    <main className="relative min-h-screen bg-[#FAF7F2]">
       <LanguageToggle current={lang} onToggle={handleLangSelect} />
       <PetalsAnimation />
       
-      <Hero lang={lang} onOpen={handleOpenInvitation} isOpen={isInvitationOpen} />
-      
-      {isInvitationOpen && (
-        <div className="animate-in fade-in slide-in-from-bottom-20 duration-1000">
+      <div className="animate-in fade-in duration-1000">
+        <div className="pt-20"> {/* Add padding for the LanguageToggle */}
           <InvitationSection lang={lang} />
           <EventDetails lang={lang} />
           <WishBook lang={lang} />
           <Gallery lang={lang} />
           <Footer lang={lang} />
         </div>
-      )}
+      </div>
 
       <ScrollToTop />
     </main>
