@@ -4,7 +4,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Language } from '@/lib/translations';
 import LoadingSplash from '@/components/LoadingSplash';
-import LanguageSplash from '@/components/LanguageSplash';
 import LanguageToggle from '@/components/LanguageToggle';
 import InvitationSection from '@/components/InvitationSection';
 import EventDetails from '@/components/EventDetails';
@@ -17,37 +16,34 @@ import Image from 'next/image';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const [showLangSplash, setShowLangSplash] = useState(false);
-  const [lang, setLang] = useState<Language | null>(null);
+  const [lang, setLang] = useState<Language>('en'); // Default to English for the cover
   const [isOpened, setIsOpened] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-      setShowLangSplash(true);
     }, 1500);
 
     return () => clearTimeout(timer);
   }, []);
 
-  const handleLangSelect = (selectedLang: Language) => {
+  const handleOpenInvitation = (selectedLang: Language) => {
     setLang(selectedLang);
-    setShowLangSplash(false);
-  };
-
-  const handleOpenInvitation = () => {
     setIsOpened(true);
     if (audioRef.current) {
       audioRef.current.volume = 0.6;
       audioRef.current.play().catch((error) => {
-        console.error("Audio playback failed. Please ensure the file exists in /public/song/:", error);
+        console.error("Audio playback failed:", error);
       });
     }
   };
 
+  const handleLangToggle = (newLang: Language) => {
+    setLang(newLang);
+  };
+
   if (isLoading) return <LoadingSplash />;
-  if (showLangSplash || !lang) return <LanguageSplash onSelect={handleLangSelect} />;
 
   const audioPath = "/song/Agajanana%20Padmarkam%20_%20Shri%20Ganesha%20Slokam%20__.mp3";
 
@@ -59,13 +55,16 @@ export default function Home() {
         loop
       >
         <source src={audioPath} type="audio/mpeg" />
-        Your browser does not support the audio element.
       </audio>
       
-      <LanguageToggle current={lang} onToggle={handleLangSelect} />
+      {isOpened && <LanguageToggle current={lang} onToggle={handleLangToggle} />}
       <PetalsAnimation />
       
-      <Hero lang={lang} isOpen={isOpened} onOpen={handleOpenInvitation} />
+      <Hero 
+        lang={lang} 
+        isOpen={isOpened} 
+        onOpenWithLang={handleOpenInvitation} 
+      />
       
       {isOpened && (
         <div className="animate-in fade-in slide-in-from-bottom-10 duration-1000 relative">
