@@ -65,34 +65,6 @@
         "language",
         "isApproved"
       ]
-    },
-    "GalleryImage": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "GalleryImage",
-      "type": "object",
-      "description": "Represents an image in the housewarming gallery with an optional caption.",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "imageUrl": {
-          "type": "string",
-          "description": "Base64 encoded image data."
-        },
-        "caption": {
-          "type": "string",
-          "description": "Optional text to display under the image."
-        },
-        "timestamp": {
-          "type": "string",
-          "format": "date-time"
-        }
-      },
-      "required": [
-        "id",
-        "imageUrl",
-        "timestamp"
-      ]
     }
   },
   "auth": {
@@ -121,16 +93,6 @@
             "$ref": "#/backend/entities/Wish"
           },
           "description": "Collection storing guest wishes."
-        }
-      },
-      {
-        "path": "/gallery/{imageId}",
-        "definition": {
-          "entityName": "GalleryImage",
-          "schema": {
-            "$ref": "#/backend/entities/GalleryImage"
-          },
-          "description": "Collection storing gallery images."
         }
       }
     ]

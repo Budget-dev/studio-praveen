@@ -9,9 +9,7 @@ import {
   serverTimestamp, 
   doc, 
   updateDoc, 
-  deleteDoc,
-  limit,
-  Firestore
+  deleteDoc
 } from 'firebase/firestore';
 import { initializeFirebase } from '@/firebase';
 
@@ -23,13 +21,6 @@ export type Wish = {
   language: 'te' | 'en';
   isApproved: boolean;
   displayOrder: number;
-};
-
-export type GalleryImage = {
-  id: string;
-  imageUrl: string;
-  caption: string;
-  timestamp: any;
 };
 
 export async function getWishes(onlyApproved = true): Promise<Wish[]> {
@@ -91,29 +82,4 @@ export async function updateWishStatus(wishId: string, isApproved: boolean, disp
 export async function deleteWish(wishId: string) {
   const { firestore } = initializeFirebase();
   return deleteDoc(doc(firestore, 'wishes', wishId));
-}
-
-export async function getGalleryImages(): Promise<GalleryImage[]> {
-  const { firestore } = initializeFirebase();
-  const galleryRef = collection(firestore, 'gallery');
-  const q = query(galleryRef, orderBy('timestamp', 'desc'));
-  const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data()
-  })) as GalleryImage[];
-}
-
-export async function addGalleryImage(imageUrl: string, caption: string): Promise<any> {
-  const { firestore } = initializeFirebase();
-  return addDoc(collection(firestore, 'gallery'), {
-    imageUrl,
-    caption,
-    timestamp: serverTimestamp(),
-  });
-}
-
-export async function deleteGalleryImage(imageId: string) {
-  const { firestore } = initializeFirebase();
-  return deleteDoc(doc(firestore, 'gallery', imageId));
 }

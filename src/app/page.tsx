@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -8,7 +9,6 @@ import LanguageToggle from '@/components/LanguageToggle';
 import InvitationSection from '@/components/InvitationSection';
 import EventDetails from '@/components/EventDetails';
 import WishBook from '@/components/WishBook';
-import Gallery from '@/components/Gallery';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import PetalsAnimation from '@/components/PetalsAnimation';
@@ -94,7 +94,6 @@ export default function Home() {
           <InvitationSection lang={lang} />
           <EventDetails lang={lang} />
           <WishBook lang={lang} />
-          <Gallery lang={lang} />
           <Footer lang={lang} />
         </div>
       )}

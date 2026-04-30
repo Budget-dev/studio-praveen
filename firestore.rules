@@ -26,11 +26,6 @@ service cloud.firestore {
       allow update, delete: if isAdmin();
     }
 
-    match /gallery/{imageId} {
-      allow read: if true;
-      allow write: if isAdmin();
-    }
-
     match /admins/{adminUid} {
       allow get: if isSignedIn() && request.auth.uid == adminUid;
       allow list: if isAdmin();
