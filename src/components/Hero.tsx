@@ -17,8 +17,8 @@ export default function Hero({ lang, onOpenWithLang, isOpen }: HeroProps) {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center p-4 bg-[#FAF7F2]">
-      {/* Main Single Card Container as seen in the screenshot */}
-      <div className="w-full max-w-[500px] bg-white rounded-[3rem] shadow-[0_15px_50px_rgba(0,0,0,0.06)] overflow-hidden p-6 md:p-10 flex flex-col items-center animate-in fade-in zoom-in duration-700">
+      {/* Simplified container without the card background */}
+      <div className="w-full max-w-[500px] flex flex-col items-center animate-in fade-in zoom-in duration-700">
         
         {/* Invitation Cover Image */}
         <div className="w-full mb-8">
@@ -27,22 +27,22 @@ export default function Hero({ lang, onOpenWithLang, isOpen }: HeroProps) {
             alt="Patnala Gruhapravesam Invitation Cover"
             width={500}
             height={500}
-            className="w-full h-auto rounded-[2.5rem] border border-secondary/10"
+            className="w-full h-auto rounded-[2.5rem] shadow-2xl border border-secondary/10"
             priority
           />
         </div>
 
-        {/* Language Selection Buttons */}
-        <div className="w-full max-w-[320px] flex flex-col gap-4">
+        {/* Language Selection Buttons - Now side-by-side and more compact */}
+        <div className="w-full flex flex-row gap-4 justify-center">
           <Button
             onClick={() => onOpenWithLang('te')}
-            className="h-16 bg-primary hover:bg-primary/90 text-white rounded-[1.25rem] text-2xl font-telugu shadow-md border-none transition-all active:scale-95"
+            className="flex-1 max-w-[140px] h-12 bg-primary hover:bg-primary/90 text-white rounded-[1rem] text-xl font-telugu shadow-lg border-none transition-all active:scale-95"
           >
             తెలుగు
           </Button>
           <Button
             onClick={() => onOpenWithLang('en')}
-            className="h-16 bg-primary hover:bg-primary/90 text-white rounded-[1.25rem] text-2xl font-headline font-bold shadow-md border-none transition-all active:scale-95"
+            className="flex-1 max-w-[140px] h-12 bg-primary hover:bg-primary/90 text-white rounded-[1rem] text-xl font-headline font-bold shadow-lg border-none transition-all active:scale-95"
           >
             ENGLISH
           </Button>
