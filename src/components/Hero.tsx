@@ -32,25 +32,20 @@ export default function Hero({ lang, onOpenWithLang, isOpen }: HeroProps) {
 
           {/* Overlay Buttons on the image */}
           <div className="absolute bottom-10 inset-x-0 flex flex-row gap-4 justify-center px-6">
-            <Button
+            <button
               onClick={() => onOpenWithLang('te')}
-              className="flex-1 max-w-[130px] h-12 bg-primary hover:bg-primary/90 text-white rounded-xl text-xl font-telugu shadow-xl border-none transition-all active:scale-95"
+              className="flex-1 max-w-[130px] h-12 bg-primary hover:bg-primary/90 text-white rounded-xl text-xl font-telugu shadow-xl border-none transition-all active:scale-95 flex items-center justify-center"
             >
               తెలుగు
-            </Button>
-            <Button
+            </button>
+            <button
               onClick={() => onOpenWithLang('en')}
-              className="flex-1 max-w-[130px] h-12 bg-primary hover:bg-primary/90 text-white rounded-xl text-lg font-headline font-bold shadow-xl border-none transition-all active:scale-95"
+              className="flex-1 max-w-[130px] h-12 bg-primary hover:bg-primary/90 text-white rounded-xl text-lg font-headline font-bold shadow-xl border-none transition-all active:scale-95 flex items-center justify-center"
             >
               ENGLISH
-            </Button>
+            </button>
           </div>
         </div>
-
-        {/* Footer Instruction */}
-        <p className="mt-6 text-[11px] text-muted-foreground uppercase tracking-[0.2em] font-bold">
-          Select language to enter
-        </p>
       </div>
     </div>
   );
