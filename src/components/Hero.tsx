@@ -13,8 +13,6 @@ interface HeroProps {
 }
 
 export default function Hero({ lang, onOpenWithLang, isOpen }: HeroProps) {
-  const t = translations[lang];
-
   if (isOpen) return null;
 
   return (
@@ -36,34 +34,16 @@ export default function Hero({ lang, onOpenWithLang, isOpen }: HeroProps) {
       </div>
 
       {/* Invitation Card (Cover) */}
-      <div className="relative z-10 w-full max-w-xl bg-white/95 backdrop-blur-sm border-2 border-secondary/30 rounded-[2.5rem] p-8 md:p-14 shadow-[0_20px_60px_rgba(123,48,69,0.15)] text-center animate-in fade-in zoom-in duration-1000">
-        <div className="flex justify-center mb-6">
+      <div className="relative z-10 w-full max-w-xl bg-white/95 backdrop-blur-sm border-2 border-secondary/30 rounded-[2.5rem] p-6 md:p-10 shadow-[0_20px_60px_rgba(123,48,69,0.15)] text-center animate-in fade-in zoom-in duration-1000">
+        <div className="flex justify-center mb-8">
           <Image 
-            src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2002_34_38%20PM.png"
-            alt="Sacred Ganesha"
-            width={120}
-            height={120}
-            className="drop-shadow-lg"
+            src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2004_44_04%20PM.png"
+            alt="Traditional Invitation Cover"
+            width={500}
+            height={400}
+            className="rounded-2xl shadow-md border border-secondary/20"
             priority
           />
-        </div>
-
-        <p className="text-secondary text-sm md:text-base mb-2 tracking-wide font-telugu">
-          శ్రీరస్తు • శుభమస్తు • అవిఘ్నమస్తు
-        </p>
-        <p className="text-secondary text-xs md:text-sm mb-4 tracking-widest font-headline font-bold uppercase">
-          Sri Rastu • Shubhamastu • Avighnamastu
-        </p>
-        
-        <div className="gold-divider mb-6 opacity-60" />
-        
-        <div className="space-y-2 mb-8">
-          <h1 className="text-2xl md:text-3xl text-primary font-telugu font-bold leading-tight">
-            పట్నాల వారి నూతన గృహప్రవేశ ఆహ్వానము
-          </h1>
-          <h2 className="text-lg md:text-xl text-primary font-headline font-bold uppercase tracking-wider">
-            Patnala Family's Housewarming Invitation
-          </h2>
         </div>
 
         <div className="flex flex-col items-center gap-6">
