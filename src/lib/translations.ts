@@ -41,8 +41,8 @@ export const translations = {
     readMore: "మరింత చదవండి",
     thankYouFromHost: "పట్నాల కుటుంబం నుండి కృతజ్ఞతలు",
     shreeGanesh: "శ్రీ గణేశాయ నమః",
-    blessingPrefix: "With the divine blessings of",
-    blessingNames: "Sri Patnala Paidachari and Smt. Vanaja Lakshmi"
+    blessingPrefix: "దివ్య ఆశీస్సులతో",
+    blessingNames: "శ్రీ పట్నాల పైడాచారి మరియు శ్రీమతి వనజలక్ష్మి"
   },
   en: {
     auspicious: "Sri Rastu • Shubhamastu • Avighnamastu",
