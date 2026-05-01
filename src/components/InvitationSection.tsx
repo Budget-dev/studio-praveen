@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -14,7 +15,14 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
   return (
     <section id="invitation" className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-[#FAF7F2] text-center">
       <div className="max-w-6xl mx-auto w-full">
-        <div className="flex justify-center mb-4">
+        {/* Header text as seen in the screenshot */}
+        <div className="mb-6">
+          <h1 className="text-xl md:text-2xl font-headline text-primary tracking-wide">
+            Housewarming Ceremony
+          </h1>
+        </div>
+
+        <div className="flex justify-center mb-6">
           <Image 
             src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%2012_35_36%20PM.png"
             alt="Housewarming Ceremony"
