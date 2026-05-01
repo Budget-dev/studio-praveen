@@ -4,7 +4,7 @@ export const translations = {
     auspicious: "శ్రీరస్తు • శుభమస్తు • అవిఘ్నమస్తు",
     mainTitle: "పట్నాల వారి నూతన గృహప్రవేశ ఆహ్వానము",
     openInvitation: "ఆహ్వానం తెరవండి",
-    theBlessings: "శ్రీ పట్నాల పైడాచారి మరియు శ్రీమతి వనజలక్ష్మి వారి దివ్య ఆశీస్సుసులతో",
+    theBlessings: "శ్రీ పట్నాల పైడాచారి మరియు శ్రీమతి వనజలక్ష్మి వారి దివ్య ఆశీస్సులతో",
     yoursTruly: "ఇట్లు",
     hosts: [
       "శ్రీ పట్నాల బాలసుబ్రహ్మణ్యం & శ్రీమతి ఉష",
@@ -13,7 +13,9 @@ export const translations = {
     ],
     hostCouple: "శ్రీ పట్నాల పరమేశ్వర రావు & శ్రీమతి లక్ష్మి",
     inviteText: "వ్రాసి పంపిన గృహప్రవేశ ఆహ్వాన శుభపత్రిక",
-    occasion: "నూతన గృహప్రవేశం మరియు శ్రీ సత్యనారాయణ స్వామి వ్రతం",
+    occasion1: "నూతన గృహప్రవేశం",
+    occasionAnd: "మరియు",
+    occasion2: "శ్రీ సత్యనారాయణ స్వామి వ్రతం",
     bodyText: "మా పెద్దల ఆశీస్సులతో నిర్మించుకున్న మా నూతన గృహప్రవేశ కార్యక్రమమునకు తామెల్లరు విచ్చేసి, మమ్ములను ఆశీర్వదించి మా ఆతిద్యాన్ని స్వీకరించి మమ్మానందింప చేయమని మా కోరిక.",
     detailsTitle: "కార్యక్రమ వివరాలు",
     event1Title: "గృహప్రవేశం",
@@ -39,8 +41,8 @@ export const translations = {
     readMore: "మరింత చదవండి",
     thankYouFromHost: "పట్నాల కుటుంబం నుండి కృతజ్ఞతలు",
     shreeGanesh: "శ్రీ గణేశాయ నమః",
-    blessingPrefix: "దివ్య ఆశీస్సుసులతో",
-    blessingNames: "శ్రీ పట్నాల పైడాచారి మరియు శ్రీమతి వనజలక్ష్మి"
+    blessingPrefix: "With the divine blessings of",
+    blessingNames: "Sri Patnala Paidachari and Smt. Vanaja Lakshmi"
   },
   en: {
     auspicious: "Sri Rastu • Shubhamastu • Avighnamastu",
@@ -55,7 +57,9 @@ export const translations = {
     ],
     hostCouple: "Sri Patnala Parameshwar Rao & Smt. Lakshmi",
     inviteText: "cordially invite you and your family to the auspicious occasion of",
-    occasion: "New Housewarming Ceremony (Gruhapravesam) & Sri Satyanarayana Swamy Vratham",
+    occasion1: "New Housewarming Ceremony (Gruhapravesam)",
+    occasionAnd: "&",
+    occasion2: "Sri Satyanarayana Swamy Vratham",
     bodyText: "which has been arranged as per the blessings and guidance of our elders. We sincerely request your gracious presence to bless us, accept our hospitality, and make this joyful occasion even more memorable.",
     detailsTitle: "The Details",
     event1Title: "Gruhapravesam Ceremony",
