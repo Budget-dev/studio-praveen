@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Language, translations } from '@/lib/translations';
-import OmIcon from './OmIcon';
 import { Heart } from 'lucide-react';
 
 interface FooterProps {
@@ -13,7 +12,7 @@ const Footer = ({ lang }: FooterProps) => {
   const t = translations[lang];
 
   return (
-    <footer className="bg-primary text-white py-16 px-4 md:px-8 text-center flex flex-col items-center justify-center">
+    <footer className="bg-primary text-white py-12 px-4 md:px-8 text-center flex flex-col items-center justify-center">
       <div className="max-w-4xl mx-auto space-y-8">
         <p className={`text-xl md:text-2xl italic ${lang === 'te' ? 'font-telugu' : 'font-headline'}`}>
           {t.footerText}
@@ -32,13 +31,7 @@ const Footer = ({ lang }: FooterProps) => {
               </p>
             ))}
           </div>
-          <p className="text-xs uppercase tracking-[0.3em] opacity-40 pt-4">© 2026 Patnala Family</p>
-        </div>
-
-        <div className="pt-8 flex justify-center items-center gap-8 text-2xl opacity-40 hover:opacity-100 transition-opacity">
-          <OmIcon className="w-10 h-10 text-white" />
-          <span className="text-4xl">🏠</span>
-          <Heart className="w-10 h-10 text-white fill-white" />
+          <p className="text-xs uppercase tracking-[0.3em] opacity-40 pt-8">© 2026 Patnala Family</p>
         </div>
       </div>
     </footer>
