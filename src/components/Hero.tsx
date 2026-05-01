@@ -30,16 +30,16 @@ export default function Hero({ onOpenWithLang, isOpen }: HeroProps) {
           />
 
           {/* Overlay Buttons on the bottom of the image */}
-          <div className="absolute bottom-10 inset-x-0 flex flex-row gap-4 justify-center px-6">
+          <div className="absolute bottom-6 sm:bottom-10 inset-x-0 flex flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-6">
             <button
               onClick={() => onOpenWithLang('te')}
-              className="flex-1 max-w-[130px] h-12 bg-primary hover:bg-primary/90 text-white rounded-xl text-xl font-telugu shadow-xl border-none transition-all active:scale-95 flex items-center justify-center cursor-pointer"
+              className="flex-1 max-w-[110px] sm:max-w-[130px] h-11 sm:h-12 bg-primary hover:bg-primary/90 text-white rounded-xl text-lg sm:text-xl font-telugu shadow-xl border-none transition-all active:scale-95 flex items-center justify-center cursor-pointer"
             >
               తెలుగు
             </button>
             <button
               onClick={() => onOpenWithLang('en')}
-              className="flex-1 max-w-[130px] h-12 bg-primary hover:bg-primary/90 text-white rounded-xl text-lg font-headline font-bold shadow-xl border-none transition-all active:scale-95 flex items-center justify-center cursor-pointer"
+              className="flex-1 max-w-[110px] sm:max-w-[130px] h-11 sm:h-12 bg-primary hover:bg-primary/90 text-white rounded-xl text-sm sm:text-lg font-headline font-bold shadow-xl border-none transition-all active:scale-95 flex items-center justify-center cursor-pointer"
             >
               ENGLISH
             </button>
