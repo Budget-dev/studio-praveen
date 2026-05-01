@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -15,7 +16,6 @@ const EventDetails = ({ lang }: EventDetailsProps) => {
   const t = translations[lang];
 
   const generateICS = () => {
-    // 7:13 PM IST is 13:43 UTC (IST is UTC+5:30)
     const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Patnala Housewarming//EN
@@ -95,7 +95,15 @@ END:VCALENDAR`;
                <Sparkles className="w-12 h-12" />
             </div>
             <CardContent className="p-8 text-center space-y-4">
-              <div className="text-5xl mb-4 flex justify-center">📍</div>
+              <div className="mb-4 flex justify-center relative w-full h-24">
+                <Image 
+                  src="https://1234567890.sirv.com/ChatGPT%20Image%20May%201%2C%202026%2C%2007_36_28%20PM.png"
+                  alt="Venue Location"
+                  fill
+                  className="object-contain"
+                  data-ai-hint="venue map"
+                />
+              </div>
               <h3 className="text-xl font-bold text-primary">{t.venueTitle}</h3>
               <p className="text-sm leading-relaxed mb-4">{t.venueAddress}</p>
               

@@ -26,22 +26,10 @@
       "imageHint": "traditional decoration"
     },
     {
-      "id": "splash-image",
-      "description": "Sacred image for language splash",
-      "imageUrl": "https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2002_34_38%20PM.png",
-      "imageHint": "sacred deity"
-    },
-    {
-      "id": "satyanarayana-swamy",
-      "description": "Sri Satyanarayana Swamy",
-      "imageUrl": "https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2003_07_05%20PM.png",
-      "imageHint": "sacred deity"
-    },
-    {
-      "id": "gruhapravesam-ritual",
-      "description": "Gruhapravesam Ritual Image",
-      "imageUrl": "https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2003_13_24%20PM.png",
-      "imageHint": "ceremony ritual"
+      "id": "venue-location",
+      "description": "Venue Location Image",
+      "imageUrl": "https://1234567890.sirv.com/ChatGPT%20Image%20May%201%2C%202026%2C%2007_36_28%20PM.png",
+      "imageHint": "venue map"
     }
   ]
 }
