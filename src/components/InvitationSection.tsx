@@ -13,16 +13,17 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
   const t = translations[lang];
 
   return (
-    <section id="invitation" className="pt-8 pb-10 px-4 md:px-8 bg-[#FAF7F2] text-center">
+    <section id="invitation" className="pt-2 pb-10 px-4 md:px-8 bg-[#FAF7F2] text-center">
       <div className="max-w-4xl mx-auto w-full">
-        {/* Header text as seen in the screenshot */}
-        <div className="mb-2">
-          <h1 className="text-xl md:text-2xl font-headline text-primary tracking-wide">
+        {/* Header text */}
+        <div className="mb-0">
+          <h1 className="text-xl md:text-2xl font-headline text-primary tracking-wide py-2">
             Housewarming Ceremony
           </h1>
         </div>
 
-        <div className="flex justify-center mb-2">
+        {/* Central Ganesha Image */}
+        <div className="flex justify-center -mb-4 sm:-mb-8">
           <div className="relative w-full md:max-w-md">
             <Image 
               src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2012_35_36%20PM.png"
@@ -36,34 +37,36 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
           </div>
         </div>
 
-        <div className="flex flex-col items-center mb-2">
+        {/* Shree Ganeshaya Namaha - Pulled up with negative margin */}
+        <div className="flex flex-col items-center mb-1 relative z-10">
           <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'} text-secondary text-2xl`}>
             {t.shreeGanesh}
           </h2>
         </div>
 
-        <div className="space-y-4">
-          <div className="space-y-3">
+        <div className="space-y-2">
+          <div className="space-y-2">
             <p className={`${lang === 'te' ? 'font-telugu italic' : 'font-headline font-bold'} text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed`}>
               {t.openingMessage}
             </p>
             
             <div className="gold-divider" />
 
-            <div className="space-y-3 py-2">
-              <div className="space-y-2">
+            {/* Host Names - Correctly spaced with Sri and Smt titles */}
+            <div className="space-y-3 py-1">
+              <div className="space-y-3">
                 {t.hosts.map((host, idx) => (
                   <h3 key={idx} className={`text-2xl md:text-3xl ${lang === 'te' ? 'font-telugu font-bold' : 'font-headline font-bold'} text-primary`}>
                     {host}
                   </h3>
                 ))}
               </div>
-              <p className={`text-muted-foreground font-headline font-semibold`}>
+              <p className={`text-muted-foreground font-headline font-semibold pt-1`}>
                 {t.inviteText}
               </p>
             </div>
 
-            <h2 className={`text-xl md:text-2xl text-primary font-bold px-4 py-3 border-y border-secondary/20 bg-white/50 inline-block w-full max-w-2xl ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
+            <h2 className={`text-xl md:text-2xl text-primary font-bold px-4 py-2 border-y border-secondary/20 bg-white/50 inline-block w-full max-w-2xl ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
               {t.occasion}
             </h2>
 
@@ -73,7 +76,7 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
           </div>
         </div>
 
-        <div className="flex justify-center gap-2 text-primary font-telugu text-xl mt-6 pt-2">
+        <div className="flex justify-center gap-2 text-primary font-telugu text-xl mt-4">
           💐 బంధు మిత్రుల అభినందనలతో 💐
         </div>
       </div>
