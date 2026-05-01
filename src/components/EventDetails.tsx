@@ -43,7 +43,7 @@ END:VCALENDAR`;
   };
 
   return (
-    <section className="pt-12 pb-2 px-4 md:px-8 bg-white/50 backdrop-blur-sm flex flex-col items-center justify-center">
+    <section className="pt-6 pb-2 px-4 md:px-8 bg-white/50 backdrop-blur-sm flex flex-col items-center justify-center">
       <div className="max-w-6xl mx-auto w-full">
         <h2 className={`text-3xl text-center text-primary mb-8 ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
           {t.detailsTitle}
@@ -65,7 +65,7 @@ END:VCALENDAR`;
                 />
               </div>
               <h3 className="text-xl font-bold text-primary">{t.event1Title}</h3>
-              <p className="text-muted-foreground">{t.event1Date}</p>
+              <p className="text-foreground font-bold text-lg">{t.event1Date}</p>
               <p className="text-2xl font-bold text-primary">{t.event1Time}</p>
             </CardContent>
           </Card>
@@ -85,7 +85,7 @@ END:VCALENDAR`;
                 />
               </div>
               <h3 className="text-xl font-bold text-primary">{t.event2Title}</h3>
-              <p className="text-muted-foreground">{t.event2Date}</p>
+              <p className="text-foreground font-bold text-lg">{t.event2Date}</p>
               <p className="text-2xl font-bold text-primary">{t.event2Time}</p>
             </CardContent>
           </Card>
@@ -105,7 +105,7 @@ END:VCALENDAR`;
                 />
               </div>
               <h3 className="text-xl font-bold text-primary">{t.venueTitle}</h3>
-              <p className="text-sm leading-relaxed mb-4">{t.venueAddress}</p>
+              <p className="text-foreground font-bold text-base leading-relaxed mb-4">{t.venueAddress}</p>
               
               <div className="flex flex-col gap-2">
                 <Button variant="outline" onClick={generateICS} className="border-secondary text-primary hover:bg-secondary hover:text-white w-full">
