@@ -38,18 +38,18 @@ export default function Home() {
       }
     };
 
-    if (!isLoading) {
-      const events = ['click', 'touchstart', 'scroll', 'mousemove'];
+    // Listen for any user interaction as early as possible (even during loading)
+    const events = ['click', 'touchstart', 'scroll', 'mousemove'];
+    events.forEach(event => {
+      window.addEventListener(event, attemptPlay, { once: true });
+    });
+    
+    return () => {
       events.forEach(event => {
-        window.addEventListener(event, attemptPlay, { once: true });
+        window.removeEventListener(event, attemptPlay);
       });
-      return () => {
-        events.forEach(event => {
-          window.removeEventListener(event, attemptPlay);
-        });
-      };
-    }
-  }, [isLoading]);
+    };
+  }, []);
 
   const handleOpenInvitation = (selectedLang: Language) => {
     setLang(selectedLang);
@@ -67,8 +67,6 @@ export default function Home() {
     setLang(newLang);
   };
 
-  if (isLoading) return <LoadingSplash />;
-
   const audioPath = "/song/Agajanana%20Padmarkam%20_%20Shri%20Ganesha%20Slokam%20__.mp3";
 
   return (
@@ -81,10 +79,12 @@ export default function Home() {
         <source src={audioPath} type="audio/mpeg" />
       </audio>
       
+      {isLoading && <LoadingSplash />}
+      
       {isOpened && <LanguageToggle current={lang} onToggle={handleLangToggle} />}
       <PetalsAnimation />
       
-      {!isOpened && (
+      {!isLoading && !isOpened && (
         <Hero 
           lang={lang} 
           isOpen={isOpened} 

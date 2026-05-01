@@ -1,3 +1,4 @@
+
 export const translations = {
   te: {
     auspicious: "శ్రీరస్తు • శుభమస్తు • అవిఘ్నమస్తు",
