@@ -32,55 +32,55 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
 
         {/* Shree Ganeshaya Namaha */}
         <div className="flex flex-col items-center mb-6 relative z-10">
-          <h2 className={`${lang === 'te' ? 'font-telugu text-2xl md:text-3xl' : 'font-headline font-bold text-2xl md:text-4xl'} text-secondary`}>
+          <h2 className={`${lang === 'te' ? 'font-telugu text-2xl md:text-3xl' : 'font-headline font-bold text-3xl md:text-5xl'} text-secondary mb-2`}>
             {t.shreeGanesh}
           </h2>
         </div>
 
         <div className="space-y-6">
-          <div className="space-y-2">
+          <div className="space-y-4">
             {/* Blessings Section */}
             <div className="flex flex-col gap-2 mb-6">
-              <p className={`${lang === 'te' ? 'font-telugu text-lg md:text-xl' : 'font-headline text-lg md:text-xl'} text-muted-foreground italic`}>
+              <p className={`${lang === 'te' ? 'font-telugu text-xl md:text-2xl' : 'font-headline text-xl md:text-2xl'} text-muted-foreground italic font-medium`}>
                 {t.blessingPrefix}
               </p>
-              <p className={`${lang === 'te' ? 'font-telugu text-xl md:text-2xl' : 'font-headline text-xl md:text-2xl'} font-bold text-[#2C2015] leading-tight`}>
+              <p className={`${lang === 'te' ? 'font-telugu text-2xl md:text-3xl' : 'font-headline text-2xl md:text-3xl'} font-bold text-[#2C2015] leading-tight whitespace-nowrap`}>
                 {t.blessingNames}
               </p>
               
               {/* Host Couple Name */}
-              <p className={`${lang === 'te' ? 'font-telugu text-xl md:text-3xl' : 'font-headline text-xl md:text-3xl'} font-bold text-primary mt-2`}>
+              <p className={`${lang === 'te' ? 'font-telugu text-2xl md:text-4xl' : 'font-headline text-2xl md:text-4xl'} font-bold text-primary mt-4`}>
                 {t.hostCouple}
               </p>
             </div>
             
-            <div className="gold-divider my-6" />
+            <div className="gold-divider my-8" />
 
             {/* Invite Text */}
             <div className="py-2">
-              <p className="text-muted-foreground font-headline font-bold text-lg md:text-2xl px-4 leading-relaxed">
+              <p className={`${lang === 'te' ? 'font-telugu text-lg md:text-2xl' : 'font-headline text-lg md:text-2xl'} text-muted-foreground font-bold px-4 leading-relaxed`}>
                 {t.inviteText}
               </p>
             </div>
 
             {/* Occasion Box - Split into 3 lines */}
             <div className="my-6 inline-block w-full max-w-2xl px-4">
-               <div className={`py-8 border-y border-secondary/20 bg-white/40 w-full flex flex-col gap-3 ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
-                <span className="text-xl md:text-3xl text-primary leading-tight px-4">{t.occasion1}</span>
-                <span className="text-lg md:text-2xl text-secondary">{t.occasionAnd}</span>
-                <span className="text-xl md:text-3xl text-primary leading-tight px-4">{t.occasion2}</span>
+               <div className={`py-10 border-y-2 border-secondary/20 bg-white/40 w-full flex flex-col gap-4 ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
+                <span className="text-2xl md:text-4xl text-primary leading-tight px-4">{t.occasion1}</span>
+                <span className="text-xl md:text-3xl text-secondary">{t.occasionAnd}</span>
+                <span className="text-2xl md:text-4xl text-primary leading-tight px-4">{t.occasion2}</span>
               </div>
             </div>
 
             {/* Body Text */}
-            <p className={`text-foreground text-base md:text-xl leading-relaxed max-w-3xl mx-auto px-6 mt-4 ${lang === 'te' ? 'font-telugu font-medium' : 'font-body font-medium'}`}>
+            <p className={`text-foreground text-lg md:text-2xl leading-relaxed max-w-3xl mx-auto px-6 mt-6 ${lang === 'te' ? 'font-telugu font-medium' : 'font-body font-medium'}`}>
               {t.bodyText}
             </p>
           </div>
         </div>
 
         {/* Bottom Message */}
-        <div className="flex justify-center gap-2 text-primary font-telugu text-xl md:text-2xl mt-12 font-bold animate-pulse">
+        <div className="flex justify-center gap-2 text-primary font-telugu text-2xl md:text-3xl mt-16 font-bold animate-pulse">
           💐 బంధు మిత్రుల అభినందనలతో 💐
         </div>
       </div>
