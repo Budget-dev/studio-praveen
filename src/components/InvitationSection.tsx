@@ -44,12 +44,12 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
               <p className={`${lang === 'te' ? 'font-telugu text-xl md:text-2xl' : 'font-headline text-xl md:text-2xl'} text-muted-foreground italic font-medium`}>
                 {t.blessingPrefix}
               </p>
-              <p className={`${lang === 'te' ? 'font-telugu text-2xl md:text-3xl' : 'font-headline text-2xl md:text-3xl'} font-bold text-[#2C2015] leading-tight whitespace-nowrap`}>
+              <p className={`${lang === 'te' ? 'font-telugu text-2xl md:text-3xl' : 'font-headline text-2xl md:text-3xl'} font-bold text-[#2C2015] leading-tight`}>
                 {t.blessingNames}
               </p>
               
-              {/* Host Couple Name */}
-              <p className={`${lang === 'te' ? 'font-telugu text-2xl md:text-4xl' : 'font-headline text-2xl md:text-4xl'} font-bold text-primary mt-4`}>
+              {/* Host Couple Name - Slightly less bold */}
+              <p className={`${lang === 'te' ? 'font-telugu text-2xl md:text-4xl' : 'font-headline text-2xl md:text-4xl'} font-semibold text-primary mt-4`}>
                 {t.hostCouple}
               </p>
             </div>
