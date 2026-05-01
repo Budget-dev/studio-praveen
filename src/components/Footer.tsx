@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Language, translations } from '@/lib/translations';
-import { Heart } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface FooterProps {
   lang: Language;
@@ -21,7 +21,10 @@ const Footer = ({ lang }: FooterProps) => {
         <div className="gold-divider opacity-40" />
         
         <div className="space-y-4">
-          <p className="text-sm uppercase tracking-[0.4em] text-secondary font-bold opacity-80">
+          <p className={cn(
+            "text-sm uppercase text-secondary font-bold opacity-80",
+            lang === 'en' && "tracking-[0.4em]"
+          )}>
             {t.yoursTruly}
           </p>
           <div className="space-y-3">

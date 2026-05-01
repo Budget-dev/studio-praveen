@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from 'react';
@@ -15,7 +14,7 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
   return (
     <section id="invitation" className="pt-2 pb-12 px-4 md:px-8 bg-[#FAF7F2] text-center">
       <div className="max-w-4xl mx-auto w-full">
-        {/* Central Ganesha Image */}
+        {/* Central Ganesha Image - Larger size as requested */}
         <div className="flex justify-center -my-6 md:-my-10">
           <div className="relative w-full max-w-[320px] md:max-w-md">
             <Image 
@@ -63,7 +62,7 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
               </p>
             </div>
 
-            {/* Occasion Box - Split into 3 lines */}
+            {/* Occasion Box - Split into 3 lines for visual impact */}
             <div className="my-2 inline-block w-full max-w-3xl px-4">
                <div className={`py-8 border-y-2 border-secondary/20 bg-white/40 w-full flex flex-col gap-4 ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
                 <span className="text-2xl md:text-4xl text-primary leading-tight px-4">{t.occasion1}</span>
