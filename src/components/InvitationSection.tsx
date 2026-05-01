@@ -24,12 +24,13 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
 
         <div className="flex justify-center mb-6">
           <Image 
-            src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%2012_35_36%20PM.png"
+            src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2012_35_36%20PM.png"
             alt="Housewarming Ceremony"
-            width={1400}
+            width={1200}
             height={800}
-            className="w-full md:max-w-md h-auto block shadow-sm rounded-xl"
+            className="w-full md:max-w-xl h-auto block shadow-sm rounded-xl"
             priority
+            unoptimized
           />
         </div>
 
