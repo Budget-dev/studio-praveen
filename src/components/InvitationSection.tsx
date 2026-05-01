@@ -31,16 +31,16 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
         </div>
 
         {/* Shree Ganeshaya Namaha */}
-        <div className="flex flex-col items-center mb-8 relative z-10">
-          <h2 className={`${lang === 'te' ? 'font-telugu text-2xl md:text-3xl' : 'font-headline font-bold text-3xl md:text-5xl'} text-secondary mb-2`}>
+        <div className="flex flex-col items-center mb-4 relative z-10">
+          <h2 className={`${lang === 'te' ? 'font-telugu text-2xl md:text-3xl' : 'font-headline font-bold text-3xl md:text-5xl'} text-secondary`}>
             {t.shreeGanesh}
           </h2>
         </div>
 
-        <div className="space-y-6">
-          <div className="space-y-4">
+        <div className="space-y-2">
+          <div className="space-y-2">
             {/* Blessings Section */}
-            <div className="flex flex-col gap-3 mb-8">
+            <div className="flex flex-col gap-1 mb-4">
               <p className={`${lang === 'te' ? 'font-telugu text-xl md:text-2xl' : 'font-headline text-lg md:text-2xl'} text-muted-foreground italic font-medium`}>
                 {t.blessingPrefix}
               </p>
@@ -49,23 +49,23 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
               </p>
               
               {/* Host Couple Name - Semibold and Maroon */}
-              <p className={`${lang === 'te' ? 'font-telugu text-2xl md:text-4xl' : 'font-headline text-2xl md:text-4xl'} font-semibold text-primary mt-2`}>
+              <p className={`${lang === 'te' ? 'font-telugu text-2xl md:text-4xl' : 'font-headline text-2xl md:text-4xl'} font-semibold text-primary mt-1`}>
                 {t.hostCouple}
               </p>
             </div>
             
-            <div className="gold-divider my-10" />
+            <div className="gold-divider my-4" />
 
             {/* Invite Text */}
-            <div className="py-2">
-              <p className={`${lang === 'te' ? 'font-telugu text-lg md:text-2xl' : 'font-headline text-lg md:text-2xl'} text-muted-foreground font-bold px-4 leading-relaxed`}>
+            <div className="py-1">
+              <p className={`${lang === 'te' ? 'font-telugu text-lg md:text-2xl' : 'font-headline text-lg md:text-2xl'} text-muted-foreground font-bold px-4 leading-relaxed max-w-2xl mx-auto`}>
                 {t.inviteText}
               </p>
             </div>
 
             {/* Occasion Box - Split into 3 lines */}
-            <div className="my-8 inline-block w-full max-w-3xl px-4">
-               <div className={`py-12 border-y-2 border-secondary/20 bg-white/40 w-full flex flex-col gap-6 ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
+            <div className="my-2 inline-block w-full max-w-3xl px-4">
+               <div className={`py-8 border-y-2 border-secondary/20 bg-white/40 w-full flex flex-col gap-4 ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
                 <span className="text-2xl md:text-4xl text-primary leading-tight px-4">{t.occasion1}</span>
                 <span className="text-xl md:text-3xl text-secondary">{t.occasionAnd}</span>
                 <span className="text-2xl md:text-4xl text-primary leading-tight px-4">{t.occasion2}</span>
@@ -73,14 +73,14 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
             </div>
 
             {/* Body Text */}
-            <p className={`text-foreground text-lg md:text-2xl leading-relaxed max-w-3xl mx-auto px-6 mt-8 ${lang === 'te' ? 'font-telugu font-medium' : 'font-body font-medium'}`}>
+            <p className={`text-foreground text-lg md:text-2xl leading-relaxed max-w-3xl mx-auto px-6 mt-4 ${lang === 'te' ? 'font-telugu font-medium' : 'font-body font-medium'}`}>
               {t.bodyText}
             </p>
           </div>
         </div>
 
         {/* Bottom Message */}
-        <div className="flex justify-center gap-2 text-primary font-telugu text-2xl md:text-3xl mt-20 font-bold animate-pulse">
+        <div className="flex justify-center gap-2 text-primary font-telugu text-2xl md:text-3xl mt-12 font-bold animate-pulse">
           💐 బంధు మిత్రుల అభినందనలతో 💐
         </div>
       </div>
