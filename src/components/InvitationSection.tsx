@@ -13,43 +13,45 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
   const t = translations[lang];
 
   return (
-    <section id="invitation" className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-[#FAF7F2] text-center">
-      <div className="max-w-6xl mx-auto w-full">
+    <section id="invitation" className="py-10 px-4 md:px-8 bg-[#FAF7F2] text-center">
+      <div className="max-w-4xl mx-auto w-full">
         {/* Header text as seen in the screenshot */}
-        <div className="mb-6">
+        <div className="mb-4">
           <h1 className="text-xl md:text-2xl font-headline text-primary tracking-wide">
             Housewarming Ceremony
           </h1>
         </div>
 
         <div className="flex justify-center mb-6">
-          <Image 
-            src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2012_35_36%20PM.png"
-            alt="Housewarming Ceremony"
-            width={1200}
-            height={800}
-            className="w-full md:max-w-xl h-auto block shadow-sm rounded-xl"
-            priority
-            unoptimized
-          />
+          <div className="relative w-full md:max-w-md overflow-hidden rounded-[2rem] shadow-sm">
+            <Image 
+              src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2012_35_36%20PM.png"
+              alt="Housewarming Ceremony"
+              width={1200}
+              height={1200}
+              className="w-full h-auto block"
+              priority
+              unoptimized
+            />
+          </div>
         </div>
 
-        <div className="flex flex-col items-center mb-6">
+        <div className="flex flex-col items-center mb-4">
           <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'} text-secondary text-2xl`}>
             {t.shreeGanesh}
           </h2>
         </div>
 
-        <div className="space-y-6">
-          <div className="space-y-4">
+        <div className="space-y-4">
+          <div className="space-y-3">
             <p className={`${lang === 'te' ? 'font-telugu italic' : 'font-headline font-bold'} text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed`}>
               {t.openingMessage}
             </p>
             
             <div className="gold-divider" />
 
-            <div className="space-y-4 py-4">
-              <div className="space-y-3">
+            <div className="space-y-3 py-2">
+              <div className="space-y-2">
                 {t.hosts.map((host, idx) => (
                   <h3 key={idx} className={`text-2xl md:text-3xl ${lang === 'te' ? 'font-telugu font-bold' : 'font-headline font-bold'} text-primary`}>
                     {host}
