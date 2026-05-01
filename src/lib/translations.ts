@@ -38,7 +38,8 @@ export const translations = {
     readMore: "మరింత చదవండి",
     thankYouFromHost: "పట్నాల కుటుంబం నుండి కృతజ్ఞతలు",
     shreeGanesh: "శ్రీ గణేశాయ నమః",
-    openingMessage: "శ్రీ పట్నాల పైడాచారి మరియు శ్రీమతి వనజలక్ష్మి వారి దివ్య ఆశీస్సుసులతో..."
+    blessingPrefix: "దివ్య ఆశీస్సుసులతో...",
+    blessingNames: "శ్రీ పట్నాల పైడాచారి మరియు శ్రీమతి వనజలక్ష్మి"
   },
   en: {
     auspicious: "Sri Rastu • Shubhamastu • Avighnamastu",
@@ -79,7 +80,8 @@ export const translations = {
     readMore: "Read more",
     thankYouFromHost: "Thank You from Patnala Family",
     shreeGanesh: "Shree Ganeshaya Namaha",
-    openingMessage: "With the divine blessings of Sri Patnala Paidachari and Smt. Vanaja Lakshmi..."
+    blessingPrefix: "With the divine blessings of",
+    blessingNames: "Sri Patnala Paidachari and Smt. Vanaja Lakshmi..."
   }
 };
 
