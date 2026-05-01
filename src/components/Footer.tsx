@@ -24,7 +24,8 @@ const Footer = ({ lang }: FooterProps) => {
         <div className="space-y-4">
           <p className={cn(
             "text-sm uppercase text-secondary font-bold opacity-80",
-            lang === 'en' && "tracking-[0.4em]"
+            lang === 'en' && "tracking-[0.4em]",
+            lang === 'te' && "tracking-normal"
           )}>
             {t.yoursTruly}
           </p>
