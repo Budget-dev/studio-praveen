@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from 'react';
@@ -43,7 +42,7 @@ END:VCALENDAR`;
   };
 
   return (
-    <section className="min-h-screen py-20 px-4 md:px-8 bg-white/50 backdrop-blur-sm flex flex-col items-center justify-center">
+    <section className="py-20 px-4 md:px-8 bg-white/50 backdrop-blur-sm flex flex-col items-center justify-center">
       <div className="max-w-6xl mx-auto w-full">
         <h2 className={`text-4xl text-center text-primary mb-12 ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
           {t.detailsTitle}

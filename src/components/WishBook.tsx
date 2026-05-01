@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -117,7 +116,7 @@ const WishBook = ({ lang }: WishBookProps) => {
   const displayWishes = [...wishes, ...wishes, ...wishes];
 
   return (
-    <section className="min-h-screen py-20 px-4 md:px-8 bg-[#FAF7F2] relative overflow-hidden flex flex-col items-center justify-center">
+    <section className="py-20 px-4 md:px-8 bg-[#FAF7F2] relative overflow-hidden flex flex-col items-center justify-center">
       <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
         <Heart className="w-64 h-64 text-primary fill-primary" />
       </div>

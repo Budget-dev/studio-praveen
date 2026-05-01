@@ -13,7 +13,7 @@ const Footer = ({ lang }: FooterProps) => {
   const t = translations[lang];
 
   return (
-    <footer className="min-h-screen bg-primary text-white py-12 px-4 md:px-8 text-center flex flex-col items-center justify-center">
+    <footer className="bg-primary text-white py-16 px-4 md:px-8 text-center flex flex-col items-center justify-center">
       <div className="max-w-4xl mx-auto space-y-8">
         <p className={`text-xl md:text-2xl italic ${lang === 'te' ? 'font-telugu' : 'font-headline'}`}>
           {t.footerText}
