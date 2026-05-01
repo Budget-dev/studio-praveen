@@ -46,7 +46,8 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
 
         <div className="space-y-1">
           <div className="space-y-1">
-            <p className={`${lang === 'te' ? 'font-telugu italic' : 'font-headline font-bold'} text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-tight`}>
+            {/* Opening Message - Forced to one line */}
+            <p className={`${lang === 'te' ? 'font-telugu italic' : 'font-headline font-bold'} text-muted-foreground text-[10px] sm:text-sm md:text-lg whitespace-nowrap leading-tight`}>
               {t.openingMessage}
             </p>
             
