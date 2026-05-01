@@ -13,26 +13,26 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
   const t = translations[lang];
 
   return (
-    <section id="invitation" className="snap-start min-h-screen pt-12 pb-12 px-4 md:px-8 bg-[#FAF7F2] text-center flex flex-col items-center justify-center">
+    <section id="invitation" className="snap-start h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-[#FAF7F2] text-center">
       <div className="max-w-6xl mx-auto w-full">
-        <div className="flex justify-center mb-0 pt-0">
+        <div className="flex justify-center mb-4">
           <Image 
-            src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2012_35_36%20PM.png"
+            src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%2012_35_36%20PM.png"
             alt="Housewarming Ceremony"
             width={1400}
             height={800}
-            className="w-full md:max-w-lg h-auto block shadow-sm rounded-xl"
+            className="w-full md:max-w-md h-auto block shadow-sm rounded-xl"
             priority
           />
         </div>
 
-        <div className="flex flex-col items-center mb-6 mt-6">
+        <div className="flex flex-col items-center mb-6">
           <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'} text-secondary text-2xl`}>
             {t.shreeGanesh}
           </h2>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-6">
           <div className="space-y-4">
             <p className={`${lang === 'te' ? 'font-telugu italic' : 'font-headline font-bold'} text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed`}>
               {t.openingMessage}
@@ -49,28 +49,18 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
               </p>
             </div>
 
-            <h2 className={`text-xl md:text-3xl text-primary font-bold px-4 py-4 border-y-2 border-secondary/20 bg-white/50 inline-block w-full max-w-2xl ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
+            <h2 className={`text-xl md:text-2xl text-primary font-bold px-4 py-3 border-y border-secondary/20 bg-white/50 inline-block w-full max-w-2xl ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
               {t.occasion}
             </h2>
 
-            <p className={`text-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto ${lang === 'te' ? 'font-telugu' : 'font-body'}`}>
+            <p className={`text-foreground text-sm md:text-lg leading-relaxed max-w-2xl mx-auto px-4 ${lang === 'te' ? 'font-telugu' : 'font-body'}`}>
               {t.bodyText}
             </p>
           </div>
         </div>
 
-        <div className="flex justify-center gap-2 text-primary font-telugu text-xl mt-8 pt-4">
+        <div className="flex justify-center gap-2 text-primary font-telugu text-xl mt-6 pt-2">
           💐 బంధు మిత్రుల అభినందనలతో 💐
-        </div>
-
-        <div className="flex justify-center mt-6">
-          <Image 
-            src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2002_25_06%20PM.png"
-            alt="Traditional Lotus Decoration"
-            width={300}
-            height={120}
-            className="w-full max-w-[200px] h-auto opacity-90 drop-shadow-sm"
-          />
         </div>
       </div>
     </section>

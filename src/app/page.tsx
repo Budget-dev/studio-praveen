@@ -33,24 +33,22 @@ export default function Home() {
       if (audioRef.current) {
         audioRef.current.volume = 0.6;
         audioRef.current.play().catch(() => {
-          // Autoplay policy handling - will play on first interaction
+          // Autoplay policy handling
         });
       }
     };
 
     if (!isLoading) {
-      window.addEventListener('click', attemptPlay, { once: true });
-      window.addEventListener('touchstart', attemptPlay, { once: true });
-      window.addEventListener('scroll', attemptPlay, { once: true });
-      window.addEventListener('mousemove', attemptPlay, { once: true });
+      const events = ['click', 'touchstart', 'scroll', 'mousemove'];
+      events.forEach(event => {
+        window.addEventListener(event, attemptPlay, { once: true });
+      });
+      return () => {
+        events.forEach(event => {
+          window.removeEventListener(event, attemptPlay);
+        });
+      };
     }
-
-    return () => {
-      window.removeEventListener('click', attemptPlay);
-      window.removeEventListener('touchstart', attemptPlay);
-      window.removeEventListener('scroll', attemptPlay);
-      window.removeEventListener('mousemove', attemptPlay);
-    };
   }, [isLoading]);
 
   const handleOpenInvitation = (selectedLang: Language) => {
@@ -74,7 +72,7 @@ export default function Home() {
   const audioPath = "/song/Agajanana%20Padmarkam%20_%20Shri%20Ganesha%20Slokam%20__.mp3";
 
   return (
-    <main className={`relative min-h-screen bg-[#FAF7F2] ${isOpened ? 'snap-y snap-mandatory overflow-y-scroll h-screen' : ''}`}>
+    <main className={`relative bg-[#FAF7F2] ${isOpened ? 'h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth' : 'min-h-screen'}`}>
       <audio
         ref={audioRef}
         preload="auto"
@@ -95,9 +93,9 @@ export default function Home() {
       )}
       
       {isOpened && (
-        <>
-          {/* Side Floral Decorations - Persistent/Fixed on walls */}
-          <div className="hidden lg:block fixed inset-y-0 left-0 w-[180px] pointer-events-none z-10 opacity-40">
+        <div className="relative">
+          {/* Side Floral Decorations - Fixed to walls */}
+          <div className="hidden lg:block fixed inset-y-0 left-0 w-[180px] pointer-events-none z-50 opacity-40">
             <div className="relative w-full h-full">
               <Image 
                 src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2003_16_38%20PM.png"
@@ -107,7 +105,7 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="hidden lg:block fixed inset-y-0 right-0 w-[180px] pointer-events-none z-10 opacity-40 scale-x-[-1]">
+          <div className="hidden lg:block fixed inset-y-0 right-0 w-[180px] pointer-events-none z-50 opacity-40 scale-x-[-1]">
             <div className="relative w-full h-full">
               <Image 
                 src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2003_16_38%20PM.png"
@@ -122,7 +120,7 @@ export default function Home() {
           <EventDetails lang={lang} />
           <WishBook lang={lang} />
           <Footer lang={lang} />
-        </>
+        </div>
       )}
 
       {isOpened && <ScrollToTop />}
