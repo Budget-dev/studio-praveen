@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from 'react';
@@ -16,12 +15,13 @@ const EventDetails = ({ lang }: EventDetailsProps) => {
   const t = translations[lang];
 
   const generateICS = () => {
+    // 7:13 PM IST is 13:43 UTC (IST is UTC+5:30)
     const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Patnala Housewarming//EN
 BEGIN:VEVENT
-DTSTART:20260508T133000Z
-DTEND:20260508T163000Z
+DTSTART:20260508T134300Z
+DTEND:20260508T164300Z
 SUMMARY:Patnala Gruhapravesam Ceremony
 DESCRIPTION:Housewarming ceremony at Sapthagiri Layout\\, YSR Nagar Road\\, Vizianagaram
 LOCATION:Sapthagiri Layout, YSR Nagar Road, Vizianagaram
