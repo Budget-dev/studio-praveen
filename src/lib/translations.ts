@@ -3,7 +3,7 @@ export const translations = {
     auspicious: "శ్రీరస్తు • శుభమస్తు • అవిఘ్నమస్తు",
     mainTitle: "పట్నాల వారి నూతన గృహప్రవేశ ఆహ్వానము",
     openInvitation: "ఆహ్వానం తెరవండి",
-    theBlessings: "శ్రీ పట్నాల పైడాచారి మరియు శ్రీమతి వనజలక్ష్మి వారి దివ్య ఆశీస్సుసులతో...",
+    theBlessings: "శ్రీ పట్నాల పైడాచారి మరియు శ్రీమతి వనజలక్ష్మి వారి దివ్య ఆశీస్సుసులతో",
     yoursTruly: "ఇట్లు",
     hosts: [
       "శ్రీ పట్నాల బాలసుబ్రహ్మణ్యం & శ్రీమతి ఉష",
@@ -38,14 +38,14 @@ export const translations = {
     readMore: "మరింత చదవండి",
     thankYouFromHost: "పట్నాల కుటుంబం నుండి కృతజ్ఞతలు",
     shreeGanesh: "శ్రీ గణేశాయ నమః",
-    blessingPrefix: "దివ్య ఆశీస్సుసులతో...",
+    blessingPrefix: "దివ్య ఆశీస్సుసులతో",
     blessingNames: "శ్రీ పట్నాల పైడాచారి మరియు శ్రీమతి వనజలక్ష్మి"
   },
   en: {
     auspicious: "Sri Rastu • Shubhamastu • Avighnamastu",
     mainTitle: "Patnala Family's Housewarming Invitation",
     openInvitation: "Open Invitation",
-    theBlessings: "With the divine blessings of Sri Patnala Paidachari and Smt. Vanaja Lakshmi...",
+    theBlessings: "With the divine blessings of Sri Patnala Paidachari and Smt. Vanaja Lakshmi",
     yoursTruly: "Yours Truly",
     hosts: [
       "Sri Patnala Bala Subramanyam & Smt. Usha",
@@ -81,7 +81,7 @@ export const translations = {
     thankYouFromHost: "Thank You from Patnala Family",
     shreeGanesh: "Shree Ganeshaya Namaha",
     blessingPrefix: "With the divine blessings of",
-    blessingNames: "Sri Patnala Paidachari and Smt. Vanaja Lakshmi..."
+    blessingNames: "Sri Patnala Paidachari and Smt. Vanaja Lakshmi"
   }
 };
 
