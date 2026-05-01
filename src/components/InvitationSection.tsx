@@ -13,17 +13,17 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
   const t = translations[lang];
 
   return (
-    <section id="invitation" className="py-10 px-4 md:px-8 bg-[#FAF7F2] text-center">
+    <section id="invitation" className="pt-8 pb-10 px-4 md:px-8 bg-[#FAF7F2] text-center">
       <div className="max-w-4xl mx-auto w-full">
         {/* Header text as seen in the screenshot */}
-        <div className="mb-4">
+        <div className="mb-2">
           <h1 className="text-xl md:text-2xl font-headline text-primary tracking-wide">
             Housewarming Ceremony
           </h1>
         </div>
 
-        <div className="flex justify-center mb-6">
-          <div className="relative w-full md:max-w-md overflow-hidden rounded-[2rem] shadow-sm">
+        <div className="flex justify-center mb-2">
+          <div className="relative w-full md:max-w-md">
             <Image 
               src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2012_35_36%20PM.png"
               alt="Housewarming Ceremony"
@@ -36,7 +36,7 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
           </div>
         </div>
 
-        <div className="flex flex-col items-center mb-4">
+        <div className="flex flex-col items-center mb-2">
           <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'} text-secondary text-2xl`}>
             {t.shreeGanesh}
           </h2>
