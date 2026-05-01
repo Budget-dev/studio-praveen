@@ -52,15 +52,8 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
             
             <div className="gold-divider my-2" />
 
-            {/* Host Names - Tight spacing */}
+            {/* Host Section Simplified - Only Invite Text */}
             <div className="space-y-1 py-1">
-              <div className="space-y-1">
-                {t.hosts.map((host, idx) => (
-                  <h3 key={idx} className={`text-xl md:text-2xl ${lang === 'te' ? 'font-telugu font-bold' : 'font-headline font-bold'} text-primary`}>
-                    {host}
-                  </h3>
-                ))}
-              </div>
               <p className={`text-muted-foreground font-headline font-semibold text-sm md:text-base`}>
                 {t.inviteText}
               </p>
