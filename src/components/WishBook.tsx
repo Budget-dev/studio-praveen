@@ -93,7 +93,7 @@ const WishBook = ({ lang }: WishBookProps) => {
                  <Share2 className="w-4 h-4 mr-2" /> Share with Family & Friends
                </Button>
                <p className="text-[10px] text-center text-muted-foreground italic">
-                 "Your beautiful words mean the world to us. Your wish will be displayed once the family sees it!"
+                 "Your beautiful words mean the world to us."
                </p>
             </div>
           </div>
@@ -113,23 +113,21 @@ const WishBook = ({ lang }: WishBookProps) => {
     }
   };
 
-  // Double the wishes list to create a seamless infinite loop effect for the marquee
   const displayWishes = [...wishes, ...wishes, ...wishes];
 
   return (
-    <section className="py-20 px-4 md:px-8 bg-[#FAF7F2] relative overflow-hidden">
+    <section className="snap-start min-h-screen py-20 px-4 md:px-8 bg-[#FAF7F2] relative overflow-hidden flex flex-col items-center justify-center">
       <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
         <Heart className="w-64 h-64 text-primary fill-primary" />
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10 w-full">
         <h2 className={`text-4xl text-center text-primary mb-12 ${lang === 'te' ? 'font-telugu' : 'font-headline'}`}>
           {t.wishTitle}
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Form remains static */}
-          <form onSubmit={handleSubmit} className="space-y-4 bg-white/80 backdrop-blur-sm p-8 rounded-[2.5rem] shadow-[0_20px_50px_rgba(123,48,69,0.05)] border-2 border-secondary/10 sticky top-24">
+          <form onSubmit={handleSubmit} className="space-y-4 bg-white/80 backdrop-blur-sm p-8 rounded-[2.5rem] shadow-[0_20px_50px_rgba(123,48,69,0.05)] border-2 border-secondary/10">
             <div className="flex items-center gap-2 mb-4 text-primary">
               <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
                 <Heart className="w-4 h-4 fill-primary" />
@@ -170,7 +168,6 @@ const WishBook = ({ lang }: WishBookProps) => {
             </Button>
           </form>
 
-          {/* Scrolling Blessings Wall */}
           <div className="space-y-6">
             <h3 className="text-2xl font-headline text-primary flex items-center gap-3 border-b border-secondary/20 pb-4">
               <div className="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center">
@@ -179,7 +176,7 @@ const WishBook = ({ lang }: WishBookProps) => {
               Blessings Wall
             </h3>
             
-            <div className="bg-white/50 rounded-3xl p-4 border border-secondary/10 shadow-inner overflow-hidden h-[600px] relative">
+            <div className="bg-white/50 rounded-3xl p-4 border border-secondary/10 shadow-inner overflow-hidden h-[400px] md:h-[500px] relative">
               {isLoading ? (
                 <div className="flex flex-col items-center justify-center h-full gap-4">
                   <Loader2 className="w-12 h-12 animate-spin text-secondary" />

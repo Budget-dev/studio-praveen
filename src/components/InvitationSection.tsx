@@ -13,9 +13,8 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
   const t = translations[lang];
 
   return (
-    <section id="invitation" className="pt-0 pb-12 px-4 md:px-8 bg-[#FAF7F2] text-center">
-      <div className="max-w-6xl mx-auto">
-        {/* Ceremony Image at the absolute top - Responsive Sizing */}
+    <section id="invitation" className="snap-start min-h-screen pt-12 pb-12 px-4 md:px-8 bg-[#FAF7F2] text-center flex flex-col items-center justify-center">
+      <div className="max-w-6xl mx-auto w-full">
         <div className="flex justify-center mb-0 pt-0">
           <Image 
             src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2012_35_36%20PM.png"
@@ -27,22 +26,21 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
           />
         </div>
 
-        {/* Sacred text immediately visible under image */}
         <div className="flex flex-col items-center mb-6 mt-6">
           <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'} text-secondary text-2xl`}>
             {t.shreeGanesh}
           </h2>
         </div>
 
-        <div className="space-y-12">
-          <div className="space-y-6">
+        <div className="space-y-8">
+          <div className="space-y-4">
             <p className={`${lang === 'te' ? 'font-telugu italic' : 'font-headline font-bold'} text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed`}>
               {t.openingMessage}
             </p>
             
             <div className="gold-divider" />
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <h3 className={`text-3xl md:text-4xl ${lang === 'te' ? 'font-telugu font-bold' : 'font-headline font-bold'} text-primary`}>
                 {t.hostCouple}
               </h3>
@@ -51,29 +49,27 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
               </p>
             </div>
 
-            <h2 className={`text-2xl md:text-4xl text-primary font-bold px-4 py-6 border-y-2 border-secondary/20 bg-white/50 inline-block w-full max-w-3xl ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
+            <h2 className={`text-xl md:text-3xl text-primary font-bold px-4 py-4 border-y-2 border-secondary/20 bg-white/50 inline-block w-full max-w-2xl ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
               {t.occasion}
             </h2>
 
-            <p className={`text-foreground text-lg md:text-xl leading-relaxed max-w-2xl mx-auto ${lang === 'te' ? 'font-telugu' : 'font-body'}`}>
+            <p className={`text-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto ${lang === 'te' ? 'font-telugu' : 'font-body'}`}>
               {t.bodyText}
             </p>
           </div>
         </div>
 
-        {/* Telugu Blessing - Positioned near bottom */}
-        <div className="flex justify-center gap-2 text-primary font-telugu text-xl mt-16 pt-4">
+        <div className="flex justify-center gap-2 text-primary font-telugu text-xl mt-8 pt-4">
           💐 బంధు మిత్రుల అభినందనలతో 💐
         </div>
 
-        {/* Traditional Decoration Image (Lotus) positioned under blessing */}
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center mt-6">
           <Image 
             src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2002_25_06%20PM.png"
             alt="Traditional Lotus Decoration"
             width={300}
             height={120}
-            className="w-full max-w-[280px] h-auto opacity-90 drop-shadow-sm"
+            className="w-full max-w-[200px] h-auto opacity-90 drop-shadow-sm"
           />
         </div>
       </div>

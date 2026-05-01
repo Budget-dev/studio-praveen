@@ -29,19 +29,17 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    // Attempt to play music as soon as possible
     const attemptPlay = () => {
       if (audioRef.current) {
         audioRef.current.volume = 0.6;
         audioRef.current.play().catch(() => {
-          // Autoplay is likely blocked by browser policy until interaction
+          // Autoplay policy handling
         });
       }
     };
 
     if (!isLoading) {
       attemptPlay();
-      // Listen for any early interaction to start music if blocked
       window.addEventListener('click', attemptPlay, { once: true });
       window.addEventListener('touchstart', attemptPlay, { once: true });
       window.addEventListener('scroll', attemptPlay, { once: true });
@@ -58,11 +56,10 @@ export default function Home() {
     setLang(selectedLang);
     setIsOpened(true);
     
-    // Play audio immediately on button interaction
     if (audioRef.current) {
       audioRef.current.volume = 0.6;
       audioRef.current.play().catch((error) => {
-        console.warn("Audio playback was blocked or failed:", error);
+        console.warn("Audio playback failed:", error);
       });
     }
   };
@@ -76,7 +73,7 @@ export default function Home() {
   const audioPath = "/song/Agajanana%20Padmarkam%20_%20Shri%20Ganesha%20Slokam%20__.mp3";
 
   return (
-    <main className="relative min-h-screen bg-[#FAF7F2] pt-0">
+    <main className={`relative min-h-screen bg-[#FAF7F2] ${isOpened ? 'snap-y snap-mandatory overflow-y-scroll h-screen' : ''}`}>
       <audio
         ref={audioRef}
         preload="auto"
@@ -88,15 +85,17 @@ export default function Home() {
       {isOpened && <LanguageToggle current={lang} onToggle={handleLangToggle} />}
       <PetalsAnimation />
       
-      <Hero 
-        lang={lang} 
-        isOpen={isOpened} 
-        onOpenWithLang={handleOpenInvitation} 
-      />
+      {!isOpened && (
+        <Hero 
+          lang={lang} 
+          isOpen={isOpened} 
+          onOpenWithLang={handleOpenInvitation} 
+        />
+      )}
       
       {isOpened && (
         <div className="animate-in fade-in slide-in-from-bottom-10 duration-1000 relative">
-          {/* Side Floral Decorations - Fixed to Viewport Sides */}
+          {/* Side Floral Decorations - Persistent on desktop sides */}
           <div className="hidden lg:block fixed inset-y-0 left-0 w-[200px] pointer-events-none z-10 opacity-40">
             <div className="relative w-full h-full">
               <Image 
@@ -125,7 +124,7 @@ export default function Home() {
         </div>
       )}
 
-      <ScrollToTop />
+      {isOpened && <ScrollToTop />}
     </main>
   );
 }
