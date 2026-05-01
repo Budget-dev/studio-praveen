@@ -17,7 +17,7 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
       <div className="max-w-4xl mx-auto w-full">
         {/* Header text */}
         <div className="mb-0">
-          <h1 className="text-3xl md:text-5xl font-headline text-primary font-bold tracking-wide py-2">
+          <h1 className="text-4xl md:text-6xl font-headline text-primary font-bold tracking-wide py-2">
             Housewarming Ceremony
           </h1>
         </div>
@@ -39,19 +39,19 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
 
         {/* Shree Ganeshaya Namaha */}
         <div className="flex flex-col items-center mb-1 relative z-10">
-          <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'} text-secondary text-4xl md:text-6xl`}>
+          <h2 className={`${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'} text-secondary text-5xl md:text-7xl`}>
             {t.shreeGanesh}
           </h2>
         </div>
 
         <div className="space-y-4">
           <div className="space-y-1">
-            {/* Opening Message - Split into two lines as requested */}
-            <div className="flex flex-col gap-1 mb-6">
-              <p className={`${lang === 'te' ? 'font-telugu text-2xl md:text-3xl' : 'font-headline text-xl md:text-3xl'} text-muted-foreground italic`}>
+            {/* Opening Message - Split into two distinct lines */}
+            <div className="flex flex-col gap-2 mb-6">
+              <p className={`${lang === 'te' ? 'font-telugu text-3xl md:text-4xl' : 'font-headline text-2xl md:text-4xl'} text-muted-foreground italic`}>
                 {t.blessingPrefix}
               </p>
-              <p className={`${lang === 'te' ? 'font-telugu text-3xl md:text-5xl' : 'font-headline text-3xl md:text-5xl'} font-bold text-muted-foreground`}>
+              <p className={`${lang === 'te' ? 'font-telugu text-4xl md:text-6xl' : 'font-headline text-4xl md:text-6xl'} font-bold text-primary`}>
                 {t.blessingNames}
               </p>
             </div>
@@ -60,27 +60,27 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
 
             {/* Invite Text */}
             <div className="py-2">
-              <p className="text-muted-foreground font-headline font-semibold text-xl sm:text-2xl md:text-3xl px-4">
+              <p className="text-muted-foreground font-headline font-semibold text-2xl sm:text-3xl md:text-4xl px-4">
                 {t.inviteText}
               </p>
             </div>
 
             {/* Occasion Box */}
             <div className="my-4 inline-block w-full max-w-2xl px-4">
-               <h2 className={`text-3xl md:text-5xl text-primary font-bold py-4 border-y border-secondary/20 bg-white/50 w-full ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
+               <h2 className={`text-4xl md:text-6xl text-primary font-bold py-6 border-y border-secondary/20 bg-white/50 w-full ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
                 {t.occasion}
               </h2>
             </div>
 
             {/* Body Text */}
-            <p className={`text-foreground text-xl md:text-3xl leading-relaxed max-w-3xl mx-auto px-4 mt-4 ${lang === 'te' ? 'font-telugu' : 'font-body'}`}>
+            <p className={`text-foreground text-2xl md:text-4xl leading-relaxed max-w-3xl mx-auto px-4 mt-6 ${lang === 'te' ? 'font-telugu' : 'font-body'}`}>
               {t.bodyText}
             </p>
           </div>
         </div>
 
         {/* Bottom Message */}
-        <div className="flex justify-center gap-2 text-primary font-telugu text-3xl md:text-4xl mt-10">
+        <div className="flex justify-center gap-2 text-primary font-telugu text-4xl md:text-5xl mt-12">
           💐 బంధు మిత్రుల అభినందనలతో 💐
         </div>
       </div>

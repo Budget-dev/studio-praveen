@@ -33,13 +33,14 @@ export default function Home() {
       if (audioRef.current) {
         audioRef.current.volume = 0.6;
         audioRef.current.play().catch(() => {
-          // Autoplay policy handling
+          // Handled by browser policy
         });
       }
     };
 
-    // Listen for any user interaction as early as possible (even during loading)
-    const events = ['click', 'touchstart', 'scroll', 'mousemove'];
+    // Attach listeners to window immediately to capture any interaction
+    // This allows music to start even during the splash screen if the user clicks anywhere
+    const events = ['click', 'touchstart', 'mousedown', 'keydown', 'scroll'];
     events.forEach(event => {
       window.addEventListener(event, attemptPlay, { once: true });
     });
@@ -55,6 +56,7 @@ export default function Home() {
     setLang(selectedLang);
     setIsOpened(true);
     
+    // Attempt play again on deliberate button click
     if (audioRef.current) {
       audioRef.current.volume = 0.6;
       audioRef.current.play().catch((error) => {
@@ -70,7 +72,7 @@ export default function Home() {
   const audioPath = "/song/Agajanana%20Padmarkam%20_%20Shri%20Ganesha%20Slokam%20__.mp3";
 
   return (
-    <main className={`relative bg-[#FAF7F2] ${isOpened ? 'min-h-screen overflow-x-hidden' : 'min-h-screen'}`}>
+    <main className={`relative bg-[#FAF7F2] ${isOpened ? 'overflow-x-hidden' : ''}`}>
       <audio
         ref={audioRef}
         preload="auto"
@@ -94,7 +96,7 @@ export default function Home() {
       
       {isOpened && (
         <div className="relative">
-          {/* Side Floral Decorations - Fixed to walls */}
+          {/* Side Floral Decorations */}
           <div className="hidden lg:block fixed inset-y-0 left-0 w-[180px] pointer-events-none z-50 opacity-40">
             <div className="relative w-full h-full">
               <Image 
