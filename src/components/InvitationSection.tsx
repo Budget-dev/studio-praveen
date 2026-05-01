@@ -46,13 +46,19 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
 
         <div className="space-y-4">
           <div className="space-y-2">
-            {/* Opening Message - Split into two distinct lines */}
+            {/* Opening Message - Split into distinct lines */}
             <div className="flex flex-col gap-2 mb-6">
-              <p className={`${lang === 'te' ? 'font-telugu text-2xl md:text-3xl' : 'font-headline text-2xl md:text-3xl'} text-muted-foreground italic`}>
+              <p className={`${lang === 'te' ? 'font-telugu text-xl md:text-2xl' : 'font-headline text-xl md:text-2xl'} text-muted-foreground italic`}>
                 {t.blessingPrefix}
               </p>
-              <p className={`${lang === 'te' ? 'font-telugu text-3xl md:text-5xl' : 'font-headline text-3xl md:text-5xl'} font-bold text-primary leading-tight`}>
+              <p className={`${lang === 'te' ? 'font-telugu text-2xl md:text-4xl' : 'font-headline text-2xl md:text-4xl'} font-bold text-primary leading-tight`}>
                 {t.blessingNames}
+                {lang === 'en' ? ' vari divya asisuatho' : ''}
+              </p>
+              
+              {/* Added Host Couple Name as requested */}
+              <p className={`${lang === 'te' ? 'font-telugu text-2xl md:text-4xl' : 'font-headline text-2xl md:text-4xl'} font-bold text-primary mt-2`}>
+                {t.hostCouple}
               </p>
             </div>
             
@@ -60,27 +66,27 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
 
             {/* Invite Text */}
             <div className="py-2">
-              <p className="text-muted-foreground font-headline font-bold text-2xl md:text-4xl px-4">
+              <p className="text-muted-foreground font-headline font-bold text-xl md:text-3xl px-4">
                 {t.inviteText}
               </p>
             </div>
 
             {/* Occasion Box */}
             <div className="my-4 inline-block w-full max-w-2xl px-4">
-               <h2 className={`text-3xl md:text-5xl text-primary font-bold py-6 border-y border-secondary/20 bg-white/50 w-full ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
+               <h2 className={`text-2xl md:text-4xl text-primary font-bold py-6 border-y border-secondary/20 bg-white/50 w-full ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
                 {t.occasion}
               </h2>
             </div>
 
             {/* Body Text */}
-            <p className={`text-foreground text-xl md:text-3xl leading-relaxed max-w-3xl mx-auto px-4 mt-4 ${lang === 'te' ? 'font-telugu font-medium' : 'font-body font-medium'}`}>
+            <p className={`text-foreground text-lg md:text-2xl leading-relaxed max-w-3xl mx-auto px-4 mt-4 ${lang === 'te' ? 'font-telugu font-medium' : 'font-body font-medium'}`}>
               {t.bodyText}
             </p>
           </div>
         </div>
 
         {/* Bottom Message */}
-        <div className="flex justify-center gap-2 text-primary font-telugu text-3xl md:text-4xl mt-12 font-bold">
+        <div className="flex justify-center gap-2 text-primary font-telugu text-2xl md:text-3xl mt-12 font-bold">
           💐 బంధు మిత్రుల అభినందనలతో 💐
         </div>
       </div>

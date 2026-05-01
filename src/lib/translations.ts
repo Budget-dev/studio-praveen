@@ -53,7 +53,7 @@ export const translations = {
       "Sri Patnala Nagaraju & Smt. Bharathi",
       "Sri Patnala Parameshwar Rao & Smt. Lakshmi"
     ],
-    hostCouple: "Sri Patnala Parameswara Rao & Smt. Lakshmi",
+    hostCouple: "Sri Patnala Parameshwar Rao & Smt. Lakshmi",
     inviteText: "cordially invite you and your family to the auspicious occasion of",
     occasion: "New Housewarming Ceremony (Gruhapravesam) & Sri Satyanarayana Swamy Vratham",
     bodyText: "which has been arranged as per the blessings and guidance of our elders. We sincerely request your gracious presence to bless us, accept our hospitality, and make this joyful occasion even more memorable.",
