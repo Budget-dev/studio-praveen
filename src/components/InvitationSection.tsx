@@ -13,7 +13,7 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
   const t = translations[lang];
 
   return (
-    <section id="invitation" className="snap-start h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-[#FAF7F2] text-center">
+    <section id="invitation" className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-[#FAF7F2] text-center">
       <div className="max-w-6xl mx-auto w-full">
         <div className="flex justify-center mb-4">
           <Image 

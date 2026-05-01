@@ -72,7 +72,7 @@ export default function Home() {
   const audioPath = "/song/Agajanana%20Padmarkam%20_%20Shri%20Ganesha%20Slokam%20__.mp3";
 
   return (
-    <main className={`relative bg-[#FAF7F2] ${isOpened ? 'h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth' : 'min-h-screen'}`}>
+    <main className={`relative bg-[#FAF7F2] ${isOpened ? 'min-h-screen overflow-x-hidden' : 'min-h-screen'}`}>
       <audio
         ref={audioRef}
         preload="auto"
