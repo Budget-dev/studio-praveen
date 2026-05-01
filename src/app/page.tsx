@@ -29,18 +29,17 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    // Attempting to start music on the very first user interaction (touch, scroll, or click)
     const attemptPlay = () => {
-      if (audioRef.current) {
+      if (audioRef.current && audioRef.current.paused) {
         audioRef.current.volume = 0.6;
-        audioRef.current.play().catch(() => {
-          // Handled by browser policy
+        audioRef.current.play().catch((error) => {
+          console.warn("Autoplay blocked by browser. Interaction required.", error);
         });
       }
     };
 
-    // Attach listeners to window immediately to capture any interaction
-    // This allows music to start even during the splash screen if the user clicks anywhere
-    const events = ['click', 'touchstart', 'mousedown', 'keydown', 'scroll'];
+    const events = ['click', 'touchstart', 'mousedown', 'keydown', 'scroll', 'wheel'];
     events.forEach(event => {
       window.addEventListener(event, attemptPlay, { once: true });
     });
@@ -56,12 +55,9 @@ export default function Home() {
     setLang(selectedLang);
     setIsOpened(true);
     
-    // Attempt play again on deliberate button click
     if (audioRef.current) {
       audioRef.current.volume = 0.6;
-      audioRef.current.play().catch((error) => {
-        console.warn("Audio playback failed:", error);
-      });
+      audioRef.current.play().catch(() => {});
     }
   };
 
@@ -77,6 +73,7 @@ export default function Home() {
         ref={audioRef}
         preload="auto"
         loop
+        autoPlay={false}
       >
         <source src={audioPath} type="audio/mpeg" />
       </audio>

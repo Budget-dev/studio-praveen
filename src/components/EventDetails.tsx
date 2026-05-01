@@ -43,9 +43,9 @@ END:VCALENDAR`;
   };
 
   return (
-    <section className="pt-6 pb-2 px-4 md:px-8 bg-white/50 backdrop-blur-sm flex flex-col items-center justify-center">
+    <section className="pt-8 pb-4 px-4 md:px-8 bg-white/50 backdrop-blur-sm flex flex-col items-center justify-center">
       <div className="max-w-6xl mx-auto w-full">
-        <h2 className={`text-3xl text-center text-primary mb-8 ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
+        <h2 className={`text-4xl md:text-5xl text-center text-primary mb-12 ${lang === 'te' ? 'font-telugu' : 'font-headline font-bold'}`}>
           {t.detailsTitle}
         </h2>
 
@@ -64,9 +64,9 @@ END:VCALENDAR`;
                   data-ai-hint="ceremony ritual"
                 />
               </div>
-              <h3 className="text-xl font-bold text-primary">{t.event1Title}</h3>
-              <p className="text-foreground font-bold text-lg">{t.event1Date}</p>
-              <p className="text-2xl font-bold text-primary">{t.event1Time}</p>
+              <h3 className="text-2xl font-bold text-primary">{t.event1Title}</h3>
+              <p className="text-[#2C2015] font-extrabold text-xl md:text-2xl">{t.event1Date}</p>
+              <p className="text-3xl font-black text-primary">{t.event1Time}</p>
             </CardContent>
           </Card>
 
@@ -84,9 +84,9 @@ END:VCALENDAR`;
                   data-ai-hint="sacred deity"
                 />
               </div>
-              <h3 className="text-xl font-bold text-primary">{t.event2Title}</h3>
-              <p className="text-foreground font-bold text-lg">{t.event2Date}</p>
-              <p className="text-2xl font-bold text-primary">{t.event2Time}</p>
+              <h3 className="text-2xl font-bold text-primary">{t.event2Title}</h3>
+              <p className="text-[#2C2015] font-extrabold text-xl md:text-2xl">{t.event2Date}</p>
+              <p className="text-3xl font-black text-primary">{t.event2Time}</p>
             </CardContent>
           </Card>
 
@@ -104,16 +104,16 @@ END:VCALENDAR`;
                   data-ai-hint="venue map"
                 />
               </div>
-              <h3 className="text-xl font-bold text-primary">{t.venueTitle}</h3>
-              <p className="text-foreground font-bold text-base leading-relaxed mb-4">{t.venueAddress}</p>
+              <h3 className="text-2xl font-bold text-primary">{t.venueTitle}</h3>
+              <p className="text-[#2C2015] font-bold text-lg md:text-xl leading-relaxed mb-4">{t.venueAddress}</p>
               
-              <div className="flex flex-col gap-2">
-                <Button variant="outline" onClick={generateICS} className="border-secondary text-primary hover:bg-secondary hover:text-white w-full">
-                  <Calendar className="w-4 h-4 mr-2" />
+              <div className="flex flex-col gap-3">
+                <Button variant="outline" onClick={generateICS} className="border-secondary text-primary hover:bg-secondary hover:text-white w-full h-12 text-lg font-bold">
+                  <Calendar className="w-5 h-5 mr-2" />
                   {t.addCalendar}
                 </Button>
-                <Button onClick={() => window.open('https://maps.app.goo.gl/57XQ4Nz7uptKqEW37', '_blank')} className="bg-primary hover:bg-primary/90 text-white w-full">
-                  <MapPin className="w-4 h-4 mr-2" />
+                <Button onClick={() => window.open('https://maps.app.goo.gl/57XQ4Nz7uptKqEW37', '_blank')} className="bg-primary hover:bg-primary/90 text-white w-full h-12 text-lg font-bold">
+                  <MapPin className="w-5 h-5 mr-2" />
                   {t.getDirections}
                 </Button>
               </div>
