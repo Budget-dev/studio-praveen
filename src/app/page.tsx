@@ -28,19 +28,42 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    // Attempt to play music as soon as possible
+    const attemptPlay = () => {
+      if (audioRef.current) {
+        audioRef.current.volume = 0.6;
+        audioRef.current.play().catch(() => {
+          // Autoplay is likely blocked by browser policy until interaction
+        });
+      }
+    };
+
+    if (!isLoading) {
+      attemptPlay();
+      // Listen for any early interaction to start music if blocked
+      window.addEventListener('click', attemptPlay, { once: true });
+      window.addEventListener('touchstart', attemptPlay, { once: true });
+      window.addEventListener('scroll', attemptPlay, { once: true });
+    }
+
+    return () => {
+      window.removeEventListener('click', attemptPlay);
+      window.removeEventListener('touchstart', attemptPlay);
+      window.removeEventListener('scroll', attemptPlay);
+    };
+  }, [isLoading]);
+
   const handleOpenInvitation = (selectedLang: Language) => {
     setLang(selectedLang);
     setIsOpened(true);
     
-    // Play audio immediately on user interaction
+    // Play audio immediately on button interaction
     if (audioRef.current) {
       audioRef.current.volume = 0.6;
-      const playPromise = audioRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((error) => {
-          console.warn("Audio playback was blocked or failed:", error);
-        });
-      }
+      audioRef.current.play().catch((error) => {
+        console.warn("Audio playback was blocked or failed:", error);
+      });
     }
   };
 
