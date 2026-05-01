@@ -41,7 +41,7 @@ const WishBook = ({ lang }: WishBookProps) => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleShare = (userName: string) => {
+  const handleShare = () => {
     const text = encodeURIComponent(`I just sent a wish to the Patnala family for their housewarming! 🏠🙏 Leave yours here: ${window.location.origin}`);
     window.open(`https://wa.me/?text=${text}`, '_blank');
   };
@@ -87,7 +87,7 @@ const WishBook = ({ lang }: WishBookProps) => {
             <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider">{t.thankYouFromHost}</p>
             <div className="pt-2 flex flex-col gap-3">
                <Button 
-                 onClick={() => handleShare(submittedName)} 
+                 onClick={handleShare} 
                  className="bg-green-600 hover:bg-green-700 text-white rounded-full text-sm h-12 w-full font-bold shadow-lg transition-all active:scale-95"
                >
                  <Share2 className="w-4 h-4 mr-2" /> Share with Family & Friends
@@ -113,6 +113,7 @@ const WishBook = ({ lang }: WishBookProps) => {
     }
   };
 
+  // Triple for seamless marquee effect
   const displayWishes = [...wishes, ...wishes, ...wishes];
 
   return (
