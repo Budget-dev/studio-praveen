@@ -10,7 +10,6 @@ import { useToast } from '@/hooks/use-toast';
 import { getWishes, addWish, Wish } from '@/lib/firebase';
 import { Loader2, MessageSquare, Send, Heart, Share2, Sparkles } from 'lucide-react';
 import { generatePersonalizedThankYouNote } from '@/ai/flows/generate-personalized-thank-you-note-flow';
-import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface WishBookProps {
   lang: Language;
@@ -114,6 +113,9 @@ const WishBook = ({ lang }: WishBookProps) => {
     }
   };
 
+  // Double the wishes list to create a seamless infinite loop effect for the marquee
+  const displayWishes = [...wishes, ...wishes, ...wishes];
+
   return (
     <section className="py-20 px-4 md:px-8 bg-[#FAF7F2] relative overflow-hidden">
       <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
@@ -126,6 +128,7 @@ const WishBook = ({ lang }: WishBookProps) => {
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          {/* Form remains static */}
           <form onSubmit={handleSubmit} className="space-y-4 bg-white/80 backdrop-blur-sm p-8 rounded-[2.5rem] shadow-[0_20px_50px_rgba(123,48,69,0.05)] border-2 border-secondary/10 sticky top-24">
             <div className="flex items-center gap-2 mb-4 text-primary">
               <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
@@ -167,6 +170,7 @@ const WishBook = ({ lang }: WishBookProps) => {
             </Button>
           </form>
 
+          {/* Scrolling Blessings Wall */}
           <div className="space-y-6">
             <h3 className="text-2xl font-headline text-primary flex items-center gap-3 border-b border-secondary/20 pb-4">
               <div className="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center">
@@ -175,47 +179,45 @@ const WishBook = ({ lang }: WishBookProps) => {
               Blessings Wall
             </h3>
             
-            <div className="bg-white/50 rounded-3xl p-4 border border-secondary/10 shadow-inner">
-              <ScrollArea className="h-[600px] w-full pr-4">
-                <div className="space-y-6 py-4">
-                  {isLoading ? (
-                    <div className="flex flex-col items-center justify-center py-20 gap-4">
-                      <Loader2 className="w-12 h-12 animate-spin text-secondary" />
-                      <p className="text-muted-foreground animate-pulse">Reading blessings...</p>
-                    </div>
-                  ) : wishes.length > 0 ? (
-                    wishes.map((wish) => (
-                      <div 
-                        key={wish.id} 
-                        className="bg-white p-7 rounded-[2rem] shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-secondary/10 hover:border-primary/20 transition-all hover:translate-x-1 group"
-                      >
-                        <div className="flex justify-between items-center mb-4">
-                          <div className="flex items-center gap-3">
-                             <div className="w-12 h-12 rounded-2xl bg-primary/5 flex items-center justify-center text-primary text-xl font-bold border border-primary/10 group-hover:bg-primary group-hover:text-white transition-colors duration-500">
-                               {wish.name.charAt(0).toUpperCase()}
-                             </div>
-                             <div className="flex flex-col">
-                               <span className="font-bold text-primary text-xl leading-none">{wish.name}</span>
-                               <span className="text-[10px] uppercase tracking-widest text-muted-foreground mt-1">Guest Blessing</span>
-                             </div>
-                          </div>
-                          <div className="p-2 rounded-full bg-secondary/5">
-                            <Heart className="w-5 h-5 text-secondary/40 fill-secondary/10 group-hover:fill-secondary group-hover:text-secondary transition-all" />
-                          </div>
-                        </div>
-                        <p className={`text-foreground/80 leading-relaxed italic text-lg border-l-4 border-secondary/20 pl-6 py-2 ${wish.language === 'te' ? 'font-telugu' : 'font-body'}`}>
-                          "{wish.message}"
-                        </p>
-                      </div>
-                    ))
-                  ) : (
-                    <div className="text-center py-24 bg-white/50 rounded-[3rem] border-4 border-dashed border-secondary/10">
-                      <Heart className="w-16 h-16 text-secondary/20 mx-auto mb-4" />
-                      <p className="text-muted-foreground italic text-xl">Waiting for the first blessing...</p>
-                    </div>
-                  )}
+            <div className="bg-white/50 rounded-3xl p-4 border border-secondary/10 shadow-inner overflow-hidden h-[600px] relative">
+              {isLoading ? (
+                <div className="flex flex-col items-center justify-center h-full gap-4">
+                  <Loader2 className="w-12 h-12 animate-spin text-secondary" />
+                  <p className="text-muted-foreground animate-pulse">Reading blessings...</p>
                 </div>
-              </ScrollArea>
+              ) : wishes.length > 0 ? (
+                <div className="animate-marquee hover:[animation-play-state:paused] space-y-6 py-4">
+                  {displayWishes.map((wish, index) => (
+                    <div 
+                      key={`${wish.id}-${index}`} 
+                      className="bg-white p-7 rounded-[2rem] shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-secondary/10 hover:border-primary/20 transition-all hover:translate-x-1 group"
+                    >
+                      <div className="flex justify-between items-center mb-4">
+                        <div className="flex items-center gap-3">
+                           <div className="w-12 h-12 rounded-2xl bg-primary/5 flex items-center justify-center text-primary text-xl font-bold border border-primary/10 group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+                             {wish.name.charAt(0).toUpperCase()}
+                           </div>
+                           <div className="flex flex-col">
+                             <span className="font-bold text-primary text-xl leading-none">{wish.name}</span>
+                             <span className="text-[10px] uppercase tracking-widest text-muted-foreground mt-1">Guest Blessing</span>
+                           </div>
+                        </div>
+                        <div className="p-2 rounded-full bg-secondary/5">
+                          <Heart className="w-5 h-5 text-secondary/40 fill-secondary/10 group-hover:fill-secondary group-hover:text-secondary transition-all" />
+                        </div>
+                      </div>
+                      <p className={`text-foreground/80 leading-relaxed italic text-lg border-l-4 border-secondary/20 pl-6 py-2 ${wish.language === 'te' ? 'font-telugu' : 'font-body'}`}>
+                        "{wish.message}"
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-24 h-full flex flex-col items-center justify-center bg-white/50 rounded-[3rem] border-4 border-dashed border-secondary/10">
+                  <Heart className="w-16 h-16 text-secondary/20 mb-4" />
+                  <p className="text-muted-foreground italic text-xl">Waiting for the first blessing...</p>
+                </div>
+              )}
             </div>
           </div>
         </div>

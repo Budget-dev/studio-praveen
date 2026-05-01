@@ -16,7 +16,7 @@ import Image from 'next/image';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const [lang, setLang] = useState<Language>('en'); // Default to English for the cover
+  const [lang, setLang] = useState<Language>('en'); 
   const [isOpened, setIsOpened] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -31,11 +31,16 @@ export default function Home() {
   const handleOpenInvitation = (selectedLang: Language) => {
     setLang(selectedLang);
     setIsOpened(true);
+    
+    // Play audio immediately on user interaction
     if (audioRef.current) {
       audioRef.current.volume = 0.6;
-      audioRef.current.play().catch((error) => {
-        console.error("Audio playback failed:", error);
-      });
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.warn("Audio playback was blocked or failed:", error);
+        });
+      }
     }
   };
 
