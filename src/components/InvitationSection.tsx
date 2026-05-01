@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from 'react';
@@ -40,10 +39,14 @@ const InvitationSection = ({ lang }: InvitationSectionProps) => {
             
             <div className="gold-divider" />
 
-            <div className="space-y-2">
-              <h3 className={`text-3xl md:text-4xl ${lang === 'te' ? 'font-telugu font-bold' : 'font-headline font-bold'} text-primary`}>
-                {t.hostCouple}
-              </h3>
+            <div className="space-y-4 py-4">
+              <div className="space-y-3">
+                {t.hosts.map((host, idx) => (
+                  <h3 key={idx} className={`text-2xl md:text-3xl ${lang === 'te' ? 'font-telugu font-bold' : 'font-headline font-bold'} text-primary`}>
+                    {host}
+                  </h3>
+                ))}
+              </div>
               <p className={`text-muted-foreground font-headline font-semibold`}>
                 {t.inviteText}
               </p>

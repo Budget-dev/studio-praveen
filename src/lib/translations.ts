@@ -4,6 +4,12 @@ export const translations = {
     mainTitle: "పట్నాల వారి నూతన గృహప్రవేశ ఆహ్వానము",
     openInvitation: "ఆహ్వానం తెరవండి",
     theBlessings: "శ్రీ పట్నాల పైడాచారి మరియు శ్రీమతి వనజలక్ష్మి వారి దివ్య ఆశీస్సుసులతో...",
+    yoursTruly: "ఇట్లు",
+    hosts: [
+      "శ్రీ పట్నాల బాలసుబ్రహ్మణ్యం & శ్రీమతి ఉష",
+      "శ్రీ పట్నాల నాగరాజు & శ్రీమతి భారతి",
+      "శ్రీ పట్నాల పరమేశ్వర రావు & శ్రీమతి లక్ష్మి"
+    ],
     hostCouple: "శ్రీ పట్నాల పరమేశ్వర రావు & శ్రీమతి లక్ష్మి",
     inviteText: "వ్రాసి పంపిన గృహప్రవేశ ఆహ్వాన శుభపత్రిక",
     occasion: "నూతన గృహప్రవేశం మరియు శ్రీ సత్యనారాయణ స్వామి వ్రతం",
@@ -39,6 +45,12 @@ export const translations = {
     mainTitle: "Patnala Family's Housewarming Invitation",
     openInvitation: "Open Invitation",
     theBlessings: "With the divine blessings of Sri Patnala Paidachari and Smt. Vanaja Lakshmi...",
+    yoursTruly: "Yours Truly",
+    hosts: [
+      "Sri Patnala Bala Subramanyam & Smt. Usha",
+      "Sri Patnala Nagaraju & Smt. Bharathi",
+      "Sri Patnala Parameshwar Rao & Smt. Lakshmi"
+    ],
     hostCouple: "Sri Patnala Parameswara Rao & Smt. Lakshmi",
     inviteText: "cordially invite you and your family to the auspicious occasion of",
     occasion: "New Housewarming Ceremony (Gruhapravesam) & Sri Satyanarayana Swamy Vratham",
