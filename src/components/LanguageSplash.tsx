@@ -18,7 +18,7 @@ const LanguageSplash = ({ onSelect }: LanguageSplashProps) => {
       <div className="relative z-10 max-w-md w-full space-y-8 animate-in fade-in zoom-in duration-700">
         <div className="flex flex-col items-center gap-6 mb-6">
           <Image 
-            src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2024%2C%202026%2C%2002_34_38%20PM.png"
+            src="https://vennky.sirv.com/ChatGPT%20Image%20May%202%2C%202026%2C%2011_11_04%20PM.png"
             alt="Sacred Ganesha"
             width={280}
             height={280}

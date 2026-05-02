@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from 'react';
@@ -21,7 +20,7 @@ export default function Hero({ onOpenWithLang, isOpen }: HeroProps) {
         {/* Invitation Cover Image Container */}
         <div className="relative w-full overflow-hidden rounded-[2.5rem] shadow-2xl border border-secondary/10 bg-white">
           <Image 
-            src="https://1234567890.sirv.com/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2004_44_04%20PM.png"
+            src="https://vennky.sirv.com/ChatGPT%20Image%20May%202%2C%202026%2C%2011_11_04%20PM.png"
             alt="Patnala Gruhapravesam Invitation Cover"
             width={500}
             height={500}
